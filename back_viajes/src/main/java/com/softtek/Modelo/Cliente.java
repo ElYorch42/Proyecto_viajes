@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "nombre")
@@ -39,6 +42,9 @@ public class Cliente {
     @Column(name = "Usuario")
     private String usuario;
 
-    @Column(name = "contraseña")
+    @Column(name = "contrasena")
     private String contrasena;
+
+    @OneToMany(mappedBy = "clienteInvitado",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    List<Invitado> invitados;
 }

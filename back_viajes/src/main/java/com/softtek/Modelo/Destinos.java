@@ -18,9 +18,10 @@ public class Destinos {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name= "Tipo")
-    private String tipo;
+    @Column(name= "tipo_localidad")
+    private String tipoLocalidad;
 
-    @Column(name = "id_pais")
-    private int id_pais;
+    @ManyToOne
+    @JoinColumn(name = "id_pais", nullable = false, foreignKey = @ForeignKey(name = "FK_destinos_paises"))
+    private Paises paisDestino;
 }

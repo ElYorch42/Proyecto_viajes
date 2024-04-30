@@ -10,5 +10,4 @@ public class BackViajesApplication {
 		SpringApplication.run(BackViajesApplication.class, args);
 		//comentariotest
 	}
-
 }

@@ -32,9 +32,4 @@ public class Viajes {
     private String tipocalidad;
 
 
-
-
-
-
-
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "invitado")
-public class invitado {
+public class Invitado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -35,4 +35,9 @@ public class invitado {
 
     @Column(name = "Usuario")
     private String usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_invitado_cliente"))
+    private Cliente clienteInvitado;
+
 }
