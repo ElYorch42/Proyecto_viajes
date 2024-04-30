@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -16,4 +18,12 @@ public class Actividades {
 
     @Column(name = "nombre")
     private int nombre;
+
+    @ManyToMany
+    @JoinTable(name="Actividades_Viajes",
+    joinColumns = @JoinColumn(name = "id_actividades",
+    referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "id_viajes",
+    referencedColumnName = "id"))
+    private List<Viajes> viajes;
 }
