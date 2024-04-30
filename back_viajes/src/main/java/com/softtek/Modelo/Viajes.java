@@ -18,11 +18,13 @@ public class Viajes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(name = "id_cliente")
-    private int id_cliente;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_invitado_cliente"))
+    private Cliente clienteViaje;
 
-    @Column(name = "id_destino")
-    private int id_destino;
+    @ManyToOne
+    @JoinColumn(name = "id_destino",nullable = false, foreignKey = @ForeignKey(name = "FK_destino_Actividad"))
+    private Destinos destinoViaje;
 
     @Column(name = "actual")
     private boolean actual;

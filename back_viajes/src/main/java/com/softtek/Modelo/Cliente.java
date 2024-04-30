@@ -47,4 +47,8 @@ public class Cliente {
 
     @OneToMany(mappedBy = "clienteInvitado",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Invitado> invitados;
+
+    @OneToMany(mappedBy = "clienteViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    List<Viajes> viajes;
+
 }

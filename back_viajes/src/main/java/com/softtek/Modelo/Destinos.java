@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -24,4 +26,11 @@ public class Destinos {
     @ManyToOne
     @JoinColumn(name = "id_pais", nullable = false, foreignKey = @ForeignKey(name = "FK_destinos_paises"))
     private Paises paisDestino;
+
+    @OneToMany(mappedBy = "destinoActividad",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    List<Actividades> actividades;
+
+    @OneToMany(mappedBy = "destinoViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    List<Viajes> viajes;
+
 }

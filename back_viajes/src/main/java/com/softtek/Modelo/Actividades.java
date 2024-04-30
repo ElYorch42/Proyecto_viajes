@@ -19,6 +19,10 @@ public class Actividades {
     @Column(name = "nombre")
     private int nombre;
 
+    @ManyToOne
+    @JoinColumn(name = "id_destino",nullable = false, foreignKey = @ForeignKey(name = "FK_destino_Actividad"))
+    private Destinos destinoActividad;
+
     @ManyToMany
     @JoinTable(name="Actividades_Viajes",
     joinColumns = @JoinColumn(name = "id_actividades",
