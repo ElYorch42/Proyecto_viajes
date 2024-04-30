@@ -29,5 +29,5 @@ public class Actividades {
     referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "id_viajes",
     referencedColumnName = "id"))
-    private List<Viajes> viajes;
+    private List<Viajes> viajesActividades;
 }

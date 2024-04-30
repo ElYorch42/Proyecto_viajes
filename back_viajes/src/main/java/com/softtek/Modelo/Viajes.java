@@ -35,7 +35,7 @@ public class Viajes {
     @Column(name = "tipocalidad")
     private String tipocalidad;
 
-    @ManyToMany(mappedBy = "Actividades",
+    @ManyToMany(mappedBy = "viajesActividades",
     cascade = CascadeType.ALL,
     fetch = FetchType.EAGER)
     List<Actividades> actividades;
