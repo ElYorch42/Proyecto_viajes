@@ -2,6 +2,7 @@ package com.softtek.Controlador;
 
 import com.softtek.Modelo.Actividades;
 import com.softtek.Modelo.Paises;
+import com.softtek.Servicio.IPaisesServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class ControladorPaises {
     private IPaisesServicio iPaisesServicio;
 
     @GetMapping
-    public List<Actividades> obtenerProcuto() throws SQLException, ClassNotFoundException {
+    public List<Paises> obtenerProcuto() throws SQLException, ClassNotFoundException {
         return iPaisesServicio.obtener();
     }
 

@@ -1,6 +1,7 @@
 package com.softtek.Controlador;
 
 import com.softtek.Modelo.Actividades;
+import com.softtek.Servicio.IActividadesServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
