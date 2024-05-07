@@ -4,7 +4,9 @@ import com.softtek.Modelo.Viajes;
 import com.softtek.Repositorio.IGenericoRepositorio;
 import com.softtek.Repositorio.IViajesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ViajesServicio extends CRUD<Viajes, Integer> implements IViajesServicio {
     @Autowired
     private IViajesRepo repo;
