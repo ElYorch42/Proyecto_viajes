@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/actividades")
+@RequestMapping("/viajes")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ControladorViajes {
 

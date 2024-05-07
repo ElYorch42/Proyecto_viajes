@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/actividades")
+@RequestMapping("/paises")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ControladorPaises {
 
