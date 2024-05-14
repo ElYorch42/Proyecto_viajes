@@ -19,6 +19,9 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "i": "^0.3.7",
+    "npm": "^10.7.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
