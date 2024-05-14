@@ -33,9 +33,6 @@ public class Invitado {
     @Column(name = "codigo_postal")
     private String codigoPostal;
 
-    @Column(name = "Usuario")
-    private String usuario;
-
     @ManyToOne
     @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_invitado_cliente"))
     private Cliente clienteInvitado;
