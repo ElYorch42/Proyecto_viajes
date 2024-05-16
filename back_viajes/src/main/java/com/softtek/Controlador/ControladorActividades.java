@@ -1,11 +1,16 @@
 package com.softtek.Controlador;
 
+import com.softtek.Dto.ActividadesDto;
 import com.softtek.Modelo.Actividades;
 import com.softtek.Servicio.IActividadesServicio;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,32 +19,43 @@ import java.util.List;
 public class ControladorActividades {
 
 @Autowired
-    private IActividadesServicio iActividadesServicio;
+    private IActividadesServicio servicio;
 
     @GetMapping
-    public List<Actividades> obtenerProcuto() throws SQLException, ClassNotFoundException {
-        return iActividadesServicio.obtener();
+    public ResponseEntity<List<ActividadesDto>> obtenerTodos() {
+        List<Actividades> actividadesBBDD = servicio.obtener();
+        List<ActividadesDto> ListaActividadesDto = new ArrayList<>();
+
+        for (Actividades actividades: actividadesBBDD) {
+            ActividadesDto actividadesDto = new ActividadesDto();
+            ListaActividadesDto.add(actividadesDto.castActividadesADto(actividades));
+        }
+        return new ResponseEntity<>(ListaActividadesDto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Actividades obtener1Procuto(@PathVariable(name = "id") Integer id) throws SQLException, ClassNotFoundException {
-        return iActividadesServicio.obtenerUno(id);
-    }
-
-    @PutMapping
-    public Actividades actualizarProducto(@RequestBody Actividades p) throws SQLException, ClassNotFoundException {
-        return iActividadesServicio.actualizar(p);
+    public ResponseEntity<ActividadesDto> obtenerUno(@PathVariable(name = "id") Integer id) {
+        Actividades actividades = servicio.obtenerUno(id);
+        return new ResponseEntity<>((new ActividadesDto()).castActividadesADto(actividades),HttpStatus.OK);
     }
 
     @PostMapping
-    public Actividades crearProducto(@RequestBody Actividades p) throws SQLException, ClassNotFoundException {
-        return iActividadesServicio.crear(p);
+    public ResponseEntity<ActividadesDto> insertar(@Valid @RequestBody ActividadesDto actividadesDto) {
+        Actividades actividades = actividadesDto.castActividades();
+        servicio.insertar(actividades);
+        return new ResponseEntity<>(actividadesDto.castActividadesADto(actividades), HttpStatus.CREATED);
     }
-
+    @PutMapping
+    public ResponseEntity<ActividadesDto> actualizar(@Valid @RequestBody ActividadesDto actividadesDto) {
+        Actividades actividades = actividadesDto.castActividades();
+        servicio.actualizar(actividades);
+        return new ResponseEntity<>(actividadesDto.castActividadesADto(actividades), HttpStatus.OK);
+    }
     @DeleteMapping("/{id}")
-    public void eliminarProducto(@PathVariable int id) throws SQLException, ClassNotFoundException {
-        iActividadesServicio.delete(id);
-    }
+    public ResponseEntity<Void> eliminar(@PathVariable int id) {
+        servicio.eliminar(id);
 
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }

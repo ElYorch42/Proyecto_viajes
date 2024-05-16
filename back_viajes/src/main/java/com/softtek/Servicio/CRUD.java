@@ -14,7 +14,7 @@ public abstract class CRUD<T,ID> implements ICRUD<T,ID> {
     }
 
     @Override
-    public T crear(T t) {
+    public T insertar(T t) {
         return getRepo().save(t);
     }
 
@@ -30,7 +30,7 @@ public abstract class CRUD<T,ID> implements ICRUD<T,ID> {
     }
 
     @Override
-    public void delete(ID id){
+    public void eliminar(ID id){
         getRepo().deleteById(id);
     }
 

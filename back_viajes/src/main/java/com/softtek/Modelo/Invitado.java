@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -19,10 +21,10 @@ public class Invitado {
     private String nombre;
 
     @Column(name = "dni")
-    private String DNI;
+    private String dni;
 
-    @Column(name = "Dirreccion")
-    private String dirreccion;
+    @Column(name = "Direccion")
+    private String direccion;
 
     @Column(name = "Ciudad")
     private String ciudad;
@@ -36,5 +38,9 @@ public class Invitado {
     @ManyToOne
     @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_invitado_cliente"))
     private Cliente clienteInvitado;
+
+    @ManyToOne
+    @JoinColumn(name = "id_viaje",nullable = false, foreignKey = @ForeignKey(name = "FK__invitado_viaje"))
+    private Viajes viajeInvitado;
 
 }

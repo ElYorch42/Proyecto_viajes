@@ -22,13 +22,13 @@ public class Cliente {
     private String nombre;
 
     @Column(name = "dni")
-    private String DNI;
+    private String dni;
 
     @Column(name = "Correo")
     private String correo;
 
     @Column(name = "Dirreccion")
-    private String dirreccion;
+    private String direccion;
 
     @Column(name = "Ciudad")
     private String ciudad;
@@ -38,9 +38,6 @@ public class Cliente {
 
     @Column(name = "codigo_postal")
     private String codigoPostal;
-
-    @Column(name = "Usuario")
-    private String usuario;
 
     @Column(name = "contrasena")
     private String contrasena;

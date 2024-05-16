@@ -4,6 +4,7 @@ import com.softtek.Dto.ViajesDto;
 import com.softtek.Modelo.Actividades;
 import com.softtek.Modelo.Viajes;
 import com.softtek.Servicio.IViajesServicio;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,39 +20,43 @@ import java.util.List;
 public class ControladorViajes {
 
 @Autowired
-    private IViajesServicio iViajesServicio;
+    private IViajesServicio servicio;
 
     @GetMapping
-    public ResponseEntity<List<ViajesDto>> obtenerProcuto() {
-        List<Viajes> viajesBBDD = iViajesServicio.obtener();
-        List<ViajesDto> viajesDto = new ArrayList<>();
+    public ResponseEntity<List<ViajesDto>> obtenerTodos() {
+        List<Viajes> viajesBBDD = servicio.obtener();
+        List<ViajesDto> ListaViajesDto = new ArrayList<>();
 
         for (Viajes viaje: viajesBBDD) {
             ViajesDto vDto = new ViajesDto();
-            viajesDto.add(vDto.castViajesADto(viaje));
+            ListaViajesDto.add(vDto.castViajesADto(viaje));
         }
-        return new ResponseEntity<>(viajesDto, HttpStatus.OK);
+        return new ResponseEntity<>(ListaViajesDto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Viajes obtener1Procuto(@PathVariable(name = "id") Integer id) throws SQLException, ClassNotFoundException {
-        return iViajesServicio.obtenerUno(id);
-    }
-
-    @PutMapping
-    public Viajes actualizar (@RequestBody Viajes p) throws SQLException, ClassNotFoundException {
-        return iViajesServicio.actualizar(p);
+    public ResponseEntity<ViajesDto> obtenerUno(@PathVariable(name = "id") Integer id)  {
+        Viajes viaje = servicio.obtenerUno(id);
+        return new ResponseEntity<>((new ViajesDto()).castViajesADto(viaje),HttpStatus.OK);
     }
 
     @PostMapping
-    public Viajes crear (@RequestBody Viajes p) throws SQLException, ClassNotFoundException {
-        return iViajesServicio.crear(p);
+    public ResponseEntity<ViajesDto> insertar(@Valid @RequestBody ViajesDto viajesDto) {
+        Viajes viajes = viajesDto.castViajes();
+        servicio.insertar(viajes);
+        return new ResponseEntity<>(viajesDto.castViajesADto(viajes), HttpStatus.CREATED);
     }
-
+    @PutMapping
+    public ResponseEntity<ViajesDto> actualizar(@Valid @RequestBody ViajesDto viajesDto) {
+        Viajes viajes = viajesDto.castViajes();
+        servicio.actualizar(viajes);
+        return new ResponseEntity<>(viajesDto.castViajesADto(viajes), HttpStatus.OK);
+    }
     @DeleteMapping("/{id}")
-    public void eliminar (@PathVariable int id) throws SQLException, ClassNotFoundException {
-        iViajesServicio.delete(id);
-    }
+    public ResponseEntity<Void> eliminar(@PathVariable int id) {
+        servicio.eliminar(id);
 
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }
