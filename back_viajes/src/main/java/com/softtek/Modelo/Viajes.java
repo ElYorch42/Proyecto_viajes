@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,8 +21,11 @@ public class Viajes {
     int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_invitado_cliente"))
+    @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_cliente_viaje"))
     private Cliente clienteViaje;
+
+    @OneToMany(mappedBy = "viajeInvitado",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    List<Invitado> invitados;
 
     @ManyToOne
     @JoinColumn(name = "id_destino",nullable = false, foreignKey = @ForeignKey(name = "FK_destino_Actividad"))
@@ -34,6 +39,12 @@ public class Viajes {
 
     @Column(name = "tipocalidad")
     private String tipocalidad;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate fecha_inicio;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate fecha_fin;
 
     @ManyToMany(mappedBy = "viajesActividades",
     cascade = CascadeType.ALL,
