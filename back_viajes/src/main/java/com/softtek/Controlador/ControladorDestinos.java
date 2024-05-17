@@ -1,12 +1,15 @@
 package com.softtek.Controlador;
 
-import com.softtek.Modelo.Actividades;
+import com.softtek.Dto.DestinosDto;
 import com.softtek.Modelo.Destinos;
 import com.softtek.Servicio.IDestinoServicio;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,32 +18,43 @@ import java.util.List;
 public class ControladorDestinos {
 
 @Autowired
-    private IDestinoServicio iDestinoServicio;
+    private IDestinoServicio servicio;
 
     @GetMapping
-    public List<Destinos> obtenerProcuto() throws SQLException, ClassNotFoundException {
-        return iDestinoServicio.obtener();
+    public ResponseEntity<List<DestinosDto>> obtenerTodos() {
+        List<Destinos> destinosBBDD = servicio.obtener();
+        List<DestinosDto> ListaDestinosDto = new ArrayList<>();
+
+        for (Destinos destinos: destinosBBDD) {
+            DestinosDto destinosDto = new DestinosDto();
+            ListaDestinosDto.add(destinosDto.castDestinosADto(destinos));
+        }
+        return new ResponseEntity<>(ListaDestinosDto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Destinos obtener1Procuto(@PathVariable(name = "id") Integer id) throws SQLException, ClassNotFoundException {
-        return iDestinoServicio.obtenerUno(id);
-    }
-
-    @PutMapping
-    public Destinos actualizar (@RequestBody Destinos p) throws SQLException, ClassNotFoundException {
-        return iDestinoServicio.actualizar(p);
+    public ResponseEntity<DestinosDto> obtenerUno(@PathVariable(name = "id") Integer id) {
+        Destinos destinos = servicio.obtenerUno(id);
+        return new ResponseEntity<>((new DestinosDto()).castDestinosADto(destinos),HttpStatus.OK);
     }
 
     @PostMapping
-    public Destinos crear (@RequestBody Destinos p) throws SQLException, ClassNotFoundException {
-        return iDestinoServicio.crear(p);
+    public ResponseEntity<DestinosDto> insertar(@Valid @RequestBody DestinosDto destinosDto) {
+        Destinos destinos = destinosDto.castDestinos();
+        servicio.insertar(destinos);
+        return new ResponseEntity<>(destinosDto.castDestinosADto(destinos), HttpStatus.CREATED);
     }
-
+    @PutMapping
+    public ResponseEntity<DestinosDto> actualizar(@Valid @RequestBody DestinosDto destinosDto) {
+        Destinos destinos = destinosDto.castDestinos();
+        servicio.actualizar(destinos);
+        return new ResponseEntity<>(destinosDto.castDestinosADto(destinos), HttpStatus.OK);
+    }
     @DeleteMapping("/{id}")
-    public void eliminar (@PathVariable int id) throws SQLException, ClassNotFoundException {
-        iDestinoServicio.delete(id);
-    }
+    public ResponseEntity<Void> eliminar(@PathVariable int id) {
+        servicio.eliminar(id);
 
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }
