@@ -6,3 +6,14 @@
     
 
 }
+
+.nav-item i {
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+    vertical-align: middle; /* Alinea verticalmente los iconos con el texto */
+  }
+  
+  .nav-item a {
+    display: inline-block;
+    vertical-align: middle; /* Asegura que el texto también esté alineado con los iconos */
+  }
+  
