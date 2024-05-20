@@ -30,8 +30,8 @@ public class Cliente implements UserDetails {
     @Column(name = "dni")
     private String dni;
 
-    @Column(name = "Correo")
-    private String correo;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "Dirreccion")
     private String direccion;
@@ -45,8 +45,8 @@ public class Cliente implements UserDetails {
     @Column(name = "codigo_postal")
     private String codigoPostal;
 
-    @Column(name = "contrasena")
-    private String contrasena;
+    @Column(name = "password")
+    private String password;
 
     @Enumerated
     private Role role;
@@ -64,7 +64,7 @@ public class Cliente implements UserDetails {
 
     @Override
     public String getUsername() {
-        return correo;
+        return email;
     }
 
     @Override

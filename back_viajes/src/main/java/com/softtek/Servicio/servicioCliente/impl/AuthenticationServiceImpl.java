@@ -25,7 +25,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse signup(SignUpRequest request) {
         var user = Cliente.builder()
                 .nombre(request.getFirstName())
-                .correo(request.getEmail()).contrasena(passwordEncoder.encode(request.getPassword()))
+                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER).build();
         userRepository.save(user);
         var jwt = jwtService.generateToken(user);

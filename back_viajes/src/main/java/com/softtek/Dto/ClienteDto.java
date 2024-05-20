@@ -37,12 +37,12 @@ public class ClienteDto {
         c.setId(id);
         c.setNombre(nombre);
         c.setDni(dni);
-        c.setCorreo(correo);
+        c.setEmail(correo);
         c.setDireccion(direccion);
         c.setCiudad(ciudad);
         c.setComunidad(comunidad);
         c.setCodigoPostal(codigoPostal);
-        c.setContrasena(contrasena);
+        c.setPassword(contrasena);
         return c;
     }
 
@@ -50,12 +50,12 @@ public class ClienteDto {
         id =c.getId();
         nombre=c.getNombre();
         dni=c.getDni();
-        correo=c.getCorreo();
+        correo=c.getEmail();
         direccion=c.getDireccion();
         ciudad=c.getCiudad();
         comunidad=c.getComunidad();
         codigoPostal=c.getCodigoPostal();
-        contrasena=c.getContrasena();
+        contrasena=c.getPassword();
         return this;
     }
 }
