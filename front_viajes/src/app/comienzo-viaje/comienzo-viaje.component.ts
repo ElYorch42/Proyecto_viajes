@@ -19,17 +19,17 @@ export class ComienzoViajeComponent implements OnInit {
     {
       name: 'América del Norte',
       description: 'Description of your fourth endeavor',
-      imageUrl: '../../assets/americaN.jpg'
+      imageUrl: '../../assets/americaN.png'
     },
     {
       name: 'América del Sur',
       description: 'Description of your second work',
-      imageUrl: '../../assets/americaS.jpg'
+      imageUrl: '../../assets/americaS.png'
     },
     {
       name: 'África',
       description: 'Description of your second work',
-      imageUrl: '../../assets/africa.jpg'
+      imageUrl: '../../assets/africa.png'
     },
     {
       name: 'Europa',
@@ -39,7 +39,7 @@ export class ComienzoViajeComponent implements OnInit {
     {
       name: 'Oceanía',
       description: 'Description of your third creation',
-      imageUrl: '../../assets/australia.jpg'
+      imageUrl: '../../assets/australia.png'
     }
   ];
 
