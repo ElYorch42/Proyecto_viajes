@@ -7,6 +7,10 @@
 
 }
 
+h5{
+  cursor: pointer;
+}
+
 .nav-item i {
     margin-right: 8px; /* Espacio entre el icono y el texto */
     vertical-align: middle; /* Alinea verticalmente los iconos con el texto */
@@ -14,6 +18,62 @@
   
   .nav-item a {
     display: inline-block;
-    vertical-align: middle; /* Asegura que el texto también esté alineado con los iconos */
+    vertical-align: middle;
+    cursor: pointer !important; /* Asegura que el texto también esté alineado con los iconos */
   }
   
+
+  @media (max-width: 1900px) {
+    .img-responsive {
+      width: 100%;
+      
+     
+    }
+
+    
+  }
+
+@media (max-width: 1200px) {
+  .img-responsive {
+    width: 100%;
+   
+  }
+}
+
+@media (max-width: 992px) {
+  .img-responsive {
+    width: 100%;
+
+  }
+  .general{
+    font-size: 10px;
+    
+      }
+  
+}
+
+@media (max-width: 768px) {
+  .img-responsive {
+    width: 100%;
+
+  }
+}
+
+@media (max-width: 576px) {
+  .general{
+font-size: 15px;
+
+  }
+  .sections{
+    padding-left: 10%;
+    
+
+  }
+
+  .interior{
+
+    padding-left: 10%;
+   
+  }
+}
+
