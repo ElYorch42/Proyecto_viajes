@@ -1,0 +1,35 @@
+.imagennavbar {
+    margin-left:10px ;
+}
+
+.imagennavbar p{
+
+ font-size: 16px;
+ font-family: cursive;
+ height: 0px;
+
+}
+
+.botonoes{
+    margin-left: 5%;
+
+
+}
+
+.botonoes button{
+  
+margin-left: 15px;
+
+}
+
+.botonoes button:hover{
+  
+    background-color: grey;
+    
+}
+
+i{
+
+    font-size: 35px;
+    margin-right: 5px;
+}
