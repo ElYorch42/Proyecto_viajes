@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <h1 class="text-center">Empezamos el viaje</h1>
+    <p class="text-center">¿A qué continente te gustaría ir?</p>
+    <div class="row">
+    
+    @for (continent of continents; track continent) {
+        <div class="col-lg-4 col-md-4 col-6 col-sm-6 " style="margin-bottom: 1%;">
+            <div class="card">
+                <img [src]="continent.imageUrl" class="card-img-top" [alt]="continent.name">
+                <div class="card-body">
+                    <h5 class="card-title">{{ continent.name }}</h5>
+                    <p class="card-text">{{ continent.description }}</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+  </div>
+<app-footer></app-footer>
