@@ -1,7 +1,6 @@
 package com.softtek.Controlador;
 
 import com.softtek.Dto.ViajesDto;
-import com.softtek.Modelo.Actividades;
 import com.softtek.Modelo.Viajes;
 import com.softtek.Servicio.IViajesServicio;
 import jakarta.validation.Valid;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

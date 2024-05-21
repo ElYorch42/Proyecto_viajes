@@ -46,8 +46,12 @@ public class Viajes {
     @Temporal(TemporalType.DATE)
     private LocalDate fecha_fin;
 
-    @ManyToMany(mappedBy = "viajesActividades",
-    cascade = CascadeType.ALL,
-    fetch = FetchType.EAGER)
-    List<Actividades> actividades;
+    @Column(name = "actividad1")
+    private String actividad1;
+
+    @Column(name = "actividad2")
+    private String actividad2;
+
+    @Column(name = "actividad3")
+    private String actividad3;
 }
