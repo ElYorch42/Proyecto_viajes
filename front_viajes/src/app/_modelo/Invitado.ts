@@ -6,6 +6,5 @@ export interface Invitado {
   ciudad: string;
   comunidad: string;
   codigoPostal: string;
-  id_cliente: number;
   id_viaje: number;
 }
