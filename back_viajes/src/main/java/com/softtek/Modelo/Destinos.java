@@ -17,6 +17,12 @@ public class Destinos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "Codigo_Ciudad")
+    private String Codigo_Ciudad;
+
+    @Column(name = "Aeropuerto")
+    private String Aeropuerto;
+
     @Column(name = "nombre")
     private String nombre;
 
@@ -27,8 +33,6 @@ public class Destinos {
     @JoinColumn(name = "id_pais", nullable = false, foreignKey = @ForeignKey(name = "FK_destinos_paises"))
     private Paises paisDestino;
 
-    @OneToMany(mappedBy = "destinoActividad",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    List<Actividades> actividades;
 
     @OneToMany(mappedBy = "destinoViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Viajes> viajes;
