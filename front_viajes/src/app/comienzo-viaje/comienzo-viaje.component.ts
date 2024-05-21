@@ -14,7 +14,7 @@ export class ComienzoViajeComponent implements OnInit {
     {
       name: 'Asia',
       description: 'Description of your first project',
-      imageUrl: '../../assets/asia.jpg'
+      imageUrl: '../../assets/asia.png'
     },
     {
       name: 'América del Norte',
@@ -34,7 +34,7 @@ export class ComienzoViajeComponent implements OnInit {
     {
       name: 'Europa',
       description: 'Description of your third creation',
-      imageUrl: '../../assets/europa.jpg'
+      imageUrl: '../../assets/europa.png'
     },
     {
       name: 'Oceanía',
