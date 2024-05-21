@@ -18,7 +18,7 @@ import java.util.List;
 public class Viajes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_cliente_viaje"))
@@ -37,7 +37,7 @@ public class Viajes {
     @Column(name = "precio")
     private int precio;
 
-    @Column(name = "tipocalidad")
+    @Column(name = "tipocalidad", length = 20)
     private String tipocalidad;
 
     @Temporal(TemporalType.DATE)

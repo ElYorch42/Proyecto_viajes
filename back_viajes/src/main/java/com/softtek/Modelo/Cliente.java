@@ -24,28 +24,28 @@ public class Cliente implements UserDetails {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", length = 50)
     private String nombre;
 
-    @Column(name = "dni")
+    @Column(name = "dni", length = 10)
     private String dni;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "Dirreccion")
+    @Column(name = "direccion", length = 60)
     private String direccion;
 
-    @Column(name = "Ciudad")
+    @Column(name = "ciudad", length = 50)
     private String ciudad;
 
-    @Column(name = "Comunidad")
+    @Column(name = "comunidad", length = 50)
     private String comunidad;
 
-    @Column(name = "codigo_postal")
+    @Column(name = "codigo_postal", length = 6)
     private String codigoPostal;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 50)
     private String password;
 
     @Enumerated
