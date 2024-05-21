@@ -1,11 +1,19 @@
 .imagenfooter{
-    width:30%;
-    height: 10%;
+    width:20%;
+    height: 50%;
     position: relative;
     top: 0;
     
 
 }
+
+
+
+li{
+  list-style-type: none;
+  font-size:15px;
+}
+
 
 h5{
   cursor: pointer;
@@ -46,7 +54,7 @@ h5{
 
   }
   .general{
-    font-size: 10px;
+    font-size: 15px;
     
       }
   
@@ -64,16 +72,6 @@ h5{
 font-size: 15px;
 
   }
-  .sections{
-    padding-left: 10%;
-    
-
-  }
-
-  .interior{
-
-    padding-left: 10%;
-   
-  }
+  
 }
 

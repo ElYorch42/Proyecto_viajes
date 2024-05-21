@@ -9,36 +9,40 @@
           </a>
         </div>
       </div>
-      <div class="col-md mb-3">
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <h5 class="mb-3" data-bs-toggle="collapse" data-bs-target="#info-list" aria-expanded="false" aria-controls="info-list">
-              <i class="bi bi-airplane me-2"></i>
-              Más información
-            </h5>
-            <ul class="nav flex-column collapse interior" id="info-list">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Sobre nosotros</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contáctanos</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Tu perfil</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Politica de privacidad</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Aviso legal</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 mb-3">
-            <h5 class="mb-3" data-bs-toggle="collapse" data-bs-target="#social-list" aria-expanded="false" aria-controls="social-list">
-              <i class="bi bi-airplane me-2"></i>
-              Redes Sociales
-            </h5>
-            <ul class="nav flex-column collapse interior" id="social-list">
-              <li class="nav-item mb-2"><i class="bi bi-instagram"></i><a href="#" class="nav-link p-0 text-muted">&#64;viajesalodesconocido</a></li>
-              <li class="nav-item mb-2"><i class="bi bi-twitter-x"></i><a href="#" class="nav-link p-0 text-muted">&#64;viajesalodesconocido</a></li>
-              <li class="nav-item mb-2"><i class="bi bi-linkedin"></i><a href="#" class="nav-link p-0 text-muted">viajesalodesconocido</a></li>
-              <li class="nav-item mb-2"><i class="bi bi-youtube"></i><a href="#" class="nav-link p-0 text-muted">/viajesalodesconocido</a></li>
-              <li class="nav-item mb-2"><i class="bi bi-threads"></i><a href="#" class="nav-link p-0 text-muted">&#64;viajesalodesconocido</a></li>
-            </ul>
+      <div class="col-md-4 d-flex flex-column align-items-center">
+        <!-- Collapse button visible only on small screens -->
+        <h5 class="d-md-none" style="cursor: pointer !important" (click)="toggleCollapse1()">
+         Mas información
+        </h5>
+        <!-- Content that will be collapsed on small screens -->
+        <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block">
+         
+            <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Sobre nosotros</a></li>
+            <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Contáctanos</a></li>
+            <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Tu perfil</a></li>
+            <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Politica de privacidad</a></li>
+            <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Aviso legal</a></li>
+        
+        </div>
+      </div>
+      
+      <div  class="col-md-4 d-flex flex-column align-items-center">
+        <!-- Collapse button visible only on small screens -->
+        <h5 class="d-md-none" style="cursor: pointer !important" (click)="toggleCollapse2()">
+            Redes sociales
+          </h5>
+        <!-- Content that will be collapsed on small screens -->
+        <div [ngClass]="{'collapse': isCollapsed2, 'show': !isCollapsed2}" class="d-md-block">
+          <div class="">
+            <li class="nav-item mb-2"><i class="bi bi-instagram"></i><a href="#" class="nav-link p-0 text-muted">&#64;viajesalodesconocido</a></li>
+            <li class="nav-item mb-2"><i class="bi bi-twitter-x"></i><a href="#" class="nav-link p-0 text-muted">&#64;viajesalodesconocido</a></li>
+            <li class="nav-item mb-2"><i class="bi bi-linkedin"></i><a href="#" class="nav-link p-0 text-muted">viajesalodesconocido</a></li>
+            <li class="nav-item mb-2"><i class="bi bi-youtube"></i><a href="#" class="nav-link p-0 text-muted">/viajesalodesconocido</a></li>
+            <li class="nav-item mb-2"><i class="bi bi-threads"></i><a href="#" class="nav-link p-0 text-muted">&#64;viajesalodesconocido</a></li>
           </div>
         </div>
       </div>
     </div>
+    
   </footer>
 </div>

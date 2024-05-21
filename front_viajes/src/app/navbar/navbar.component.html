@@ -1,29 +1,38 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <a class="navbar-brand imagennavbar text-center" href="#">
-        <img src="../../assets/logo-sinfondo.png" width="80" height="80" alt="">
-        <p>Viajes a lo desconocido</p>
-      </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="container-fluid botonoes">
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="d-flex">
-          <button class="btn btn-white btn-lg mr-3">Inicio</button>
-          <button class="btn btn-white btn-lg">Viajes</button>
-        </div>
-      </div>
-      
-    
-      <div>
-      <span class="navbar-text ml-auto">Usuario</span>
-    </div>
-    <i class="bi bi-person"  ></i>
+
+  <div class="nav-item center-content">
+    <a class="navbar-brand imagennavbar text-center" [routerLink]="['/inicio']">
+      <img src="../../assets/logo-sinfondo.png" width="80" height="80" alt="">
+      <p>Viajes a lo desconocido</p>
+    </a>
   </div>
-   
-    
-    
   
-  </nav>
+  
+      <!-- Collapse button visible only on small screens -->
+      <h5  class="d-md-none" style="cursor: pointer !important;padding-right: 40px;" (click)="toggleCollapse1()">
+        <i class="nav-item me-auto bi bi-list"></i>
+      </h5>
+      <!-- Content that will be collapsed on small screens -->
+     
+      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item me-auto">
+
+
+        <button type="button" class="btn btncambiar" routerLink="#">Inicio</button>
+        <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
+      </div>
+      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item ms-auto">
+        <button type="button" class="btn btncambiar" routerLink="#">Usuario <i class="bi bi-person"  ></i></button>
+      </div>
+   
+     
+  
+  <!-- Contenido colapsado en pantallas pequeñas -->
+      
+      
+
+    
+
+
+
+
+</nav>
