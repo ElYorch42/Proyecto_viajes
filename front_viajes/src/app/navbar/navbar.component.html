@@ -8,31 +8,33 @@
   </div>
   
   
-      <!-- Collapse button visible only on small screens -->
+     
       <h5  class="d-md-none" style="cursor: pointer !important;padding-right: 40px;" (click)="toggleCollapse1()">
         <i class="nav-item me-auto bi bi-list"></i>
       </h5>
-      <!-- Content that will be collapsed on small screens -->
+
      
-      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item me-auto">
+      @if (isCollapsed1) {
+      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item contenido me-auto">
 
 
         <button type="button" class="btn btncambiar" routerLink="#">Inicio</button>
         <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
       </div>
-      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item ms-auto">
-        <button type="button" class="btn btncambiar" routerLink="#">Usuario <i class="bi bi-person"  ></i></button>
+      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item  ">
+        <button type="button" class="btn btncambiar btncambiar2" routerLink="#">Usuario <i class="bi bi-person"  ></i></button>
       </div>
-   
+      
+    }@else{
+      
+      <div class="d-md-block nav-item contenido mx-auto row">
+
+
+        <button type="button" class="btn btncambiar" routerLink="#">Inicio</button>
+        <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
+        <button type="button" class="btn btncambiar btncambiar2" routerLink="#">Usuario<i class="bi bi-person"  ></i></button>
+      </div>
+      
+    }
      
-  
-  <!-- Contenido colapsado en pantallas pequeñas -->
-      
-      
-
-    
-
-
-
-
-</nav>
+  </nav>

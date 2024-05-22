@@ -26,7 +26,11 @@ export class NavbarComponent {
   }
 
   private checkScreenWidth(): void {
-    this.isCollapsed1 = window.innerWidth > 768;
+    if(window.innerWidth > 768){
+      this.isCollapsed1 = true;
+
+    }
+    
   }
 
   toggleCollapse1(): void {
