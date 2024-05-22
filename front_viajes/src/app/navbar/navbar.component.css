@@ -1,35 +1,80 @@
-.imagennavbar {
-    margin-left:10px ;
+.btncambiar{
+  border:none;
+  background-color: transparent;
+
+ 
+}
+
+
+
+
+
+
+
+
+
+button + button{
+  margin-left: 15px;
+}
+
+
+
+.btncambiar:hover{
+  color: #cfb1ff;
+
+  
+
 }
 
 .imagennavbar p{
 
  font-size: 16px;
- font-family: cursive;
- height: 0px;
-
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+ height: 10px;
+ font-weight: 600;
 }
 
-.botonoes{
-    margin-left: 5%;
-
-
-}
-
-.botonoes button{
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-left:10px;
+  }
   
-margin-left: 15px;
-
-}
-
-.botonoes button:hover{
+  .center-content img {
+    margin-bottom: 0.5rem; /* Añade espacio entre la imagen y el texto si es necesario */
+  }
   
-    background-color: grey;
+
+
+
+
+
+i{
+    font-size: 23px;
+    align-items: center;
+    margin: 15px;
     
 }
 
-i{
+@media (max-width: 768px) {
+  button + button{
+    margin-left: 0px;
+  }
 
-    font-size: 35px;
-    margin-right: 5px;
+  .contenido{
+
+    
+    width: 70%; /* Ancho del 80% de la contenedora, ajustable */
+    text-align: center;
+   /* Borde para visualización */
+  }
+
+  i{
+    font-size: 23px;
+    align-items: center;
+    margin: 4px;
+    
+}
 }

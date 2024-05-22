@@ -1,5 +1,6 @@
 package com.softtek.Servicio.servicioCliente.impl;
 
+
 import com.softtek.DAO.request.SignInRequest;
 import com.softtek.DAO.request.SignUpRequest;
 import com.softtek.DAO.response.JwtAuthenticationResponse;
@@ -11,6 +12,7 @@ import com.softtek.Servicio.servicioCliente.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse signup(SignUpRequest request) {
         var user = Cliente.builder()
                 .nombre(request.getFirstName())
+
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+
                 .role(Role.USER).build();
         userRepository.save(user);
         var jwt = jwtService.generateToken(user);
