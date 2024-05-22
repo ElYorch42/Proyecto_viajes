@@ -25,28 +25,32 @@ public class Cliente implements UserDetails {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", length = 50)
     private String nombre;
 
-    @Column(name = "dni")
+    @Column(name = "dni", length = 10)
     private String dni;
 
-    @Column(name = "Correo")
-    private String correo;
+    @Column(name = "email", length = 50)
+    private String email;
 
-    @Column(name = "Dirreccion")
+    @Column(name = "direccion", length = 60)
     private String direccion;
 
-    @Column(name = "Ciudad")
+    @Column(name = "ciudad", length = 50)
     private String ciudad;
 
-    @Column(name = "Comunidad")
+    @Column(name = "comunidad", length = 50)
     private String comunidad;
 
-    @Column(name = "codigo_postal")
+    @Column(name = "codigo_postal", length = 6)
     private String codigoPostal;
 
+<<<<<<< HEAD
     @Column(name = "password")
+=======
+    @Column(name = "password", length = 50)
+>>>>>>> 64e8c6037d3eb80c591fc40ad2f734aca50e649a
     private String password;
 
     @Enumerated
@@ -65,7 +69,7 @@ public class Cliente implements UserDetails {
 
     @Override
     public String getUsername() {
-        return correo;
+        return email;
     }
 
     @Override

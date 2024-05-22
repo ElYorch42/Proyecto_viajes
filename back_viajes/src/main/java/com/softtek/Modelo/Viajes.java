@@ -18,7 +18,7 @@ import java.util.List;
 public class Viajes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_cliente_viaje"))
@@ -37,7 +37,7 @@ public class Viajes {
     @Column(name = "precio")
     private int precio;
 
-    @Column(name = "tipocalidad")
+    @Column(name = "tipocalidad", length = 20)
     private String tipocalidad;
 
     @Temporal(TemporalType.DATE)
@@ -46,8 +46,12 @@ public class Viajes {
     @Temporal(TemporalType.DATE)
     private LocalDate fecha_fin;
 
-    @ManyToMany(mappedBy = "viajesActividades",
-    cascade = CascadeType.ALL,
-    fetch = FetchType.EAGER)
-    List<Actividades> actividades;
+    @Column(name = "actividad1")
+    private String actividad1;
+
+    @Column(name = "actividad2")
+    private String actividad2;
+
+    @Column(name = "actividad3")
+    private String actividad3;
 }
