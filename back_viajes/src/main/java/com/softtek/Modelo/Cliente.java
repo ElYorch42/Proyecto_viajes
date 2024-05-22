@@ -12,10 +12,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Cliente")
 public class Cliente implements UserDetails {
@@ -45,8 +46,8 @@ public class Cliente implements UserDetails {
     @Column(name = "codigo_postal")
     private String codigoPostal;
 
-    @Column(name = "contrasena")
-    private String contrasena;
+    @Column(name = "password")
+    private String password;
 
     @Enumerated
     private Role role;
