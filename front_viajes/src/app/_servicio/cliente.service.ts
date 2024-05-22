@@ -45,7 +45,7 @@ export class ClienteService {
   }
 
   estaLogeado() {
-    let token = sessionStorage.getItem(entorno.TOKEN_NAME);
+    let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     return token != null;
   }
 
