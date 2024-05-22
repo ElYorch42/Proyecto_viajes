@@ -12,4 +12,9 @@ public class DestinosServicio extends CRUD<Destinos, Integer> implements IDestin
     private IDestinosRepo repo;
     @Override
     protected IGenericoRepositorio<Destinos, Integer> getRepo(){return repo;};
+
+    @Override
+    public Destinos consultaPorContinenteAleatoria(String continente) {
+        return repo.consultaPorContinenteAleatoria(continente);
+    }
 }
