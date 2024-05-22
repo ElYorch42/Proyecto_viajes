@@ -17,18 +17,21 @@ public class Destinos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "codigo_ciudad", length = 3)
+    private String Codigo_Ciudad;
+
+    @Column(name = "aeropuerto", length = 50)
+    private String Aeropuerto;
+
+    @Column(name = "nombre", length = 50)
     private String nombre;
 
-    @Column(name= "tipo_localidad")
+    @Column(name= "tipo_localidad", length = 20)
     private String tipoLocalidad;
 
     @ManyToOne
     @JoinColumn(name = "id_pais", nullable = false, foreignKey = @ForeignKey(name = "FK_destinos_paises"))
     private Paises paisDestino;
-
-    @OneToMany(mappedBy = "destinoActividad",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    List<Actividades> actividades;
 
     @OneToMany(mappedBy = "destinoViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Viajes> viajes;

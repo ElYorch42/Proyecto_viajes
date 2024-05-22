@@ -15,12 +15,12 @@ import java.util.List;
 public class Paises {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", length = 100)
     private String nombre;
 
-    @Column(name = "continente")
+    @Column(name = "continente", length = 20)
     private String continente;
 
     @OneToMany(mappedBy = "paisDestino",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
