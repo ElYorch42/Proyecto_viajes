@@ -15,7 +15,7 @@ import java.util.List;
 public class Paises {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @Column(name = "nombre", length = 100)
     private String nombre;
