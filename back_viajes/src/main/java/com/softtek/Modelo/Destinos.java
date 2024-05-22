@@ -20,7 +20,7 @@ public class Destinos {
     @Column(name = "codigo_ciudad", length = 3)
     private String Codigo_Ciudad;
 
-    @Column(name = "aeropuerto", length = 50)
+    @Column(name = "aeropuerto", length = 100)
     private String Aeropuerto;
 
     @Column(name = "nombre", length = 50)
