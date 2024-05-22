@@ -20,14 +20,13 @@ public class AmadeusController {
 
     Amadeus amadeus = Amadeus.builder("SDQgK5WagsZak3lwFMGEhvu5qAynO6XO","3pAo5YFd1EmPArG3").build();
 
-    @PostMapping
+    @GetMapping
     public ResponseEntity<String> obtenerviajes() {
         try {
             FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
                     Params.with("originLocationCode", "SYD")
                             .and("destinationLocationCode", "BKK")
-                            .and("departureDate", "2023-11-01")
-                            .and("returnDate", "2023-11-08")
+                            .and("departureDate", "2024-06-07")
                             .and("adults", 2)
                             .and("max", 3));
             if (flightOffersSearches[0].getResponse().getStatusCode() != 200) {
