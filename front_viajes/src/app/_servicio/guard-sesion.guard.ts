@@ -16,7 +16,7 @@ export const guardSesionGuard: CanActivateFn = (route, state) => {
     console.log('no esta logeado');
     return false;
   } else {
-    let token = sessionStorage.getItem(entorno.TOKEN_NAME);
+    let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     if (!jwtHelper.isTokenExpired(token)) {
       console.log('no ha expirado el toke');
       return true;

@@ -45,7 +45,7 @@ public class Cliente implements UserDetails {
     @Column(name = "codigo_postal", length = 6)
     private String codigoPostal;
 
-    @Column(name = "password", length = 50)
+    @Column(name = "password")
     private String password;
 
     @Enumerated
