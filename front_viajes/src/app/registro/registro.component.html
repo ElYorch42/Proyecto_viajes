@@ -1,0 +1,157 @@
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+            </div>
+            <div class="col-xl-6">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registro</h3>
+              <div class="container mt-5">
+                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label for="dni">DNI</label>
+                      <input id="dni" formControlName="dni" type="text" class="form-control">
+                      @if (registerForm.get('dni')?.invalid && (registerForm.get('dni')?.dirty || registerForm.get('dni')?.touched)) {
+                          <div  class="text-danger">
+                              @if (registerForm.get('dni')?.errors?.['required']) {
+                              <div>DNI es obligatorio.</div>
+                              }
+                          </div>
+                      }
+                    </div>
+                    <div class="form-group">
+                      <label for="nombre">Nombre</label>
+                      <input id="nombre" formControlName="nombre" type="text" class="form-control">
+                      @if (registerForm.get('nombre')?.invalid && (registerForm.get('nombre')?.dirty || registerForm.get('nombre')?.touched)) {
+                          <div  class="text-danger">
+                              @if (registerForm.get('nombre')?.errors?.['required']) {
+                              <div>Nombre es obligatorio.</div>
+                              }
+                          </div>
+                      }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="apellidos">Apellidos</label>
+                      <input id="apellidos" formControlName="apellidos" type="text" class="form-control">
+                      @if (registerForm.get('apellidos')?.invalid && (registerForm.get('apellidos')?.dirty || registerForm.get('apellidos')?.touched)) {
+                          <div  class="text-danger">
+                              @if (registerForm.get('apellidos')?.errors?.['required']) {
+                              <div>Apellidos son obligatorios.</div>
+                              }
+                          </div>
+                      }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="direccion">Dirección</label>
+                      <input id="direccion" formControlName="direccion" type="text" class="form-control">
+                      @if (registerForm.get('direccion')?.invalid && (registerForm.get('direccion')?.dirty || registerForm.get('direccion')?.touched)) {
+                        <div  class="text-danger">
+                            @if (registerForm.get('direccion')?.errors?.['required']) {
+                            <div>Dirección es obligatoria.</div>
+                            }
+                        </div>
+                    }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="ciudad">Ciudad</label>
+                      <input id="ciudad" formControlName="ciudad" type="text" class="form-control">
+                      @if (registerForm.get('ciudad')?.invalid && (registerForm.get('ciudad')?.dirty || registerForm.get('ciudad')?.touched)) {
+                        <div  class="text-danger">
+                            @if (registerForm.get('ciudad')?.errors?.['required']) {
+                            <div>Ciudad es obligatoria.</div>
+                            }
+                        </div>
+                    }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="comunidad">Comunidad</label>
+                      <input id="comunidad" formControlName="comunidad" type="text" class="form-control">
+                      @if (registerForm.get('comunidad')?.invalid && (registerForm.get('comunidad')?.dirty || registerForm.get('comunidad')?.touched)) {
+                        <div  class="text-danger">
+                            @if (registerForm.get('comunidad')?.errors?.['required']) {
+                            <div>Comunidad es obligatoria.</div>
+                            }
+                        </div>
+                    }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="codigoPostal">Código Postal</label>
+                      <input id="codigoPostal" formControlName="codigoPostal" type="text" class="form-control">
+                      @if (registerForm.get('codigoPostal')?.invalid && (registerForm.get('codigoPostal')?.dirty || registerForm.get('codigoPostal')?.touched)) {
+                        <div  class="text-danger">
+                            @if (registerForm.get('codigoPostal')?.errors?.['required']) {
+                            <div>Comunidad es obligatoria.</div>
+                            }
+                            @if (registerForm.get('codigoPostal')?.errors?.['pattern']) {
+                              <div>Código Postal debe ser de 5 dígitos.</div>
+                            }
+                        </div>
+                    }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                      <input id="fechaNacimiento" formControlName="fechaNacimiento" type="date" class="form-control">
+                      @if (registerForm.get('fechaNacimiento')?.invalid && (registerForm.get('fechaNacimiento')?.dirty || registerForm.get('fechaNacimiento')?.touched)) {
+                        <div  class="text-danger">
+                            @if (registerForm.get('fechaNacimiento')?.errors?.['required']) {
+                            <div>Fecha de Nacimiento es obligatoria.</div>
+                            }
+                        </div>
+                    }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input id="email" formControlName="email" type="email" class="form-control">
+                      @if (registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)) {
+                        <div  class="text-danger">
+                            @if (registerForm.get('email')?.errors?.['required']) {
+                            <div>Email es obligatorio.</div>
+                            }
+                            @if (registerForm.get('email')?.errors?.['email']) {
+                              <div>Email no es válido.</div>
+                            }
+                        </div>
+                    }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="password">Contraseña</label>
+                      <input id="password" formControlName="password" type="password" class="form-control">
+                      @if (registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)) {
+                        <div  class="text-danger">
+                            @if (registerForm.get('password')?.errors?.['required']) {
+                            <div>Contraseña es obligatoria.</div>
+                            }
+                            @if (registerForm.get('password')?.errors?.['minlenght']) {
+                              <div>Contraseña debe tener al menos 6 caracteres.</div>
+                            }
+                        </div>
+                    }
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="confirmPassword">Repetir Contraseña</label>
+                      <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control">
+                      @if (registerForm.errors?.['mismatch'] && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)) {
+                        <div  class="text-danger">
+                          <div>Las contraseñas no coinciden.</div>
+                        </div>
+                    }
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrarse</button>
+                  </form>
+                </div>
