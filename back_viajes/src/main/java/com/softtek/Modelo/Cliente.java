@@ -46,11 +46,8 @@ public class Cliente implements UserDetails {
     @Column(name = "codigo_postal", length = 6)
     private String codigoPostal;
 
-<<<<<<< HEAD
-    @Column(name = "password")
-=======
+
     @Column(name = "password", length = 50)
->>>>>>> 64e8c6037d3eb80c591fc40ad2f734aca50e649a
     private String password;
 
     @Enumerated
