@@ -12,6 +12,7 @@
 li{
   list-style-type: none;
   font-size:15px;
+  color: #6c757d;
 }
 
 
@@ -74,4 +75,15 @@ font-size: 15px;
   }
   
 }
+
+
+
+.logoinsta:hover { color:#E1306C }
+.logox:hover { color:	#000000 }
+.logolink:hover { color:#0288D1 }
+.logoyt:hover { color:#FF0000}
+.logothreads:hover { color:#000000 }
+
+
+
 
