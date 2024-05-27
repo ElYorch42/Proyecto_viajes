@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/amadeus")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AmadeusController {
-
+    //TODO 3 primeras actividades aleatorios que salgan
+    //TODO lo del hotel
+    //TODO los vuelos hay 3 el directo, el mas barato, y el mas corto
     @Autowired
     private IClienteServicio servicio;
 
