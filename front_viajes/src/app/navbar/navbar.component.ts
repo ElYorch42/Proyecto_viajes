@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -9,10 +11,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
+
 export class NavbarComponent {
 
 
   isCollapsed1: boolean = true;
+cambiarLogoBool:boolean = false;
 
   constructor() {}
 
@@ -35,6 +39,13 @@ export class NavbarComponent {
 
   toggleCollapse1(): void {
     this.isCollapsed1 = !this.isCollapsed1;
+  }
+
+  cambiarlogo(){
+   return  this.cambiarLogoBool = false;
+  }
+  cambiarlogot(){
+   return this.cambiarLogoBool = true;
   }
 
 

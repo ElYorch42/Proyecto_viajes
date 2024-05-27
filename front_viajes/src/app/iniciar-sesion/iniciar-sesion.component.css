@@ -1,0 +1,80 @@
+
+
+
+@media (min-width: 1024px){
+
+    .background-radial-gradient {
+        height: calc(1.15 * 50vw);
+        
+        background-image: url("../../assets/fondoLogIn2.jpg"); /* Cambia esta ruta a la de tu imagen */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+    
+    p,label,button{
+        font-size:calc(1.65 * .75vw);
+        
+    }
+    
+    h1,h2,h3,h4,h5{
+        font-size:calc(1.25 * 1.5vw); ;
+    }
+
+}
+
+@media(max-width:1024px){
+
+    .background-radial-gradient {
+        height: calc(4 * 50vw);
+        
+        background-image: url("../../assets/fondoLogIn2.jpg"); /* Cambia esta ruta a la de tu imagen */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+    
+    p,label,button{
+        font-size:calc(4 * .75vw);
+        
+    }
+    
+    h1,h2,h3,h4,h5{
+        font-size:calc(3.25 * 1.5vw);
+    }
+    
+    
+}
+
+
+
+.spanreg{
+    color: hsl(0, 0%, 0%);cursor: pointer;
+
+}
+
+.spanreg:hover{
+    color: hsl(218, 100%, 50%);cursor: pointer;
+    text-decoration: underline;
+
+}
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(7px); /* Ajusta el valor de desenfoque según tus necesidades */
+    -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+}
+.container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima del fondo borroso */
+}
+.card {
+    background: rgba(255, 255, 255, 0.8); /* Transparencia opcional para la tarjeta */
+}

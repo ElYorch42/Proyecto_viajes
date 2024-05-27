@@ -9,8 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  isCollapsed1 = true;
-  isCollapsed2 = true;
+  isCollapsed1:boolean = true;
+  isCollapsed2:boolean = true;
   
 
   toggleCollapse1() {
