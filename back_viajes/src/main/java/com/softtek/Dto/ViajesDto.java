@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Data
 public class ViajesDto {
     int id;
-    private boolean actual;
+//    private boolean actual;
     private int precio;
     private String tipocalidad;
     private LocalDate fecha_inicio;
@@ -21,7 +21,7 @@ public class ViajesDto {
     public Viajes castViajes() {
         Viajes v = new Viajes();
         v.setId(id);
-        v.setActual(actual);
+//        v.setActual(actual);
         v.setPrecio(precio);
         v.setTipocalidad(tipocalidad);
         v.setFecha_inicio(fecha_inicio);
@@ -31,7 +31,7 @@ public class ViajesDto {
 
     public ViajesDto castViajesADto(Viajes v) {
         id = v.getId();
-        actual = v.isActual();
+//        actual = v.isActual();
         precio = v.getPrecio();
         tipocalidad = v.getTipocalidad();
         fecha_inicio = v.getFecha_inicio();
