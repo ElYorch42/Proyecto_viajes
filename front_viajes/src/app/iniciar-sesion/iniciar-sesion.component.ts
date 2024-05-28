@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SignInRequest } from '../_modelo/signin_request';
+import { JwtAuthenticationResponse } from '../_modelo/JwtAuthenticationResponse';
+import { entorno } from '../_environment/entorno';
+import { ClienteService } from '../_servicio/cliente.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -13,42 +19,64 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class IniciarSesionComponent {
 
+
   formulario:FormGroup;
 
-  
-  arraytemporal = [{
-    email: "test@test.com",
-    password: "1234"
-  }];
 
-  constructor( private fb: FormBuilder , private router:Router) { 
+  iniciodiv:boolean = false;
+
+  respuesta:JwtAuthenticationResponse = {
+    token:""
+  };
+
+  
+  loginUrl = "http://localhost:8080/api/v1/signin";
+
+  constructor( private renderer: Renderer2,private http:HttpClient,private fb: FormBuilder , private router:Router,private servicio:ClienteService) { 
     this.formulario = this.fb.group({
       email: ['',[Validators.email,Validators.required]],
       password: ['',[Validators.required,Validators.minLength(8)]],
       
+      
 
-    })
-   
+    })  
   }
+
+
   buscarInicio() {
-    let encontrado = false; // Variable para rastrear si se encontró el usuario
+    let datos: SignInRequest = {
+      email: this.formulario.value['email'],
+      password: this.formulario.value['password']
+    };
   
-    for (let i = 0; i < this.arraytemporal.length; i++) {
-      if (
-        this.formulario.controls['email'].value === this.arraytemporal[i].email &&
-        this.formulario.controls['password'].value === this.arraytemporal[i].password
-      ) {
-        encontrado = true; // Cambia el estado a true si se encontró el usuario
-        break; // Sale del bucle una vez que se encontró el usuario
-      }
-    }
-  
-    if (encontrado) {
-      this.router.navigateByUrl('/inicio');
-    } else {
-      alert("Usuario no encontrado");
-    }
+    this.servicio.autenticar(datos)
+      .subscribe(
+        (data) => {
+          console.log("token-> " + data.token);
+          sessionStorage.setItem(entorno.TOKEN_NAME, data.token)
+          this.iniciodiv = true;
+          setTimeout(() => {
+            this.router.navigate(['/inicio'])
+          }, 3000);
+        },
+        (error) => {
+          if (error.status === 500) {
+        
+           let mensaje: string = "Error en el correo o la contraseña, por favor revisa tus credenciales";
+
+         
+           const mensajeDiv = document.getElementById('mensajeDiv');
+           if (mensajeDiv) {
+             mensajeDiv.innerText = mensaje;
+           }
+          } else {
+            
+            alert('Ha ocurrido un error. Por favor, inténtalo más tarde.');
+          }
+        }
+      );
   }
+  
   
 
 }
