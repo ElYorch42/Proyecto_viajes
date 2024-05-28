@@ -18,7 +18,7 @@
         <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block">
          
             <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Sobre nosotros</a></li>
-            <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Contáctanos</a></li>
+            <li class="nav-item mb-2"><a type="button" [routerLink]="[ '/contactanos']" class="nav-link p-0 text-muted">Contáctanos</a></li>
             <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Tu perfil</a></li>
             <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Politica de privacidad</a></li>
             <li class="nav-item mb-2"><a type="button" routerLink="#" class="nav-link p-0 text-muted">Aviso legal</a></li>

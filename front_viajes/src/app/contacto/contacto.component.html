@@ -1,0 +1,19 @@
+
+<div class="container mt-5">
+    <h2>Contact Us</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="to" class="form-label">To</label>
+        <input id="to" formControlName="to" type="email" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <input id="subject" formControlName="subject" type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="text" class="form-label">Message</label>
+        <textarea id="text" formControlName="text" class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Send Email</button>
+    </form>
+  </div>

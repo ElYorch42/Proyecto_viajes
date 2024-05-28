@@ -1,2 +1,24 @@
-package com.softtek.Servicio;public class EmailService {
+package com.softtek.Servicio;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public void sendEmail(String to, String subject, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setCc("viajesalodesconocido@gmail.com");
+        message.setSubject(subject);
+        message.setText(text);
+        message.setFrom("viajesalodesconocido@gmail.com");
+
+        mailSender.send(message);
+    }
 }
