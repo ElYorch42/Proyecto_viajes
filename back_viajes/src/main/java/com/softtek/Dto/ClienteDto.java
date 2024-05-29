@@ -48,7 +48,6 @@ public class ClienteDto {
         c.setCodigoPostal(codigoPostal);
         c.setPassword(contrasena);
         c.setUrlImagen(urlImagen);
-        c.setAdminBool(adminBool);
         return c;
     }
 
@@ -63,7 +62,6 @@ public class ClienteDto {
         codigoPostal=c.getCodigoPostal();
         contrasena=c.getPassword();
         urlImagen=c.getUrlImagen();
-        adminBool=c.getAdminBool();
         return this;
     }
 }

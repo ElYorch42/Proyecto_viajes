@@ -52,9 +52,6 @@ public class Cliente implements UserDetails {
     @Column(name = "urlImagen",length = 5000)
     private String urlImagen;
 
-    @Column(name = "adminBool")
-    private Boolean adminBool;
-
     @Enumerated
     private Role role;
 
