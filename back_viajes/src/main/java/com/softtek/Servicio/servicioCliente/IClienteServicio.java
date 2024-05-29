@@ -7,4 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface IClienteServicio extends ICRUD<Cliente,Integer> {
     UserDetailsService userDetailsService();
     Cliente consultaPorCorreo(String correo);
+    void updatePorCorreo(Cliente cliente);
+    void updateContrasena(String email, String password);
 }
