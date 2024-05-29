@@ -21,8 +21,6 @@ class BackViajesApplicationTests {
 		d.setTipoLocalidad("ciudad");
 
 		assertThat(d).isNotNull();
-
-		
 	}
 
 }
