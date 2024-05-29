@@ -32,6 +32,10 @@ public class ClienteDto {
 
     private String contrasena;
 
+    private String urlImagen;
+
+    private Boolean adminBool;
+
     public Cliente castCliente() {
         Cliente c = new Cliente();
         c.setId(id);
@@ -43,6 +47,8 @@ public class ClienteDto {
         c.setComunidad(comunidad);
         c.setCodigoPostal(codigoPostal);
         c.setPassword(contrasena);
+        c.setUrlImagen(urlImagen);
+        c.setAdminBool(adminBool);
         return c;
     }
 
@@ -56,6 +62,8 @@ public class ClienteDto {
         comunidad=c.getComunidad();
         codigoPostal=c.getCodigoPostal();
         contrasena=c.getPassword();
+        urlImagen=c.getUrlImagen();
+        adminBool=c.getAdminBool();
         return this;
     }
 }
