@@ -29,10 +29,7 @@ public abstract class CRUD<T,ID> implements ICRUD<T,ID> {
 
     }
 
-    @Override
-    public T obtenerConCorreo(String string){
-        return getRepo().findByCorreo()
-    }
+
 
     @Override
     public void eliminar(ID id){

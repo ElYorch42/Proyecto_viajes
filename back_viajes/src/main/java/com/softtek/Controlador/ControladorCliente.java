@@ -38,10 +38,9 @@ public class ControladorCliente {
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 
-
-    @GetMapping("/{correo}")
-    public ResponseEntity<ClienteDto> obtenerConCorreo(@PathVariable(name = "correo") String correo) {
-        Cliente cliente = servicio.obtenerConCorreo(correo);
+    @GetMapping("/consulta1")
+    public ResponseEntity<ClienteDto> consultaPorCorreo(@PathVariable(name = "email") String email) {
+        Cliente cliente = servicio.consultaPorCorreo(email);
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 

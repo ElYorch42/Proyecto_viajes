@@ -32,4 +32,9 @@ public class ClientesServicio extends CRUD<Cliente, Integer> implements ICliente
             }
         };
     }
+
+    @Override
+    public Cliente consultaPorCorreo(String correo) {
+        return repo.consultaPorCorreo(correo);
+    }
 }
