@@ -39,8 +39,8 @@ public class ControladorCliente {
     }
 
     @GetMapping("/consulta1")
-    public ResponseEntity<ClienteDto> consultaPorCorreo(@PathVariable(name = "email") String email) {
-        Cliente cliente = servicio.consultaPorCorreo(email);
+    public ResponseEntity<ClienteDto> consultaPorCorreo(@RequestParam(name = "correo") String correo) {
+        Cliente cliente = servicio.consultaPorCorreo(correo);
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 

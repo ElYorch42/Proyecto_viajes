@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface IClientesRepo extends IGenericoRepositorio<Cliente,Integer>, JpaRepository<Cliente,Integer> {
     Optional<Cliente> findByEmail(String email);
 
-    @Query(value = "select * from Cliente where email = :correo;", nativeQuery = true)
+    @Query(value = "select * from Cliente where email = :correo ;", nativeQuery = true)
     Cliente consultaPorCorreo(@Param("correo") String correo);
 }
