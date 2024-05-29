@@ -10,10 +10,13 @@ import { PerfilusuarioComponent } from './perfilusuario/perfilusuario.component'
 export const routes: Routes = [
     {path:'inicio' , component:InicioComponent},
     {path:'inicio_sesion' , component:IniciarSesionComponent},
-    {path:'comienzo_viajes' , component:ComienzoViajeComponent},
+    {path:'comienzo_viajes' , component:ComienzoViajeComponent,
+    canActivate:[guardSesionGuard] 
+    },
     {path:'sobre_nosotros' , component:SobreNostrosComponent},
     {path:'perfil_usuario' , component:PerfilusuarioComponent,
          canActivate:[guardSesionGuard]  
     },
-    {path:'' , redirectTo:'/inicio', pathMatch:'full'}
+    {path:"" , redirectTo:'/inicio', pathMatch:'full'},
+    { path: '**', redirectTo: '/inicio', pathMatch: 'full' }
 ];

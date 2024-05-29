@@ -1,40 +1,47 @@
-import { Component } from '@angular/core';
-import { InicioComponent } from '../inicio/inicio.component';
+import { Component, OnInit } from '@angular/core';
 import { entorno } from '../_environment/entorno';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Cliente } from '../_modelo/Cliente';
-import { ClienteService } from '../_servicio/cliente.service';
-import { DestinosService } from '../_servicio/destinos.service';
 import { ContenidoService } from '../_servicio/contenido.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+
 
 @Component({
   selector: 'app-perfilusuario',
   standalone: true,
-  imports: [InicioComponent],
+  imports: [NavbarComponent,FooterComponent],
   templateUrl: './perfilusuario.component.html',
   styleUrl: './perfilusuario.component.css'
 })
-export class PerfilusuarioComponent {
+export class PerfilusuarioComponent implements OnInit{
 
 
   user:string = "";
   contenido:string = "";
 
-  constructor(private service:ContenidoService,public jwtHelper: JwtHelperService){}
+  
+
+  constructor(private service:ContenidoService,public jwtHelper: JwtHelperService){
+
+  }
+
+  
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
-    
-
     const token = sessionStorage.getItem(entorno.TOKEN_NAME);
-    let tokenDecodificado = token!==null?this.jwtHelper.decodeToken(token):null;
-    this.user = tokenDecodificado.sub;
+    let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
+    if (tokenDecodificado) {
+      this.user = tokenDecodificado.sub;
+    }
 
-    this.service.obtenerContenido().subscribe(data => {this.contenido = data.contenido})
-
-
+    this.service.obtenerContenido().subscribe(
+      data => {
+        this.contenido = data.contenido;
+      },
+      error => {
+        console.error('Error al obtener el contenido', error);
+      }
+    );
   }
 
 }

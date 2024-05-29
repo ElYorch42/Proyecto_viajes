@@ -38,6 +38,13 @@ public class ControladorCliente {
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 
+
+    @GetMapping("/{correo}")
+    public ResponseEntity<ClienteDto> obtenerConCorreo(@PathVariable(name = "correo") String correo) {
+        Cliente cliente = servicio.obtenerConCorreo(correo);
+        return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ClienteDto> insertar(@Valid @RequestBody ClienteDto clienteDto) {
         Cliente cliente = clienteDto.castCliente();

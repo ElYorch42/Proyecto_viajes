@@ -9,6 +9,7 @@ import { entorno } from '../_environment/entorno';
 import { ClienteService } from '../_servicio/cliente.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-iniciar-sesion',

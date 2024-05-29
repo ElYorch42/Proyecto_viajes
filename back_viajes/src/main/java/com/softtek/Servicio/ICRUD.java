@@ -8,4 +8,5 @@ public interface ICRUD<T, ID> {
     T actualizar(T t);
     T obtenerUno(ID id);
     void eliminar(ID id);
+    T obtenerConCorreo(String email);
 }

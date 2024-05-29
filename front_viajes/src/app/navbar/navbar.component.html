@@ -27,7 +27,13 @@
         <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
       </div>
       <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item  ">
-        <button  type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Usuario <i class="bi bi-person"  ></i></button>
+        @if (token == null) {
+          <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i class="bi bi-person"  ></i></button>
+        }@else {
+  
+          <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">Usuario<i class="bi bi-person"  ></i></button>
+  
+        } 
       </div>
       
     }@else{
@@ -40,8 +46,13 @@
         
         <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
         
-        <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Usuario<i class="bi bi-person"  ></i></button>
-      
+        @if (token == null) {
+        <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i class="bi bi-person"  ></i></button>
+      }@else {
+
+        <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">Usuario<i class="bi bi-person"  ></i></button>
+
+      } 
       </div>
       
     }
