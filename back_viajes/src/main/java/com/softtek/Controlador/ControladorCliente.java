@@ -38,6 +38,12 @@ public class ControladorCliente {
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 
+    @GetMapping("/consultaEmail")
+    public ResponseEntity<ClienteDto> consultaPorCorreo(@RequestParam(name = "email") String email) {
+        Cliente cliente = servicio.consultaPorCorreo(email);
+        return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ClienteDto> insertar(@Valid @RequestBody ClienteDto clienteDto) {
         Cliente cliente = clienteDto.castCliente();

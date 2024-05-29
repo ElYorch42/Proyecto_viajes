@@ -15,6 +15,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class NavbarComponent {
 
 
+
+  token:any = "";
+
   isCollapsed1: boolean = true;
 cambiarLogoBool:boolean = false;
 
@@ -22,6 +25,10 @@ cambiarLogoBool:boolean = false;
 
   ngOnInit(): void {
     this.checkScreenWidth();
+
+    this.token = sessionStorage.getItem("token");
+    console.log("token-> " + this.token)
+
   }
 
   @HostListener('window:resize', ['$event'])
