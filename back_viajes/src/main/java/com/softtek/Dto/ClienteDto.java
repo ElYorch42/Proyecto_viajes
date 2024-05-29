@@ -20,7 +20,7 @@ public class ClienteDto {
 
     private String dni;
 
-    private String correo;
+    private String email;
 
     private String direccion;
 
@@ -30,11 +30,9 @@ public class ClienteDto {
 
     private String codigoPostal;
 
-    private String contrasena;
+    private String password;
 
     private String urlImagen;
-
-    private boolean adminBool;
 
 
 
@@ -43,14 +41,14 @@ public class ClienteDto {
         c.setId(id);
         c.setNombre(nombre);
         c.setDni(dni);
-        c.setEmail(correo);
+        c.setEmail(email);
         c.setDireccion(direccion);
         c.setCiudad(ciudad);
         c.setComunidad(comunidad);
         c.setCodigoPostal(codigoPostal);
-        c.setPassword(contrasena);
+        c.setPassword(password);
         c.setUrlImagen(urlImagen);
-        c.setAdminBool(adminBool);
+
         return c;
     }
 
@@ -58,14 +56,13 @@ public class ClienteDto {
         id =c.getId();
         nombre=c.getNombre();
         dni=c.getDni();
-        correo=c.getEmail();
+        email=c.getEmail();
         direccion=c.getDireccion();
         ciudad=c.getCiudad();
         comunidad=c.getComunidad();
         codigoPostal=c.getCodigoPostal();
-        contrasena=c.getPassword();
+        password=c.getPassword();
         urlImagen = c.getUrlImagen();
-        adminBool = c.getAdminBool();
         return this;
     }
 }

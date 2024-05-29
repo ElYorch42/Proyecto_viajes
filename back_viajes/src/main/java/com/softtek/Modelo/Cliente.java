@@ -47,14 +47,12 @@ public class Cliente implements UserDetails {
     private String codigoPostal;
 
 
-    @Column(name = "password", length = 50)
+    @Column(name = "password")
     private String password;
 
     @Column(name = "urlImagen",length = 5000)
     private String urlImagen;
 
-    @Column(name = "adminBool")
-    private Boolean adminBool;
 
     @Enumerated
     private Role role;

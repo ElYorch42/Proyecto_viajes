@@ -26,6 +26,10 @@ export class ClienteService {
     return this.http.get<Cliente>(`${this.url}/${id}`);
   }
 
+  listarPorEmail(correo:string) {
+    return this.http.get<Cliente>(`${this.url}/consultaEmail?email=${correo}`);
+  }
+
   insertar(p:Cliente) {
     console.log(p);
     return this.http.post(this.url,p);
