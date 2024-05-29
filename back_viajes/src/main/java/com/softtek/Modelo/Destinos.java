@@ -29,10 +29,6 @@ public class Destinos {
     @Column(name= "tipo_localidad", length = 20)
     private String tipoLocalidad;
 
-    @Column(name= "imagen")
-    @Lob
-    private byte[] imagen;
-
     @ManyToOne
     @JoinColumn(name = "id_pais", nullable = false, foreignKey = @ForeignKey(name = "FK_destinos_paises"))
     private Paises paisDestino;
