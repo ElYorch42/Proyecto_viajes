@@ -27,4 +27,5 @@ public class SignUpRequest {
     private String password;
 
     private String urlImagen;
+
 }
