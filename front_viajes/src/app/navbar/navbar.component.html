@@ -31,8 +31,8 @@
           <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i class="bi bi-person"  ></i></button>
         }@else {
   
-          <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">Usuario<i class="bi bi-person"  ></i></button>
-  
+          <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">{{nombre}}  <i class="bi bi-person"></i></button>
+      
         } 
       </div>
       
@@ -50,7 +50,7 @@
         <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i class="bi bi-person"  ></i></button>
       }@else {
 
-        <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">Usuario<i class="bi bi-person"  ></i></button>
+        <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">{{nombre}}<i class="bi bi-person"  ></i></button>
 
       } 
       </div>

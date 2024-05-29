@@ -14,8 +14,7 @@ export const guardSesionGuard: CanActivateFn = (route, state) => {
 
   if (!rpta) {
     console.log('no esta logeado');
-    router.navigate(['/inicio_sesion'])
-    clienteService.cerrarSesion();
+    router.navigate(['/inicio_sesion']);
     return false;
   } else {
     let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
@@ -23,8 +22,9 @@ export const guardSesionGuard: CanActivateFn = (route, state) => {
       console.log('no ha expirado el toke');
       return true;
     } else {
+  
       clienteService.cerrarSesion()
-      router.navigate(['../inicio_sesion'])
+      router.navigate(['inicio_sesion']);
       return false;
     }
   }

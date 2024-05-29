@@ -15,7 +15,7 @@ import { ClienteService } from '../_servicio/cliente.service';
 })
 export class PerfilusuarioComponent implements OnInit{
 
-  id: number = 0;
+
   nombre: string = "";
   dni: string = "";
   email: string= "";
@@ -24,6 +24,7 @@ export class PerfilusuarioComponent implements OnInit{
   comunidad: string= "";
   codigoPostal: string= "";
   password: string= "";
+  urlImagen:string = "";
  
 
   
@@ -38,7 +39,7 @@ export class PerfilusuarioComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem(entorno.TOKEN_NAME);
+    const token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
     if (tokenDecodificado) {
       this.email = tokenDecodificado.sub;
@@ -47,7 +48,6 @@ export class PerfilusuarioComponent implements OnInit{
 
     this.service.listarPorEmail(this.email).subscribe(
       data => {
-        this.id = data.id;
         this.nombre = data.nombre;
         this.dni = data.dni;
         this.email = data.email;

@@ -45,16 +45,18 @@ export class IniciarSesionComponent {
 
 
   buscarInicio() {
+    this.respuesta.token = "";
     let datos: SignInRequest = {
       email: this.formulario.value['email'],
       password: this.formulario.value['password']
+    
     };
   
     this.servicio.autenticar(datos)
       .subscribe(
         (data) => {
-          console.log("token-> " + data.token);
-          sessionStorage.setItem(entorno.TOKEN_NAME, data.token)
+          console.log("tokenInic-> " + data.token);
+          sessionStorage.setItem(entorno.TOKEN_SESSION, data.token)
           this.iniciodiv = true;
           setTimeout(() => {
             this.router.navigate(['/inicio'])

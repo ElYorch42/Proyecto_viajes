@@ -46,13 +46,7 @@ public class ControladorDestinos {
         Destinos destinos = servicio.consultaPorContinenteAleatoria(continente);
         return new ResponseEntity<>((new DestinosDto()).castDestinosADto(destinos),HttpStatus.OK);
     }
-    @GetMapping("/{id}/imagen")
-    public ResponseEntity<byte[]> obtenerImagenDestino(@PathVariable int id) {
-        byte[] imagen = servicio.obtenerImagenDestino(id);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-    }
+
 
     @PostMapping
     public ResponseEntity<DestinosDto> insertar(@Valid @RequestBody DestinosDto destinosDto) {

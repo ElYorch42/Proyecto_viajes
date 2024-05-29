@@ -22,6 +22,10 @@ export class ClienteService {
     .pipe(map(data => {return data.sort((a,b) => a.id-b.id)}));
   }
 
+  checkBooleanEmail(correo: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.url}/booleanEmail?email=${correo}`);
+  }
+
   listarPorId(id:number) {
     return this.http.get<Cliente>(`${this.url}/${id}`);
   }
@@ -30,9 +34,9 @@ export class ClienteService {
     return this.http.get<Cliente>(`${this.url}/consultaEmail?email=${correo}`);
   }
 
-  insertar(p:Cliente) {
-    console.log(p);
-    return this.http.post(this.url,p);
+
+  registrar(datos:SignInRequest) {
+    return this.http.post<JwtAuthenticationResponse>(`${entorno.HOSTNAME}/auth/signup`,datos);
   }
 
   actualizar(p:Cliente) {
@@ -55,8 +59,8 @@ export class ClienteService {
 
   cerrarSesion() {
     sessionStorage.clear();
-    //Comprobar esto
-    this.router.navigate(['inicio']);
+    
+    
   }
   
 }
