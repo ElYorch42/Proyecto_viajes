@@ -6,7 +6,9 @@ import com.softtek.Servicio.DestinosServicio;
 import com.softtek.Servicio.IDestinoServicio;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +45,13 @@ public class ControladorDestinos {
     public ResponseEntity<DestinosDto> consultaPorContinenteAleatoria(@RequestParam(name = "continente") String continente) {
         Destinos destinos = servicio.consultaPorContinenteAleatoria(continente);
         return new ResponseEntity<>((new DestinosDto()).castDestinosADto(destinos),HttpStatus.OK);
+    }
+    @GetMapping("/{id}/imagen")
+    public ResponseEntity<byte[]> obtenerImagenDestino(@PathVariable int id) {
+        byte[] imagen = servicio.obtenerImagenDestino(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 
     @PostMapping

@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmailService } from '../_servicio/email.service';
 import { email } from '../_modelo/email';
+import { NavbarComponent } from "../navbar/navbar.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
-  selector: 'app-contacto',
-  standalone: true,
-  imports: [FormsModule,ReactiveFormsModule],
-  templateUrl: './contacto.component.html',
-  styleUrl: './contacto.component.css'
+    selector: 'app-contacto',
+    standalone: true,
+    templateUrl: './contacto.component.html',
+    styleUrl: './contacto.component.css',
+    imports: [FormsModule, ReactiveFormsModule, NavbarComponent, FooterComponent]
 })
 export class ContactoComponent {
   contactForm: FormGroup;
@@ -28,7 +30,6 @@ export class ContactoComponent {
         subject: this.contactForm.value['subject'],
         text: this.contactForm.value['text']
       }
-      const { to, subject, text } = this.contactForm.value;
       this.emailService.sendEmail(e).subscribe(
         response => {
           console.log('Correo enviado', response);
