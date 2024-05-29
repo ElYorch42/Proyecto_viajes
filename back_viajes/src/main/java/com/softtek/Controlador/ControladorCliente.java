@@ -60,7 +60,7 @@ public class ControladorCliente {
     public ResponseEntity<Void> updatePorCorreo(@Valid @RequestBody ClienteDto clienteDto) {
         Cliente cliente = clienteDto.castCliente();
         servicio.updatePorCorreo(cliente);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 //    @PutMapping("/updateContrasena")
 //    public ResponseEntity<Void> updateContrasena(@RequestParam(name = "email") String email, @RequestParam(name = "password") String password) {
