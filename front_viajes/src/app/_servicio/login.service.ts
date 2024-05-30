@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   estalogeado() {
-    let token = sessionStorage.getItem(entorno.TOKEN_NAME);
+    let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     return token != null;
   }
   

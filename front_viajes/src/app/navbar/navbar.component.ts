@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { entorno } from '../_environment/entorno';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ClienteService } from '../_servicio/cliente.service';
 
 
 
@@ -14,20 +17,57 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 
 export class NavbarComponent {
 
-
+  nombre: string = "";
+  urlImagen:string = "";
 
   token:any = "";
 
   isCollapsed1: boolean = true;
 cambiarLogoBool:boolean = false;
 
-  constructor() {}
+constructor(private service:ClienteService,public jwtHelper: JwtHelperService,private router:Router){
 
-  ngOnInit(): void {
+}
+
+
+
+
+ngOnInit(): void {
     this.checkScreenWidth();
 
-    this.token = sessionStorage.getItem("token");
-    console.log("token-> " + this.token)
+  
+
+    this.token = sessionStorage.getItem(entorno.TOKEN_SESSION);
+    console.log("token-> " + this.token )
+    let emaildesc;
+    let tokenDecodificado = this.token !== null ? this.jwtHelper.decodeToken(this.token) : null;
+
+    if(this.token != null){
+      if(this.jwtHelper.isTokenExpired(this.token)){
+      this.service.cerrarSesion();
+      this.router.navigate(['/inicio_sesion']);
+    }  
+  }
+
+    if(tokenDecodificado != null){
+    emaildesc = tokenDecodificado.sub;
+    }
+    
+    if (tokenDecodificado) {
+      this.service.listarPorEmail(emaildesc).subscribe(
+        data => {
+          this.nombre = data.nombre;
+         
+  
+  
+        },
+        error => {
+          console.error('Error al obtener el contenido', error);
+        }
+      );
+    }
+
+    
 
   }
 
@@ -55,6 +95,7 @@ cambiarLogoBool:boolean = false;
    return this.cambiarLogoBool = true;
   }
 
+  
 
 
 }

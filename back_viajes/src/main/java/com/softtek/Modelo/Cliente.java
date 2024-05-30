@@ -31,7 +31,7 @@ public class Cliente implements UserDetails {
     @Column(name = "dni", length = 10)
     private String dni;
 
-    @Column(name = "email", length = 50)
+    @Column(name = "email", length = 550,unique = true)
     private String email;
 
     @Column(name = "direccion", length = 60)

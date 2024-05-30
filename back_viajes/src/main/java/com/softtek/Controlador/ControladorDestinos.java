@@ -47,6 +47,7 @@ public class ControladorDestinos {
         return new ResponseEntity<>((new DestinosDto()).castDestinosADto(destinos),HttpStatus.OK);
     }
 
+
     @PostMapping
     public ResponseEntity<DestinosDto> insertar(@Valid @RequestBody DestinosDto destinosDto) {
         Destinos destinos = destinosDto.castDestinos();

@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ClientesServicio extends CRUD<Cliente, Integer> implements IClienteServicio {
@@ -31,6 +33,11 @@ public class ClientesServicio extends CRUD<Cliente, Integer> implements ICliente
                         .orElseThrow(()-> new UsernameNotFoundException("Usuario no encontrado"));
             }
         };
+    }
+
+    @Override
+    public Optional<Cliente> findByEmail(String email) {
+      return repo.findByEmail(email);
     }
 
     @Override

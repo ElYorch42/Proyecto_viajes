@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cliente")
@@ -43,6 +44,17 @@ public class ControladorCliente {
         Cliente cliente = servicio.consultaPorCorreo(email);
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
+
+    @GetMapping("/booleanEmail/{email}")
+    public ResponseEntity<Boolean> checkEmail(@PathVariable String email) {
+        Optional<Cliente> cliente = servicio.findByEmail(email);
+        boolean exists = cliente.isPresent();
+        return ResponseEntity.ok(exists);
+    }
+
+
+
+
 
     @PostMapping
     public ResponseEntity<ClienteDto> insertar(@Valid @RequestBody ClienteDto clienteDto) {
