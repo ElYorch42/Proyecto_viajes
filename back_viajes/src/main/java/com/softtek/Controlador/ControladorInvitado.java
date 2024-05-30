@@ -40,6 +40,18 @@ public class ControladorInvitado {
         return new ResponseEntity<>((new InvitadoDto()).castInvitadoADto(invitado),HttpStatus.OK);
     }
 
+    @GetMapping("/consulta1")
+    public ResponseEntity<List<InvitadoDto>> consultaPorViaje(@RequestParam(name = "correo") String correo) {
+        List<Invitado> invitadoBBDD = servicio.consultaPorViaje(correo);
+        List<InvitadoDto> ListaInvitadoDto = new ArrayList<>();
+
+        for (Invitado invitado: invitadoBBDD) {
+            InvitadoDto invitadoDto = new InvitadoDto();
+            ListaInvitadoDto.add(invitadoDto.castInvitadoADto(invitado));
+        }
+        return new ResponseEntity<>(ListaInvitadoDto, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<InvitadoDto> insertar(@Valid @RequestBody InvitadoDto invitadoDto) {
         Invitado invitado = invitadoDto.castInvitado();

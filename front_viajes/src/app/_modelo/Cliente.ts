@@ -8,4 +8,5 @@ export interface Cliente {
   comunidad: string;
   codigoPostal: string;
   password: string;
+  urlImagen:string;
 }

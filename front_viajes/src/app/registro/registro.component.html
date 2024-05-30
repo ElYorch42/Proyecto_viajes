@@ -5,16 +5,16 @@
       <div class="col">
         <div class="card card-registration my-4">
           <div class="row g-0">
-            <div class="col-xl-6 d-none d-xl-block">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
-                alt="Sample photo" class="img-fluid"
-                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+            @if (redirigir === false) {
+            <div style="background-image:url(../../assets/imagenregistro.jpg);" class="col-xl-6">
+    
             </div>
+            
             <div class="col-xl-6">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registro</h3>
               <div class="container mt-5">
-                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                  <form [formGroup]="registerForm" >
                     <div class="form-group">
                       <label for="dni">DNI</label>
                       <input id="dni" formControlName="dni" type="text" class="form-control">
@@ -110,7 +110,13 @@
                             <div>Fecha de Nacimiento es obligatoria.</div>
                             }
                         </div>
-                    }
+                      }
+
+                      @if (registerForm.errors?.['menorDe18']) {
+                        <div  class="text-danger">
+                          <div>Debes ser mayor de edad</div>
+                        </div>
+                      }
                     </div>
                 
                     <div class="form-group">
@@ -121,15 +127,32 @@
                             @if (registerForm.get('email')?.errors?.['required']) {
                             <div>Email es obligatorio.</div>
                             }
-                            @if (registerForm.get('email')?.errors?.['email']) {
-                              <div>Email no es válido.</div>
-                            }
+                         
                         </div>
-                    }
+                      }
+
+                      @if(registerForm.get('email')?.errors?.['emailExists']){
+                        <div class="text-danger">El usuario ya esta registrado</div>
+                      }
+                    </div>
+
+                        
+                    <div class="form-group">
+                      <label for="urlImagen">Imagen de perfil (Link <span (click)="redirectcion()" class="link">pixabay.com</span>)</label>
+                      <input id="urlImagen" formControlName="urlImagen"  class="form-control">
+                       
+                      @if(registerForm.get('urlImagen')?.errors?.['invalidUrl']){
+                        <div class="text-danger">
+                          asegurate de que sea de pixibay
+                        </div>
+
+                      }
+
+        
                     </div>
                 
                     <div class="form-group">
-                      <label for="password">Contraseña</label>
+                      <label for="password">Contraseña - Más de 8 Dígitos</label>
                       <input id="password" formControlName="password" type="password" class="form-control">
                       @if (registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)) {
                         <div  class="text-danger">
@@ -153,11 +176,18 @@
                     }
                     </div>
                 
-                    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrarse</button>
+                    <button type="button"  (click)="redirect(); onSubmit()" style="position:relative;top: 1vw;" [disabled]="registerForm.invalid" class="btn btn-primary" >Registrarse</button>
                   </form>
                 </div>
                 </div>
                 </div>
+              }@else{
+                <div  style="text-align: center;height: 30vw;padding: 10vw;">
+                <h2 style="color:hsl(218, 100%, 50%);">Registrado satisfactoriamente</h2>
+                <h3>Se le redirigirá al  inicio de sesión para que pueda acceder a todas las funcionalidades de la página </h3>
+                 <p><span class="muted">Si no se redirige automaticamente haga click </span> <span class="link" [routerLink]="[ '/inicio_sesion']">aqui</span></p>
+              </div>
+              }
                 </div>
                 </div>
                 </div>

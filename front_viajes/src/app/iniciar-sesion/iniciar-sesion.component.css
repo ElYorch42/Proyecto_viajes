@@ -78,3 +78,11 @@
 .card {
     background: rgba(255, 255, 255, 0.8); /* Transparencia opcional para la tarjeta */
 }
+
+
+.h1des{
+
+    text-align: center;
+    color: hsl(218, 100%, 50%);
+    font-size: xx-large;
+}

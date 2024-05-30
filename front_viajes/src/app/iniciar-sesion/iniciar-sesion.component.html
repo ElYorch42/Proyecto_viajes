@@ -18,28 +18,25 @@
         <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
    
-
+@if (iniciodiv == false) {
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
+
+            <p style="text-align: center;margin-bottom: 3vh;color:red" id="mensajeDiv"></p>
             <h1 style="text-align: center;margin-bottom: 3vh;"  >Iniciar Sesion</h1>
             <form [formGroup]="formulario">
               
-         
-              <!-- Email input -->
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label" >Correo Electrónico</label>
                 <input type="email" id="email" formControlName = "email" class="form-control" />
              
               </div>
 
-              <!-- Password input -->
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label" >Password</label>
                 <input type="password" id="password" formControlName = "password" class="form-control" />
            
               </div>
-
-              <!-- Checkbox -->
               <div class="form-check d-flex justify-content-center mb-4">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
                 <label class="form-check-label" for="form2Example33">
@@ -47,17 +44,33 @@
                 </label>
               </div>
 
-              <!-- Submit button -->
+            
               <button (click)="buscarInicio()" [disabled]="formulario.invalid" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
                 Iniciar sesión
               </button>
 
-              <!-- Register buttons -->
+        
            
             </form>
           </div>
         </div>
+      }@else if (iniciodiv == true) {
+
+        <div class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+          
+            
+            <h1 class="h1des">Sesion Iniciada!</h1>
+            <p class="text-muted">Redirigiendo al inico</p>
+        
+           
+        
+          </div>
+        </div>
+       
+      }
       </div>
+      
     </div>
     
   </div>

@@ -6,7 +6,9 @@ import com.softtek.Servicio.DestinosServicio;
 import com.softtek.Servicio.IDestinoServicio;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +46,7 @@ public class ControladorDestinos {
         Destinos destinos = servicio.consultaPorContinenteAleatoria(continente);
         return new ResponseEntity<>((new DestinosDto()).castDestinosADto(destinos),HttpStatus.OK);
     }
+
 
     @PostMapping
     public ResponseEntity<DestinosDto> insertar(@Valid @RequestBody DestinosDto destinosDto) {
