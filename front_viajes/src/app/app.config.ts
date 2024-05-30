@@ -7,7 +7,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { entorno } from './_environment/entorno';
 
 export function tokenGetter() {
-  return sessionStorage.getItem(entorno.TOKEN_NAME);
+  return sessionStorage.getItem(entorno.TOKEN_SESSION);
 }
 
 export const appConfig: ApplicationConfig = {

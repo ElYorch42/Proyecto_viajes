@@ -54,7 +54,7 @@ export class IniciarSesionComponent {
       .subscribe(
         (data) => {
           console.log("token-> " + data.token);
-          sessionStorage.setItem(entorno.TOKEN_NAME, data.token)
+          sessionStorage.setItem(entorno.TOKEN_SESSION, data.token)
           this.iniciodiv = true;
           setTimeout(() => {
             this.router.navigate(['/inicio'])
