@@ -1,8 +1,8 @@
 package com.softtek;
+
 import com.softtek.Controlador.ControladorDestinos;
 import com.softtek.Dto.DestinosDto;
 import com.softtek.Modelo.Destinos;
-import com.softtek.Servicio.DestinosServicio;
 import com.softtek.Servicio.IDestinoServicio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
