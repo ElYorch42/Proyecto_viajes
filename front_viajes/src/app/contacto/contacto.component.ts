@@ -28,7 +28,8 @@ export class ContactoComponent {
       let e:email={
         to : this.contactForm.value['to'],
         subject: this.contactForm.value['subject'],
-        text: this.contactForm.value['text']
+        text: this.contactForm.value['text'],
+        name: this.contactForm.value['name']
       }
       this.emailService.sendEmail(e).subscribe(
         response => {

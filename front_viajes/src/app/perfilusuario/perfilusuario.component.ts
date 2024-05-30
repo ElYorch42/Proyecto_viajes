@@ -38,7 +38,7 @@ export class PerfilusuarioComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem(entorno.TOKEN_NAME);
+    const token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
     if (tokenDecodificado) {
       this.email = tokenDecodificado.sub;

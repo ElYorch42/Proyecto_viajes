@@ -2,6 +2,7 @@ package com.softtek.Controlador;
 
 import com.softtek.Modelo.EmailRequest;
 import com.softtek.Servicio.EmailService;
+import jakarta.mail.MessagingException;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class EmailController {
     private EmailService emailService;
 
     @PostMapping("/send")
-    public void sendEmail(@RequestBody EmailRequest emailRequest) {
-        emailService.sendEmail(emailRequest.getTo(), emailRequest.getSubject(), emailRequest.getText());
+    public void sendEmail(@RequestBody EmailRequest emailRequest) throws MessagingException {
+        emailService.enviarCorreo(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getText(),emailRequest.getName());
     }
 }
