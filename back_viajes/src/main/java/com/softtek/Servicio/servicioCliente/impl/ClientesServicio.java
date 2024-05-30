@@ -37,7 +37,7 @@ public class ClientesServicio extends CRUD<Cliente, Integer> implements ICliente
 
     @Override
     public Optional<Cliente> findByEmail(String email) {
-      return repo.findByEmail(email);
+        return repo.findByEmail(email);
     }
 
     @Override

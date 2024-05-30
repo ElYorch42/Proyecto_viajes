@@ -39,8 +39,8 @@ public class ControladorCliente {
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 
-    @GetMapping("/consultaEmail")
-    public ResponseEntity<ClienteDto> consultaPorCorreo(@RequestParam(name = "email") String email) {
+    @GetMapping("/consultaEmail/{email}")
+    public ResponseEntity<ClienteDto> consultaPorCorreo(@PathVariable String email) {
         Cliente cliente = servicio.consultaPorCorreo(email);
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
@@ -51,10 +51,6 @@ public class ControladorCliente {
         boolean exists = cliente.isPresent();
         return ResponseEntity.ok(exists);
     }
-
-
-
-
 
     @PostMapping
     public ResponseEntity<ClienteDto> insertar(@Valid @RequestBody ClienteDto clienteDto) {
