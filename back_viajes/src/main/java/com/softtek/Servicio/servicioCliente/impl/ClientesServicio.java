@@ -39,8 +39,8 @@ public class ClientesServicio extends CRUD<Cliente, Integer> implements ICliente
     }
 
     @Override
-    public void updatePorCorreo(Cliente cliente) {
-        repo.updatePorCorreo(cliente.getNombre(), cliente.getDni(), cliente.getEmail(), cliente.getDireccion(), cliente.getCiudad(), cliente.getComunidad(), cliente.getCodigoPostal(), cliente.getUrlImagen());
+    public Cliente updatePorCorreo(Cliente cliente) {
+        return repo.updatePorCorreo(cliente.getNombre(), cliente.getDni(), cliente.getEmail(), cliente.getDireccion(), cliente.getCiudad(), cliente.getComunidad(), cliente.getCodigoPostal(), cliente.getUrlImagen());
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface IClientesRepo extends IGenericoRepositorio<Cliente,Integer>, Jp
     @Query(value = "select * from Cliente where email = :correo ;", nativeQuery = true)
     Cliente consultaPorCorreo(@Param("correo") String correo);
     @Query(value = "UPDATE cliente SET nombre = :nombre1 , dni = :dni1 , email = :email1 , direccion = :direccion1 , ciudad = :ciudad1 , comunidad = :comunidad1 , codigo_postal = :codigoPostal1 , url_imagen = :urlImagen1 WHERE email = :email1 ;", nativeQuery = true)
-    void updatePorCorreo(
+    Cliente updatePorCorreo(
             @Param("nombre1") String nombre,
             @Param("dni1") String dni,
             @Param("email1") String email,
