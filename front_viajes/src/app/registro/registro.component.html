@@ -132,7 +132,7 @@
                       }
 
                       @if(registerForm.get('email')?.errors?.['emailExists']){
-                        <div>El usuario ya esta registrado</div>
+                        <div class="text-danger">El usuario ya esta registrado</div>
                       }
                     </div>
 
@@ -140,7 +140,13 @@
                     <div class="form-group">
                       <label for="urlImagen">Imagen de perfil (Link <span (click)="redirectcion()" class="link">pixabay.com</span>)</label>
                       <input id="urlImagen" formControlName="urlImagen"  class="form-control">
-                   
+                       
+                      @if(registerForm.get('urlImagen')?.errors?.['invalidUrl']){
+                        <div class="text-danger">
+                          asegurate de que sea de pixibay
+                        </div>
+
+                      }
 
         
                     </div>

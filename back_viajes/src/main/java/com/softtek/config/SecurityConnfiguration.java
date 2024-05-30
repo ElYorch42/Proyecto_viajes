@@ -32,6 +32,8 @@ public class SecurityConnfiguration {
                         .permitAll()
                         .requestMatchers("/api/v1/email/send")
                         .permitAll()
+                        .requestMatchers("/cliente/booleanEmail/**")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(

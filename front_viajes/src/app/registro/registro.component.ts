@@ -26,7 +26,7 @@ export class RegistroComponent {
 
  
   
-  constructor(private fb: FormBuilder,private service:ClienteService,private route:Router) {
+  constructor(private fb: FormBuilder, private service: ClienteService, private route: Router) {
     this.registerForm = this.fb.group({
       dni: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
@@ -36,15 +36,20 @@ export class RegistroComponent {
       comunidad: ['', [Validators.required]],
       codigoPostal: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
       fechaNacimiento: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email],[this.emailExistsValidator()]],
+      email: ['', [Validators.required, Validators.email], [this.emailExistsValidator()]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
-      urlImagen:['https://cdn.pixabay.com/photo/2016/10/22/10/52/eiffel-tower-1760354_1280.jpg']
+      urlImagen: ['https://cdn.pixabay.com/photo/2016/10/22/10/52/eiffel-tower-1760354_1280.jpg', [this.urlValidator()]]
     }, {
       validators: [this.passwordMatchValidator, this.mayorDe18Anios]
-      
-
     });
+  }
+
+  urlValidator() {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const url = control.value;
+      return url && url.includes("https://cdn.pixabay.com") ? null : { invalidUrl: true };
+    };
   }
 
   
@@ -64,6 +69,7 @@ export class RegistroComponent {
           }, 100000000000000000);
   }
 
+  
   passwordMatchValidator(form: FormGroup) {
     return form.controls['password'].value === form.controls['confirmPassword'].value ? null : { mismatch: true };
   }

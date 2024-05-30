@@ -23,7 +23,7 @@ export class ClienteService {
   }
 
   checkBooleanEmail(correo: string): Observable<boolean> {
-    return this.http.get<boolean>(`${this.url}/booleanEmail?email=${correo}`);
+    return this.http.get<boolean>(`${this.url}/booleanEmail/${correo}`);
   }
 
   listarPorId(id:number) {
