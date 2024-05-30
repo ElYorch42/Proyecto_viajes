@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ViajeAmadeus {
+public class AmadeusViaje {
 
     private String originLocationCode;
     private String destinationLocationCode;
