@@ -10,4 +10,5 @@ public interface IClienteServicio extends ICRUD<Cliente,Integer> {
     UserDetailsService userDetailsService();
     Optional<Cliente> findByEmail(String string);
     Cliente consultaPorCorreo(String correo);
+    Cliente update(Cliente cliente);
 }

@@ -44,4 +44,9 @@ public class ClientesServicio extends CRUD<Cliente, Integer> implements ICliente
     public Cliente consultaPorCorreo(String correo) {
         return repo.consultaPorCorreo(correo);
     }
+
+    @Override
+    public Cliente update(Cliente cliente) {
+        return repo.update(cliente.getNombre(), cliente.getDni(), cliente.getDireccion(), cliente.getCiudad(), cliente.getComunidad(), cliente.getCodigoPostal(), cliente.getUrlImagen(), cliente.getId());
+    }
 }

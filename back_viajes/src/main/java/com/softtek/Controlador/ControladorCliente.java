@@ -64,6 +64,12 @@ public class ControladorCliente {
         servicio.actualizar(cliente);
         return new ResponseEntity<>(clienteDto.castClienteADto(cliente), HttpStatus.OK);
     }
+    @PutMapping("/update")
+    public ResponseEntity<ClienteDto> update(@Valid @RequestBody ClienteDto clienteDto) {
+        Cliente cliente = clienteDto.castCliente();
+        servicio.update(cliente);
+        return new ResponseEntity<>(clienteDto.castClienteADto(cliente), HttpStatus.OK);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable int id) {
         servicio.eliminar(id);
