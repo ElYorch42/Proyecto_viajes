@@ -31,8 +31,8 @@ public class Viajes {
     @JoinColumn(name = "id_destino",nullable = false, foreignKey = @ForeignKey(name = "FK_destino_Actividad"))
     private Destinos destinoViaje;
 
-    @Column(name = "actual")
-    private boolean actual;
+//    @Column(name = "actual")
+//    private boolean actual;
 
     @Column(name = "precio")
     private int precio;

@@ -1,0 +1,19 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+ 
+    width: 100%;
+  }
+  
+  .col-auto {
+    justify-content: center;
+    align-items: center;
+   
+    margin: 0.5rem;
+  }
+  
+  .card {
+    min-width: auto; /* Minimum width for the card */
+    max-width: auto; /* Allow the card to grow */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  }

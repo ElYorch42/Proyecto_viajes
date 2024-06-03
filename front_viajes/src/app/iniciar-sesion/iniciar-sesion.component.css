@@ -49,12 +49,12 @@
 
 
 .spanreg{
-    color: hsl(0, 0%, 0%);cursor: pointer;
+    color: hsl(218, 100%, 50%);cursor: pointer;
 
 }
 
 .spanreg:hover{
-    color: hsl(218, 100%, 50%);cursor: pointer;
+    color: blue;cursor: pointer;
     text-decoration: underline;
 
 }

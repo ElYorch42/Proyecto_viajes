@@ -1,0 +1,19 @@
+
+<div class="row justify-content-center">
+    @for(item of arrayViajes;track $index){
+    <div class=" col-auto">
+        <div class="card">
+            
+            <div  class="card-body">
+              <h5 class="card-title">{{nombreCiudad[$index]}}</h5>
+              <p class="card-text">{{item.fecha_inicio}} / {{item.fecha_fin}}</p>
+              <p class="card-text">{{item.actividad1}} - {{item.actividad2}} - {{item.actividad3}}</p>
+         
+            </div>
+          </div>
+    </div>
+
+   
+}
+
+</div>

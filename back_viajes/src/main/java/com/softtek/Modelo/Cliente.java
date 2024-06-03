@@ -1,5 +1,6 @@
 package com.softtek.Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -57,7 +58,8 @@ public class Cliente implements UserDetails {
     @Enumerated
     private Role role;
 
-    @OneToMany(mappedBy = "clienteViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "clienteViaje",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     List<Viajes> viajes;
 
     @Override

@@ -32,10 +32,28 @@ public class ControladorViajes {
         return new ResponseEntity<>(ListaViajesDto, HttpStatus.OK);
     }
 
+
+
+
+
+
+
     @GetMapping("/{id}")
     public ResponseEntity<ViajesDto> obtenerUno(@PathVariable(name = "id") Integer id)  {
         Viajes viaje = servicio.obtenerUno(id);
         return new ResponseEntity<>((new ViajesDto()).castViajesADto(viaje),HttpStatus.OK);
+    }
+
+    @GetMapping("/viajeCorreoCliente")
+    public ResponseEntity<List<ViajesDto>> consultViajesPorCorreo(@RequestParam(name = "email") String email) {
+        List<Viajes> viajesBBDD = servicio.consultaPorCliente(email);
+        List<ViajesDto> ListaViajesDto = new ArrayList<>();
+
+        for (Viajes viaje: viajesBBDD) {
+            ViajesDto vDto = new ViajesDto();
+            ListaViajesDto.add(vDto.castViajesADto(viaje));
+        }
+        return new ResponseEntity<>(ListaViajesDto, HttpStatus.OK);
     }
 
     @PostMapping

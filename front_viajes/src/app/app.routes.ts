@@ -8,6 +8,7 @@ import { PerfilusuarioComponent } from './perfilusuario/perfilusuario.component'
 
 import { RegistroComponent } from './registro/registro.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { RecuperarContraComponent } from './iniciar-sesion/recuperar-contra/recuperar-contra.component';
 
 export const routes: Routes = [
     {path:'inicio' , component:InicioComponent},
@@ -16,6 +17,7 @@ export const routes: Routes = [
     canActivate:[guardSesionGuard] 
     },
     {path:'sobre_nosotros' , component:SobreNostrosComponent},
+    {path:'reset_password' , component:RecuperarContraComponent},
     {path:'perfil_usuario' , component:PerfilusuarioComponent,
          canActivate:[guardSesionGuard]  
     },

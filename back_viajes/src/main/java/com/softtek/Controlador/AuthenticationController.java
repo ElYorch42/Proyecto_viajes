@@ -25,4 +25,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.signin(request));
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<JwtAuthenticationResponse> update(@RequestBody SignInRequest request, @RequestParam(name = "newPassword") String newPassword) {
+        return ResponseEntity.ok(authenticationService.updatePassword(request, newPassword));
+    }
+
 }
