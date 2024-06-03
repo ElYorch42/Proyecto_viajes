@@ -1,0 +1,10 @@
+<form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" formControlName="amount" class="form-control">
+    </div>
+    <div id="card-element" class="form-group">
+      <!-- Stripe Card Element will be inserted here. -->
+    </div>
+    <button type="submit" class="btn btn-primary">Pay</button>
+  </form>

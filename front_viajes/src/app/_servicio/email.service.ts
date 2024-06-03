@@ -7,11 +7,15 @@ import { email } from '../_modelo/email';
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = 'http://localhost:8080/api/v1/email/send';
+  private apiUrl = 'http://localhost:8080/api/v1/email/';
 
   constructor(private http: HttpClient) { }
 
-  sendEmail(e:email) {
-    return this.http.post(this.apiUrl, e);
+  sendEmailContacto(e:email) {
+    return this.http.post(this.apiUrl+'contacto', e);
+  }
+
+  sendEmailBienvenida(e:email){
+    return this.http.post(this.apiUrl+'registrarse', e);
   }
 }

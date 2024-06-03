@@ -1,6 +1,5 @@
 package com.softtek.Dto;
 
-import com.softtek.Modelo.Destinos;
 import com.softtek.Modelo.Viajes;
 import lombok.AllArgsConstructor;
 import lombok.Data;

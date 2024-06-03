@@ -39,12 +39,6 @@ public class ControladorCliente {
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 
-    @GetMapping("/consultaEmail")
-    public ResponseEntity<ClienteDto> consultaPorCorreo(@RequestParam(name = "email") String email) {
-        Cliente cliente = servicio.consultaPorCorreo(email);
-        return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
-    }
-
     @GetMapping("/booleanEmail/{email}")
     public ResponseEntity<Boolean> checkEmail(@PathVariable String email) {
         Optional<Cliente> cliente = servicio.findByEmail(email);
@@ -79,6 +73,11 @@ public class ControladorCliente {
         servicio.eliminar(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/consultaEmail")
+    public ResponseEntity<ClienteDto> consultaPorCorreo(@RequestParam(name = "email") String email) {
+        Cliente cliente = servicio.consultaPorCorreo(email);
+        return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 
 }

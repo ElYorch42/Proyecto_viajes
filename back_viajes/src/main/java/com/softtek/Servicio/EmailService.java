@@ -18,7 +18,7 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    public void enviarCorreo(String to, String subject, String text,String nombre) throws MessagingException {
+    public void enviarCorreoContacto(String to, String subject, String text,String nombre) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
@@ -30,6 +30,22 @@ public class EmailService {
         context.setVariable("nombre", nombre);
         context.setVariable("texto", text);
         String content = templateEngine.process("Contacto.html", context);
+        helper.setText(content, true);
+
+        javaMailSender.send(message);
+    }
+    public void enviarCorreoRegistro(String to, String subject, String text,String nombre) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setCc("viajesalodesconocido@gmail.com");
+
+        Context context = new Context();
+        context.setVariable("nombre", nombre);
+        context.setVariable("email", to);
+        String content = templateEngine.process("Bienvenida.html", context);
         helper.setText(content, true);
 
         javaMailSender.send(message);

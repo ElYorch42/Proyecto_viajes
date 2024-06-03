@@ -8,7 +8,6 @@ import { PerfilusuarioComponent } from './perfilusuario/perfilusuario.component'
 
 import { RegistroComponent } from './registro/registro.component';
 import { ContactoComponent } from './contacto/contacto.component';
-import { RecuperarContraComponent } from './iniciar-sesion/recuperar-contra/recuperar-contra.component';
 
 export const routes: Routes = [
     {path:'inicio' , component:InicioComponent},
@@ -22,7 +21,9 @@ export const routes: Routes = [
          canActivate:[guardSesionGuard]  
     },
     {path:'registro', component:RegistroComponent},
+    {path:'pago',component:PaymentComponent},
     {path:'contactanos',component:ContactoComponent},
     {path:"" , redirectTo:'/inicio', pathMatch:'full'},
     {path: '**', redirectTo: '/inicio', pathMatch: 'full'}
+    
 ];

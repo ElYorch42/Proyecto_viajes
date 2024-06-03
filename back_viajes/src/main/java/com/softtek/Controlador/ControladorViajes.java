@@ -32,12 +32,6 @@ public class ControladorViajes {
         return new ResponseEntity<>(ListaViajesDto, HttpStatus.OK);
     }
 
-
-
-
-
-
-
     @GetMapping("/{id}")
     public ResponseEntity<ViajesDto> obtenerUno(@PathVariable(name = "id") Integer id)  {
         Viajes viaje = servicio.obtenerUno(id);
