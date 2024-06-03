@@ -30,7 +30,7 @@ public class SecurityConnfiguration {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/v1/auth/**")
                         .permitAll()
-                        .requestMatchers("/api/v1/email/send")
+                        .requestMatchers("/api/v1/email/**")
                         .permitAll()
                         .requestMatchers("/cliente/booleanEmail/**")
                         .permitAll()
