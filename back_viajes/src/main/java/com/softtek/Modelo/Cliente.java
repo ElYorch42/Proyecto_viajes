@@ -57,6 +57,7 @@ public class Cliente implements UserDetails {
     @Enumerated
     private Role role;
 
+
     @OneToMany(mappedBy = "clienteViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Viajes> viajes;
 

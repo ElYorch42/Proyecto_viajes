@@ -54,4 +54,13 @@ public class Viajes {
 
     @Column(name = "actividad3")
     private String actividad3;
+
+    @Column(name = "nombre_hotel")
+    private String nombre_hotel;
+    @Column(name = "id_hotel")
+    private String id_hotel;
+    @Column(name = "latitud")
+    private double latitud;
+    @Column(name = "lengitud")
+    private double lengitud;
 }

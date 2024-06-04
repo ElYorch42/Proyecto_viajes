@@ -3,6 +3,7 @@ package com.softtek.Controlador;
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.Activity;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.Hotel;
 import com.amadeus.resources.HotelOfferSearch;
@@ -27,7 +28,7 @@ public class AmadeusController {
     Amadeus amadeus = Amadeus.builder("SDQgK5WagsZak3lwFMGEhvu5qAynO6XO","3pAo5YFd1EmPArG3").build();
 
     @PostMapping("/viajes")
-    public ResponseEntity<String> obtenerviajes(@PathVariable AmadeusViaje amadeusViaje) {
+    public ResponseEntity<String> obtenerviajes(@RequestBody AmadeusViaje amadeusViaje) {
         try {
             FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
                     Params.with("originLocationCode", amadeusViaje.getOriginLocationCode())
@@ -60,26 +61,96 @@ public class AmadeusController {
     }
 
     @PostMapping("/hoteles")
-    public ResponseEntity<AmadeusHotel> obtenerHoteles(@PathVariable AmadeusHotel amadeusHotel) {
+    public ResponseEntity<AmadeusHotel> obtenerHoteles(@RequestBody AmadeusHotel amadeusHotel) {
         try {
             Hotel[] hotels = amadeus.referenceData.locations.hotels.byCity.get(Params
                     .with("cityCode", amadeusHotel.getCityCode())
+                            .and("ratings", amadeusHotel.getRatings())
+                    /*
                     .and("radius", amadeusHotel.getRadius())
                     .and("radiusUnit", "KM")
-                    .and("ratings", amadeusHotel.getRatings())
-                    .and("max", "20"));
+                    .and("max", "20")
+                     */
+            );
             if (hotels[0].getResponse().getStatusCode() !=200) {
                 amadeusHotel.setNombre_hotel("ERROR:"+hotels[0].getResponse().getStatusCode());
                 return new ResponseEntity<>(amadeusHotel,HttpStatus.BAD_REQUEST);
             } else {
+                /*
+                HotelOfferSearch[] offers = null;
+                double precioHotel = Double.MAX_VALUE;
+                int n=0;
+                int m=0;
+
                 for (int i = 0; i < hotels.length; i++) {
-                    HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
+
+                    offers = amadeus.shopping.hotelOffersSearch.get(Params
                             .with("hotelIds", hotels[i].getHotelId())
+
                             .and("adults", amadeusHotel.getAdults())
-                            .and("checkInDate", "2023-11-22")
+                            .and("checkInDate", amadeusHotel.getCheckInDate())
+                            .and("checkOutDate", amadeusHotel.getCheckOutDate())
                             .and("roomQuantity", 1)
                             .and("paymentPolicy", "NONE")
-                            .and("bestRateOnly", true));
+                            .and("bestRateOnly", true)
+                            .and("max", "20")
+
+
+                    );
+                    if (offers[i].isAvailable()) {
+                        for (int j = 0; j < offers[0].getOffers().length; j++) {
+
+                            if (precioHotel> Double.parseDouble(offers[0].getOffers()[j].getPrice().getTotal())) {
+                                precioHotel = Double.parseDouble(offers[0].getOffers()[j].getPrice().getTotal());
+                                n=i;
+                                m=j;
+                            }
+                        }
+                    }
+                }
+
+                amadeusHotel.setNombre_hotel(offers[n].getHotel().getName());
+                amadeusHotel.setId_hotel(Integer.parseInt(offers[n].getHotel().getHotelId()));
+                amadeusHotel.setLatitud(offers[n].getHotel().getLatitude());
+                amadeusHotel.setLatitud(offers[n].getHotel().getLongitude());
+                amadeusHotel.setPrecio(Double.parseDouble(offers[n].getOffers()[m].getPrice().getTotal()));
+                 */
+                amadeusHotel.setNombre_hotel(hotels[0].getName().toString());
+                amadeusHotel.setId_hotel(hotels[0].getHotelId());
+                amadeusHotel.setLatitud(hotels[0].getGeoCode().getLatitude());
+                amadeusHotel.setLatitud(hotels[0].getGeoCode().getLongitude());
+                switch (amadeusHotel.getRatings()){
+                    case 1:
+                        amadeusHotel.setPrecio(Math.random()*(50-100)+50);
+                        break;
+                    case 3:
+                        amadeusHotel.setPrecio(Math.random()*(120-200)+120);
+                        break;
+                    case 5:
+                        amadeusHotel.setPrecio(Math.random()*(400-800)+400);
+                        break;
+                    default:
+                        amadeusHotel.setPrecio(100);
+                        break;
+                }
+
+                Activity[] activities = amadeus.shopping.activities.get(Params
+                        .with("latitude", hotels[0].getGeoCode().getLatitude())
+                        .and("longitude", hotels[0].getGeoCode().getLongitude())
+                        .and("max","3")
+                );
+
+                if (activities[0].getResponse().getStatusCode() !=200) {
+                    amadeusHotel.setActividad1("ERROR:"+activities[0].getResponse().getStatusCode());
+                    return new ResponseEntity<>(amadeusHotel,HttpStatus.BAD_REQUEST);
+                } else {
+                    amadeusHotel.setActividad1(activities[0].getName());
+                    amadeusHotel.setActividad2(activities[1].getName());
+                    amadeusHotel.setActividad3(activities[2].getName());
+                    amadeusHotel.setPrecio_actividades(Double.parseDouble(activities[0].getPrice().getAmount())+
+                            Double.parseDouble(activities[1].getPrice().getAmount())+
+                            Double.parseDouble(activities[2].getPrice().getAmount()));
+                    return new ResponseEntity<>(amadeusHotel,HttpStatus.OK);
                 }
             }
         } catch (ResponseException e) {
