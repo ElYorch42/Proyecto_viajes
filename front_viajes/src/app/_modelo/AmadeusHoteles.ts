@@ -1,4 +1,4 @@
-export interface AmadeusViaje {
+export interface AmadeusHoteles {
   cityCode:string;
   radius:number;
   ratings:number;
