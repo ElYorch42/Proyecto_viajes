@@ -1,6 +1,7 @@
 package com.softtek.Modelo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Viajes {
     @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_cliente_viaje"))
     private Cliente clienteViaje;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "viajeInvitado",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Invitado> invitados;
 

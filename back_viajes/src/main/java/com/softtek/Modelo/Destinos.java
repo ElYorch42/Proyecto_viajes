@@ -1,4 +1,5 @@
 package com.softtek.Modelo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class Destinos {
     @JoinColumn(name = "id_pais", nullable = false, foreignKey = @ForeignKey(name = "FK_destinos_paises"))
     private Paises paisDestino;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "destinoViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Viajes> viajes;
 

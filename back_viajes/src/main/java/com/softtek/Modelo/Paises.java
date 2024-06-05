@@ -1,5 +1,6 @@
 package com.softtek.Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Paises {
     @Column(name = "continente", length = 20)
     private String continente;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "paisDestino",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Destinos> destinos;
 }
