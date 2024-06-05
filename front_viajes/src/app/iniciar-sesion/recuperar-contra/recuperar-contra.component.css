@@ -1,6 +1,54 @@
-div{
-    padding: 100px;
+body {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
-label{
-    padding: 10px;
+
+button{
+    margin-top: 10px;
+}
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+.form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffc107;
+    transition: color 0.3s;
+}
+.form-title:hover {
+    color: #ffc107;
+}
+
+.btn-custom:hover {
+    background-color: #ffc107;
+}
+
+
+.form-group {
+    animation: slideIn 0.5s forwards;
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

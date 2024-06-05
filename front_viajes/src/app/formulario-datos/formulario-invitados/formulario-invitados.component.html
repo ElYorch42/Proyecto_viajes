@@ -1,0 +1,70 @@
+<div class="row ">
+
+    <form [formGroup]="formulario">
+        <div formArrayName="arrayForm" class="d-flex">
+            <app-formulario-anfitrion class="col-xl-3 col-12"></app-formulario-anfitrion>
+            @for (datos of datos().controls; track datos;let i = $index) {
+            <div class="col-xl-3 col-12 flex-column d-flex align-items-center justify-content-center ">
+                <div class="card" [formGroupName]="i">
+
+                    <div class="top-div">
+                        <h2>Invitado {{i+1}}</h2>
+                        <i (click)="delete(i)" class="bi bi-x-square"></i>
+                    </div>
+                    <div class="details">
+                        <div class="noMaletas">
+                            <div class="input-text">
+                                <input formControlName="nombre" type="text" required="required">
+                                <span>Nombre y apellidos</span>
+                            </div>
+                            <div class="input-text">
+                                <input formControlName="dni" type="text" required="required">
+                                <span>DNI / NIE</span>
+                            </div>
+                            <div class="input-text">
+                                <input formControlName="comunidad" type="text" required="required">
+                                <span>Comunidad</span>
+                            </div>
+                            <div class="input-text">
+                                <input formControlName="ciudad" type="Text" required="required">
+                                <span>Ciudad</span>
+                            </div>
+                            <div class="input-text">
+                                <input formControlName="direccion" type="text" required="required">
+                                <span>direccion</span>
+                            </div>
+                            <div class="input-text">
+                                <input formControlName="codigo_postal" type="text" required="required">
+                                <span>Codigo Postal</span>
+                            </div>
+                       
+
+                            <div class="m-1 " style=" text-align: center;">
+                                <button (click)="consolelog()" type="button" class="botondentro btn btn-dark">Actualizar
+                                    Datos</button>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <input formControlName="maletas" required="required">
+                            <span>Maletas</span>
+                        </div>
+                       
+                    </div>
+
+                </div>
+            </div>
+            }
+            @if(datos().controls.length < 3){ <div
+                class="col-xl-3 col-12 flex-column d-flex align-items-center justify-content-center my-auto">
+                <button (click)="addDatos()" class="botonmas"><i style="font-size: 5vw;"
+                        class="bi bi-plus-square "></i></button>
+
+        </div>
+        }
+</div>
+
+
+</form>
+
+
+</div>

@@ -68,7 +68,7 @@ export class RegistroComponent {
     this.redirigir =true;
       setTimeout(() => {
             this.route.navigate(['/inicio_sesion'])
-          }, 100000000000000000);
+          }, 3000);
   }
 
   

@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+<form [formGroup] = "formulario">
+    <div class="row g-3 row m-5 estrellas">
+        <div class="col">
+            <label for="invitados">Numero de estrellas</label>
+            <select formArrayName = "hotel" name="invitados" id="invitados">
+                <option value="uno">⭐</option>
+                <option value="dos">⭐⭐⭐</option>
+                <option value="tres">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+
+    </div>
+</form>
+<app-formulario-invitados></app-formulario-invitados>
+<app-footer></app-footer>

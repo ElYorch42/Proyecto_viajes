@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+*{
+  
+    margin: 0;
+    padding: 0
+}
+
+.botondentro{
+  font-size: 15px;
+  width: 45%;
+  height: 2.7   vw;
+  border-radius: 100px;
+}
+
+.card{
+    height:430px;
+    width:340px;
+    background-color:white;
+    border-radius:20px;
+}
+.top-div{
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+}
+.top-div h2{
+    margin-top:10px;
+    margin-left:15px;
+   
+}
+.top-div i{
+    font-size:30px;
+   
+    
+}
+
+.top-div i:hover{
+    font-size:30px;
+    color: red;
+}
+
+
+
+
+.noMaletas input{
+    width:100%;
+    box-sizing:border-box;
+    height:40px;
+    border:none;
+    outline:0;
+    border-bottom:1px solid #ccc;
+    padding:0px 35px;
+    font-size:15px;
+}
+.input-text{
+    position:relative;
+    margin-top:10px;
+}
+.input-text span{
+    position:absolute;
+    top:9px;
+    left:35px;
+    transition:all 0.5s;
+}
+.input-text input:focus~span,.input-text input:valid~span{
+    font-size:12px;
+    top:-5px;
+    position:absolute;
+    color:purple !important;
+    font-weight:900;
+}
+
+
+.last{
+    display:flex;
+    justify-content:right;
+    align-items:center;
+    padding-right:20px;
+    margin-top:50px;
+}
+
+.last span{
+    height:30px;
+    width:30px;
+    background-color:blue;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.last .fa-envelope-o{
+    color:#fff;
+    font-size:14px;
+}
+
+.botonmas{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+
+.botonmas i:hover{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: greenyellow;
+}
