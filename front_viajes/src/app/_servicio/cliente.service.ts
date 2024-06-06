@@ -6,6 +6,7 @@ import { JwtAuthenticationResponse } from '../_modelo/JwtAuthenticationResponse'
 import { entorno } from '../_environment/entorno';
 import { SignInRequest } from '../_modelo/signin_request';
 import { Router } from '@angular/router';
+import { Update } from '../_modelo/Update';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,13 @@ export class ClienteService {
   cerrarSesion() {
     sessionStorage.clear();
     this.router.navigate(['/inicio']);
+  }
+
+  updateReset(datos:Update){
+
+
+    return this.http.put<JwtAuthenticationResponse>(`${entorno.HOSTNAME}/auth/update1`,datos);
+
   }
   
 }

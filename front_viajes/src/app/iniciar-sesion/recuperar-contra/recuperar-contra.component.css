@@ -52,3 +52,12 @@ button{
         opacity: 1;
     }
 }
+
+
+
+i{
+    cursor: pointer;
+    position: absolute;
+    font-size: 3.5vh;
+    padding: 3vw;
+}
