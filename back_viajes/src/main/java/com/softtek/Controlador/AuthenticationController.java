@@ -3,6 +3,7 @@ package com.softtek.Controlador;
 import com.softtek.DAO.request.SignInRequest;
 import com.softtek.DAO.request.SignUpRequest;
 import com.softtek.DAO.response.JwtAuthenticationResponse;
+import com.softtek.Dto.UpdateDto;
 import com.softtek.Servicio.servicioCliente.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +31,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.updatePassword(request, newPassword));
     }
 
-    @PostMapping("/update1")
-    public ResponseEntity<JwtAuthenticationResponse> update1(@RequestParam(name = "email") String email, @RequestParam(name = "newPassword") String newPassword) {
-        return ResponseEntity.ok(authenticationService.updatePassword1(email, newPassword));
+    @PutMapping("/update1")
+    public ResponseEntity<JwtAuthenticationResponse> update1(@RequestBody UpdateDto updatedto) {
+        return ResponseEntity.ok(authenticationService.updatePassword1(updatedto.getEmail(), updatedto.getPassword()));
     }
 
 }

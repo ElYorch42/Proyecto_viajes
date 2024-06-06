@@ -5,11 +5,13 @@ import { ClienteService } from '../../_servicio/cliente.service';
 import { retry } from 'auth0/dist/cjs/lib/retry';
 import { first } from 'rxjs';
 import { email } from '../../_modelo/email';
+import { Route, Router, RouterLink } from '@angular/router';
+import { Update } from '../../_modelo/Update';
 
 @Component({
   selector: 'app-recuperar-contra',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './recuperar-contra.component.html',
   styleUrl: './recuperar-contra.component.css'
 })
@@ -18,7 +20,7 @@ export class RecuperarContraComponent {
   booleanoExisteCorreo:boolean = false;
   codigo:number = 0;
 
-  constructor(private fb:FormBuilder,private emailService:EmailService,private serviceCliente:ClienteService){
+  constructor(private route:Router,private fb:FormBuilder,private emailService:EmailService,private serviceCliente:ClienteService){
     this.registerForm = this.fb.group({
       email:['',[Validators.required,Validators.email]],
       codigo:['',Validators.required],
@@ -29,6 +31,9 @@ export class RecuperarContraComponent {
 
  
 
+  ngOnInit(): void {
+    sessionStorage.clear();
+  }
 
   comprobarCorreo(): void {
     this.serviceCliente.checkBooleanEmail(this.registerForm.controls['email'].value).pipe(
@@ -69,6 +74,16 @@ export class RecuperarContraComponent {
 
 
   onSubmit(){
+
+    const datos:Update = {
+      email:this.registerForm.controls['email'].value,
+      password:this.registerForm.controls['password'].value
+
+    }
+
+    this.serviceCliente.updateReset(datos).subscribe();
+    alert("contraseña actualizada");
+    this.route.navigate(['inicio_sesion']);
   
   }
 
