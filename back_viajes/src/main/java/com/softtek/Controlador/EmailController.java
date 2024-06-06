@@ -23,4 +23,8 @@ public class EmailController {
     public void sendEmailRegistro(@RequestBody EmailRequest emailRequest) throws MessagingException {
         emailService.enviarCorreoRegistro(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getText(),emailRequest.getName());
     }
+    @PostMapping("/confirmacion")
+    public void sendEmailConfirmacion(@RequestBody EmailRequest emailRequest) throws MessagingException {
+        emailService.enviarCorreoConfirmacion(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getName());
+    }
 }

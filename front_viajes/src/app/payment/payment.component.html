@@ -1,10 +1,23 @@
-<form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input type="number" id="amount" formControlName="amount" class="form-control">
+
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background: linear-gradient(to right, #ff7e5f, #feb47b);">
+    <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
+        <div class="mb-3" id="additional-info">
+            <!-- Aquí puedes añadir información adicional -->
+            <p class="text-center">Por favor, completa los detalles del pago</p>
+        </div>
+      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+        <div class="mb-3">
+            <label for="cardholder-name" class="form-label">Nombre del propietario</label>
+            <input id="cardholder-name" formControlName="cardholderName" class="form-control" type="text" placeholder="Nombre del propietario">
+        </div>
+        <div class="mb-3">
+          <label for="card-element" class="form-label">Numero de la tarjeta</label>
+          <div id="card-element" class="form-control"></div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mt-3">
+          <i class="fas fa-arrow-right">Pay</i>
+        </button>
+        <div id="card-errors" role="alert" class="text-danger mt-3"></div>
+      </form>
     </div>
-    <div id="card-element" class="form-group">
-      <!-- Stripe Card Element will be inserted here. -->
-    </div>
-    <button type="submit" class="btn btn-primary">Pay</button>
-  </form>
+  </div>

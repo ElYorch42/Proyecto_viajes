@@ -1,32 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Stripe, loadStripe } from '@stripe/stripe-js';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
-  private stripe: Stripe | null = null;
+  private apiUrl = 'http://localhost:8080/api/payment'; 
 
-  constructor(private http: HttpClient) {
-    loadStripe('pk_test_51PM5FeRvfQwpBftnSmANSdvNfNEq73nbidnLsSadel1mtZVeIG4lDldegGPWBT4k2tf4CwEc2S3YecCVwBCiCdzs00GXjBBqbO').then((stripe) => {
-      this.stripe = stripe;
-    });
-  }
+  constructor(private http: HttpClient) { }
 
-  createPaymentIntent(amount: number) {
-    return this.http.post<{ clientSecret: string }>('http://localhost:8080/api/payment/create-payment-intent', { amount });
-  }
-
-  async confirmPayment(clientSecret: string, cardElement: any) {
-    if (!this.stripe) {
-      throw new Error('Stripe has not been loaded yet.');
-    }
-
-    return await this.stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: cardElement,
-      },
-    });
+  createPaymentIntent(amount: number): Observable<{ clientSecret: string }> {
+    return this.http.post<{ clientSecret: string }>(`${this.apiUrl}/create-payment-intent`, { amount });
   }
 }

@@ -34,6 +34,8 @@ public class SecurityConnfiguration {
                         .permitAll()
                         .requestMatchers("/cliente/booleanEmail/**")
                         .permitAll()
+                        .requestMatchers("/api/payment/create-payment-intent")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(

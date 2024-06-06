@@ -18,4 +18,12 @@ export class EmailService {
   sendEmailBienvenida(e:email){
     return this.http.post(this.apiUrl+'registrarse', e);
   }
+
+  sendEmailRecuperacion(e:email){
+    return this.http.post(this.apiUrl+'registrarse', e);
+  }
+
+  sendEmailConfirmacion(e:email){
+    return this.http.post(this.apiUrl+'confirmacion',e)
+  }
 }

@@ -64,4 +64,20 @@ public class EmailService {
 
         mailSender.send(message);
     }
+
+    public void enviarCorreoConfirmacion(String to, String subject, String name) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setCc("viajesalodesconocido@gmail.com");
+
+        Context context = new Context();
+        context.setVariable("nombre", name);
+        String content = templateEngine.process("Gracias.html", context);
+        helper.setText(content, true);
+
+        javaMailSender.send(message);
+    }
 }
