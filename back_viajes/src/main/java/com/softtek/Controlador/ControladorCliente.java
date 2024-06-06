@@ -39,12 +39,6 @@ public class ControladorCliente {
         return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
     }
 
-    @GetMapping("/consultaEmail/{email}")
-    public ResponseEntity<ClienteDto> consultaPorCorreo(@PathVariable String email) {
-        Cliente cliente = servicio.consultaPorCorreo(email);
-        return new ResponseEntity<>((new ClienteDto()).castClienteADto(cliente),HttpStatus.OK);
-    }
-
     @GetMapping("/booleanEmail/{email}")
     public ResponseEntity<Boolean> checkEmail(@PathVariable String email) {
         Optional<Cliente> cliente = servicio.findByEmail(email);
@@ -62,12 +56,6 @@ public class ControladorCliente {
     public ResponseEntity<ClienteDto> actualizar(@Valid @RequestBody ClienteDto clienteDto) {
         Cliente cliente = clienteDto.castCliente();
         servicio.actualizar(cliente);
-        return new ResponseEntity<>(clienteDto.castClienteADto(cliente), HttpStatus.OK);
-    }
-    @PutMapping("/update")
-    public ResponseEntity<ClienteDto> update(@Valid @RequestBody ClienteDto clienteDto) {
-        Cliente cliente = clienteDto.castCliente();
-        servicio.update(cliente);
         return new ResponseEntity<>(clienteDto.castClienteADto(cliente), HttpStatus.OK);
     }
     @DeleteMapping("/{id}")

@@ -2,6 +2,7 @@
 <div class="container mt-1">
     <h1 class="text-center">Empezamos el viaje</h1>
     <p class="text-center">¿A qué continente te gustaría ir?</p>
+    
     <div class="row">
     
     @for (continent of continents; track $index) {
@@ -31,8 +32,9 @@
             </div>
         
     }
+    <button  (click)="seleccionAleatior()" class=" btn btn-dark">Continuar</button>     
     </div>
-    
+   
   </div>
-
+  
   <app-footer></app-footer>

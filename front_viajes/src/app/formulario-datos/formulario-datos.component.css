@@ -1,0 +1,11 @@
+.estrellas select, 
+.estrellas input[type="date"], 
+.estrellas button {
+    margin: 0 10px;
+}
+.estrellas label {
+    margin: 0 10px;
+}
+.estrellas {
+    align-items: center;
+}

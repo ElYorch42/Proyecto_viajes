@@ -41,7 +41,7 @@ export class ClienteService {
 
   actualizar(p:Cliente) {
     console.log(p);
-    return this.http.put(this.url,p);
+    return this.http.put<Cliente>(`${this.url}`,p);
   }
 
   eliminar(id:number) {
@@ -59,8 +59,7 @@ export class ClienteService {
 
   cerrarSesion() {
     sessionStorage.clear();
-    
-    
+    this.router.navigate(['/inicio']);
   }
   
 }

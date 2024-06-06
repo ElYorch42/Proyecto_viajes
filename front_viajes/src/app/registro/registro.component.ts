@@ -7,6 +7,8 @@ import { routes } from '../app.routes';
 import { Router, RouterLink } from '@angular/router';
 import { SignUpRequest } from '../_modelo/signupRequest';
 import { debounceTime, first, map, switchMap } from 'rxjs';
+import { email } from '../_modelo/email';
+import { EmailService } from '../_servicio/email.service';
 
 @Component({
     selector: 'app-registro',
@@ -26,7 +28,7 @@ export class RegistroComponent {
 
  
   
-  constructor(private fb: FormBuilder, private service: ClienteService, private route: Router) {
+  constructor(private fb: FormBuilder, private service: ClienteService, private route: Router,private emailService: EmailService) {
     this.registerForm = this.fb.group({
       dni: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
@@ -66,7 +68,7 @@ export class RegistroComponent {
     this.redirigir =true;
       setTimeout(() => {
             this.route.navigate(['/inicio_sesion'])
-          }, 100000000000000000);
+          }, 3000);
   }
 
   
@@ -95,9 +97,25 @@ export class RegistroComponent {
 
   onSubmit() {
 
- 
+
+    if (this.registerForm.valid) {
+      let e:email={
+        to : this.registerForm.value['email'],
+        subject: 'Gracias por registrarte',
+        text: '',
+        name: this.registerForm.value['name']
+      }
+      this.emailService.sendEmailBienvenida(e).subscribe(
+        response => {
+          console.log('Correo enviado', response);
+        },
+        error => {
+          console.error('Error al enviar el correo', error);
+        }
+      );
+    }
     let datas:SignUpRequest = {
-    nombre:  this.registerForm.controls["nombre"].value,
+    nombre:  this.registerForm.controls["nombre"].value + " " + this.registerForm.controls["apellidos"].value ,
     dni:  this.registerForm.controls["dni"].value,
     email: this.registerForm.controls["email"].value,
     direccion:  this.registerForm.controls["direccion"].value,

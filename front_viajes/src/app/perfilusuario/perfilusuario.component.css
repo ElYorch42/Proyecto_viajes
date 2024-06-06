@@ -1,0 +1,77 @@
+.link{
+
+    color:green
+}
+
+.link:hover{
+
+    color:blue;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+
+input{
+    width: 60%;
+    height: 1.4vw;
+    font-size: 15px;
+}
+
+form{
+  
+    max-width: 400px; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+form input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    transition: all 0.3s ease;
+    text-decoration:underline;
+}
+
+form input:hover {
+    border: 1px solid #ccc; /* Aparece el borde */
+    transform: scale(1.05); /* Se hace un poco de zoom */
+    text-decoration: none;
+}
+
+
+
+
+.row{
+   
+    margin-left: 0.6vw;
+    width: 99%;
+    border-radius: 10px;
+}
+
+.mover{
+    height: 100vh;
+}
+
+label{
+    font-size: 15px;
+}
+
+.services-section img {
+    width: 100%;
+    height: 28vw;
+    border-radius: 30px;
+    object-fit: cover;
+    margin: auto;    
+    display: block;
+}
+
+.cerrarsesions{
+    position: relative;
+    margin-left: 7.55vw;
+}

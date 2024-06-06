@@ -15,8 +15,16 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
-    @PostMapping("/send")
-    public void sendEmail(@RequestBody EmailRequest emailRequest) throws MessagingException {
-        emailService.enviarCorreo(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getText(),emailRequest.getName());
+    @PostMapping("/contacto")
+    public void sendEmailContacto(@RequestBody EmailRequest emailRequest) throws MessagingException {
+        emailService.enviarCorreoContacto(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getText(),emailRequest.getName());
+    }
+    @PostMapping("/registrarse")
+    public void sendEmailRegistro(@RequestBody EmailRequest emailRequest) throws MessagingException {
+        emailService.enviarCorreoRegistro(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getText(),emailRequest.getName());
+    }
+    @PostMapping("/confirmacion")
+    public void sendEmailConfirmacion(@RequestBody EmailRequest emailRequest) throws MessagingException {
+        emailService.enviarCorreoConfirmacion(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getName());
     }
 }

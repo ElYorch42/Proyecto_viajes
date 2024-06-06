@@ -1,6 +1,7 @@
 package com.softtek.Dto;
 
 import com.softtek.Modelo.Cliente;
+import com.softtek.Modelo.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +35,8 @@ public class ClienteDto {
 
     private String urlImagen;
 
+    private Role role;
+
 
 
     public Cliente castCliente() {
@@ -48,7 +51,7 @@ public class ClienteDto {
         c.setCodigoPostal(codigoPostal);
         c.setPassword(password);
         c.setUrlImagen(urlImagen);
-
+        c.setRole(role);
         return c;
     }
 
@@ -63,6 +66,7 @@ public class ClienteDto {
         codigoPostal=c.getCodigoPostal();
         password=c.getPassword();
         urlImagen = c.getUrlImagen();
+        role = c.getRole();
         return this;
     }
 }

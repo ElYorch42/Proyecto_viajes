@@ -10,7 +10,7 @@ import { ClienteService } from '../_servicio/cliente.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink,RouterOutlet,CommonModule],
+  imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -18,48 +18,48 @@ import { ClienteService } from '../_servicio/cliente.service';
 export class NavbarComponent {
 
   nombre: string = "";
-  urlImagen:string = "";
+  urlImagen: string = "";
 
-  token:any = "";
+  token: any = "";
 
   isCollapsed1: boolean = true;
-cambiarLogoBool:boolean = false;
+  cambiarLogoBool: boolean = false;
 
-constructor(private service:ClienteService,public jwtHelper: JwtHelperService,private router:Router){
+  constructor(private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
 
-}
-
-
+  }
 
 
-ngOnInit(): void {
+
+
+  ngOnInit(): void {
     this.checkScreenWidth();
 
-  
+
 
     this.token = sessionStorage.getItem(entorno.TOKEN_SESSION);
-    console.log("token-> " + this.token )
+    console.log("token-> " + this.token)
     let emaildesc;
     let tokenDecodificado = this.token !== null ? this.jwtHelper.decodeToken(this.token) : null;
 
-    if(this.token != null){
-      if(this.jwtHelper.isTokenExpired(this.token)){
-      this.service.cerrarSesion();
-      this.router.navigate(['/inicio_sesion']);
-    }  
-  }
-
-    if(tokenDecodificado != null){
-    emaildesc = tokenDecodificado.sub;
+    if (this.token != null) {
+      if (this.jwtHelper.isTokenExpired(this.token)) {
+        this.service.cerrarSesion();
+        this.router.navigate(['/inicio_sesion']);
+      }
     }
-    
+
+    if (tokenDecodificado != null) {
+      emaildesc = tokenDecodificado.sub;
+    }
+
     if (tokenDecodificado) {
       this.service.listarPorEmail(emaildesc).subscribe(
         data => {
           this.nombre = data.nombre;
-         
-  
-  
+
+
+
         },
         error => {
           console.error('Error al obtener el contenido', error);
@@ -67,7 +67,7 @@ ngOnInit(): void {
       );
     }
 
-    
+
 
   }
 
@@ -77,25 +77,25 @@ ngOnInit(): void {
   }
 
   private checkScreenWidth(): void {
-    if(window.innerWidth > 768){
+    if (window.innerWidth > 768) {
       this.isCollapsed1 = true;
 
     }
-    
+
   }
 
   toggleCollapse1(): void {
     this.isCollapsed1 = !this.isCollapsed1;
   }
 
-  cambiarlogo(){
-   return  this.cambiarLogoBool = false;
+  cambiarlogo() {
+    return this.cambiarLogoBool = false;
   }
-  cambiarlogot(){
-   return this.cambiarLogoBool = true;
+  cambiarlogot() {
+    return this.cambiarLogoBool = true;
   }
 
-  
+
 
 
 }

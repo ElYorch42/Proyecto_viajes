@@ -8,7 +8,7 @@ import { Destinos } from '../_modelo/Destinos';
 })
 export class DestinosService {
 
-  private url:string =`http://localhost:8080/cliente`;
+  private url:string =`http://localhost:8080/destinos`;
   destinosCambio = new Subject<Destinos[]>();
 
   constructor(private http:HttpClient) { }

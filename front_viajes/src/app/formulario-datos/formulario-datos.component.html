@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+    
+<div class="container mt-5">
+    <form [formGroup]="formulario">
+        <div class="row estrellas d-flex justify-content-center">
+            <div class="col-md-3 d-flex flex-column align-items-center">
+                <label for="invitados">Numero de estrellas</label>
+                <select class="form-control" formControlName="hotel" name="invitados" id="invitados">
+                    <option value="uno">⭐</option>
+                    <option value="dos">⭐⭐⭐</option>
+                    <option value="tres">⭐⭐⭐⭐⭐</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center">
+                <label for="fechaSalida">Fecha Salida</label>
+                <input class="form-control" type="date" id="fechaSalida" formControlName="fechaSalida">
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center">
+                <label for="fechaLlegada">Fecha Llegada</label>
+                <input class="form-control" type="date" id="fechaLlegada" formControlName="fechaLlegada">
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center justify-content-end">
+                <button class="btn btn-dark mt-4" (click)="mirar()">Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<app-formulario-invitados (childemiter)="childreciever($event)"></app-formulario-invitados>
+<app-footer></app-footer>

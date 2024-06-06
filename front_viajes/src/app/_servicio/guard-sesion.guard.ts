@@ -22,9 +22,9 @@ export const guardSesionGuard: CanActivateFn = (route, state) => {
       console.log('no ha expirado el toke');
       return true;
     } else {
-  
+      router.navigate(['/inicio_sesion']);
       clienteService.cerrarSesion()
-      router.navigate(['inicio_sesion']);
+      
       return false;
     }
   }

@@ -19,7 +19,8 @@ export class ContactoComponent {
     this.contactForm = this.fb.group({
       to: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
-      text: ['', Validators.required]
+      text: ['', Validators.required],
+      name:['',Validators.required]
     });
   }
 
@@ -31,7 +32,7 @@ export class ContactoComponent {
         text: this.contactForm.value['text'],
         name: this.contactForm.value['name']
       }
-      this.emailService.sendEmail(e).subscribe(
+      this.emailService.sendEmailContacto(e).subscribe(
         response => {
           console.log('Correo enviado', response);
         },

@@ -10,7 +10,7 @@ public interface AuthenticationService {
 
     JwtAuthenticationResponse signin(SignInRequest request);
 
-
+    JwtAuthenticationResponse updatePassword1(String email, String newPassword);
     JwtAuthenticationResponse updatePassword(SignInRequest request, String newPassword);
     JwtAuthenticationResponse updatePassword1(String email, String newPassword);
 }

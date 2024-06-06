@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { Router } from '@angular/router';
+import { FormularioDatosComponent } from '../formulario-datos/formulario-datos.component';
+import { HermanosCVFDService } from '../_servicio/hermanos-cv-fd.service';
 
 @Component({
   selector: 'app-comienzo-viaje',
   standalone: true,
-  imports: [NavbarComponent,FooterComponent],
+  imports: [NavbarComponent,FooterComponent,FormularioDatosComponent],
   templateUrl: './comienzo-viaje.component.html',
   styleUrl: './comienzo-viaje.component.css'
 })
 export class ComienzoViajeComponent implements OnInit {
 
-
-  
+   destinoAleatorios:string = "";
+   constructor(private route:Router,private hermanos:HermanosCVFDService) { }
   
   continents = [
     {
@@ -53,22 +56,47 @@ export class ComienzoViajeComponent implements OnInit {
     }
   ];
 
+  seleccionAleatior(){
+
+    let arrayDestinos:string[] = [];
+    for(let i  = 0; i<this.continents.length;i++){
+      if(this.continents[i].colorear == true){
+
+        arrayDestinos.push(this.continents[i].name);
+      }
+    }
+
+    if(arrayDestinos.length == 0){
+        alert("tienes que seleccionar al menos un contintente")
+      
+    }else{
+      
+        this.destinoAleatorios = arrayDestinos[Math.floor(Math.random() * arrayDestinos.length)];
+        console.log(this.destinoAleatorios);
+        this.hermanos.changeData(this.destinoAleatorios);
+        this.route.navigate(['/datos']);
+
+
+    }
+
+  }
+
+
 
   cartaseleccionada(id:number){
-    console.log(this.continents[id].colorear)
+   
    
        this.continents[id].colorear = true;
     
   }
 
-
   cartaseleccionadat(id:number){
-    console.log(this.continents[id].colorear)
+
    
        this.continents[id].colorear = false;
     
   }
-  constructor() { }
+
 
   ngOnInit(): void {
   }

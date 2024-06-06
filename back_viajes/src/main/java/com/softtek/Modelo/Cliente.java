@@ -1,5 +1,6 @@
 package com.softtek.Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,20 +47,20 @@ public class Cliente implements UserDetails {
     @Column(name = "codigo_postal", length = 6)
     private String codigoPostal;
 
-
     @Column(name = "password")
     private String password;
 
     @Column(name = "urlImagen",length = 5000)
     private String urlImagen;
-
-
-    @Enumerated
+    
+    @Enumerated(EnumType.STRING)
     private Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "clienteViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Viajes> viajes;
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
