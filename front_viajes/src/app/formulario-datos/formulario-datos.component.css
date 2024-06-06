@@ -1,25 +1,11 @@
-.estrellas{
-    
-    background: rgb(34,193,195);
-    background: linear-gradient(273deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-
-    border-radius: 100px;
-    
-    background-repeat: no-repeat;
-    background-size: 100%;
-
-    height: 5vw;
-
-    color: white;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
-} 
-
-
-.estrellas select {
-    background-color: transparent;
-    border:none;
-    color: black;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
-} 
+.estrellas select, 
+.estrellas input[type="date"], 
+.estrellas button {
+    margin: 0 10px;
+}
+.estrellas label {
+    margin: 0 10px;
+}
+.estrellas {
+    align-items: center;
+}

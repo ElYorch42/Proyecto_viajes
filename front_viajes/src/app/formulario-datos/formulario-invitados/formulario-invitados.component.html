@@ -1,15 +1,18 @@
-<div class="row ">
-
-    <form [formGroup]="formulario">
-        <div formArrayName="arrayForm" class="d-flex">
-            <app-formulario-anfitrion class="col-xl-3 col-12"></app-formulario-anfitrion>
+<div class="row">
+    <form [formGroup]="formulario" class="mb-5 ">
+        <div formArrayName="arrayForm" class="formarray">
             @for (datos of datos().controls; track datos;let i = $index) {
-            <div class="col-xl-3 col-12 flex-column d-flex align-items-center justify-content-center ">
+            <div class="col-12  col-xl-3 d-flex flex-column  align-items-center justify-content-center ">
                 <div class="card" [formGroupName]="i">
 
                     <div class="top-div">
-                        <h2>Invitado {{i+1}}</h2>
+                        @if (i === 0) {
+                        <h2>Anfitrion</h2>
+                    }@else {
+                        <h2>Invitado {{i}}</h2>
                         <i (click)="delete(i)" class="bi bi-x-square"></i>
+                    }
+           
                     </div>
                     <div class="details">
                         <div class="noMaletas">
@@ -37,26 +40,20 @@
                                 <input formControlName="codigo_postal" type="text" required="required">
                                 <span>Codigo Postal</span>
                             </div>
-                       
-
-                            <div class="m-1 " style=" text-align: center;">
-                                <button (click)="consolelog()" type="button" class="botondentro btn btn-dark">Actualizar
-                                    Datos</button>
-                            </div>
                         </div>
-                        <div class="input-text">
-                            <input formControlName="maletas" required="required">
+                        <div class="input-text imaletas">
+                            <input type="number" formControlName="maletas" [min]="0" [max]="4" [defaultValue]="0"  required="required">
                             <span>Maletas</span>
                         </div>
-                       
+
                     </div>
 
                 </div>
             </div>
             }
-            @if(datos().controls.length < 3){ <div
-                class="col-xl-3 col-12 flex-column d-flex align-items-center justify-content-center my-auto">
-                <button (click)="addDatos()" class="botonmas"><i style="font-size: 5vw;"
+            @if(datos().controls.length < 4){ <div
+                class="col-12  col-xl-3 flex-column  align-items-center justify-content-center my-auto">
+                <button (click)="addDatos()" class="botonmas"><i 
                         class="bi bi-plus-square "></i></button>
 
         </div>
@@ -65,6 +62,5 @@
 
 
 </form>
-
 
 </div>

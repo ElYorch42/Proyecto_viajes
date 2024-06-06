@@ -30,6 +30,8 @@
 }
 .top-div i{
     font-size:30px;
+    cursor: pointer;
+    
    
     
 }
@@ -40,7 +42,16 @@
 }
 
 
-
+.imaletas input{
+    width:100%;
+    box-sizing:border-box;
+    height:40px;
+    border:none;
+    outline:0;
+    padding:0px 35px;
+    font-size:15px;
+    background-color: transparent;
+}
 
 .noMaletas input{
     width:100%;
@@ -106,3 +117,60 @@
     background-color: transparent;
     color: greenyellow;
 }
+
+.botonmas i {
+    font-size: 70px;
+ }
+
+@media (min-width: 1450px) {
+  
+    .formarray{
+        display: flex;
+        
+    }
+
+    .botonmas{
+        padding: 100px;
+    }
+
+   
+    
+  }
+
+  @media (max-width: 1449px) {
+    .formarray{
+        display: flex;
+        height: 110%;
+       
+    }
+ 
+    .card{
+       width: 90%;
+       height: 90%;
+       background-color:white;
+       border-radius:20px;
+    }
+  }
+
+  @media (max-width: 1250px) {
+    
+    .formarray{
+        display: block;
+       
+    }
+    .card{
+        width: 80%;
+        margin-top: 4vh;
+   
+     }
+
+     .botonmas{
+        margin-left: 48%;
+       
+     }
+     .botonmas i {
+        font-size: 40px;
+     }
+   
+  }
+

@@ -7,7 +7,7 @@ import { email } from '../_modelo/email';
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = 'http://localhost:8080/email/';
+  private apiUrl = 'http://localhost:8080/api/v1/email/';
 
   constructor(private http: HttpClient) { }
 
