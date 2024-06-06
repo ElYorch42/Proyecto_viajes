@@ -68,7 +68,7 @@ export class RegistroComponent {
     this.redirigir =true;
       setTimeout(() => {
             this.route.navigate(['/inicio_sesion'])
-          }, 100000000000000000);
+          }, 3000);
   }
 
   
@@ -115,7 +115,7 @@ export class RegistroComponent {
       );
     }
     let datas:SignUpRequest = {
-    nombre:  this.registerForm.controls["nombre"].value,
+    nombre:  this.registerForm.controls["nombre"].value + " " + this.registerForm.controls["apellidos"].value ,
     dni:  this.registerForm.controls["dni"].value,
     email: this.registerForm.controls["email"].value,
     direccion:  this.registerForm.controls["direccion"].value,

@@ -38,9 +38,9 @@ public class ControladorViajes {
         return new ResponseEntity<>((new ViajesDto()).castViajesADto(viaje),HttpStatus.OK);
     }
 
-    @GetMapping("/consulta1")
-    public ResponseEntity<List<ViajesDto>> consultaPorContinenteAleatoria(@RequestParam(name = "correo") String correo) {
-        List<Viajes> viajesBBDD = servicio.consultaPorCliente(correo);
+    @GetMapping("/viajeCorreoCliente")
+    public ResponseEntity<List<ViajesDto>> consultViajesPorCorreo(@RequestParam(name = "email") String email) {
+        List<Viajes> viajesBBDD = servicio.consultaPorCliente(email);
         List<ViajesDto> ListaViajesDto = new ArrayList<>();
 
         for (Viajes viaje: viajesBBDD) {

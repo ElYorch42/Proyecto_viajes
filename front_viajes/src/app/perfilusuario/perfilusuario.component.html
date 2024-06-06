@@ -1,22 +1,171 @@
 <app-navbar></app-navbar>
 <div class="row">
-    <div style="text-align: center;" class="col-6">
+    <div class="col-12 col-xl-6 mt-5 services-section d-flex justify-content-center">
 
-        <img class="w-50" src="https://thumbs.dreamstime.com/b/l%C3%ADnea-icono-del-negro-avatar-perfil-de-usuario-121102131.jpg" alt="imagenusuario">
+        <img src={{imagen}} alt="imagenusuario">
     </div>
 
-    <div class="col-6">
+    <div class="col-12 col-xl-6 my-5 d-flex justify-content-center">
+        <form class="w-100" [formGroup]="registerForm">
+            <div style="margin-bottom: 15px;">
+                <label for="dni" style="display: block; font-weight: bold;">DNI</label>
+                <input id="dni" formControlName="dni" type="text" class="form-control">
+                @if (registerForm.get('dni')?.invalid && (registerForm.get('dni')?.dirty ||
+                registerForm.get('dni')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('dni')?.errors?.['required']) {
+                    <div>DNI es obligatorio.</div>
+                    }
+                </div>
+                }
+            </div>
 
-        <form>
+            <div style="margin-bottom: 15px;">
+                <label for="nombre" style="display: block; font-weight: bold;">Nombre</label>
+                <input id="nombre" formControlName="nombre" type="text" class="form-control"
+                    >
+                @if (registerForm.get('nombre')?.invalid && (registerForm.get('nombre')?.dirty ||
+                registerForm.get('nombre')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('nombre')?.errors?.['required']) {
+                    <div>Nombre es obligatorio.</div>
+                    }
+                </div>
+                }
+            </div>
 
-            <label>{{email}}</label>
-            <input>
+            <div style="margin-bottom: 15px;">
+                <label for="apellidos" style="display: block; font-weight: bold;">Apellidos</label>
+                <input id="apellidos" formControlName="apellidos" type="text" class="form-control">
+                @if (registerForm.get('apellidos')?.invalid && (registerForm.get('apellidos')?.dirty ||
+                registerForm.get('apellidos')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('apellidos')?.errors?.['required']) {
+                    <div>Apellidos son obligatorios.</div>
+                    }
+                </div>
+                }
+            </div>
 
-            <label>{{dni}}</label>
-            <input>
-            <button (click)="cerrarsesion()">Cerrar sesion</button>
+            <div style="margin-bottom: 15px;">
+                <label for="direccion" style="display: block; font-weight: bold;">Dirección</label>
+                <input id="direccion" formControlName="direccion" type="text" class="form-control"
+                     >
+                @if (registerForm.get('direccion')?.invalid && (registerForm.get('direccion')?.dirty ||
+                registerForm.get('direccion')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('direccion')?.errors?.['required']) {
+                    <div>Dirección es obligatoria.</div>
+                    }
+                </div>
+                }
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="ciudad" style="display: block; font-weight: bold;">Ciudad</label>
+                <input id="ciudad" formControlName="ciudad" type="text" class="form-control"
+                     >
+                @if (registerForm.get('ciudad')?.invalid && (registerForm.get('ciudad')?.dirty ||
+                registerForm.get('ciudad')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('ciudad')?.errors?.['required']) {
+                    <div>Ciudad es obligatoria.</div>
+                    }
+                </div>
+                }
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="comunidad" style="display: block; font-weight: bold;">Comunidad</label>
+                <input id="comunidad" formControlName="comunidad" type="text" class="form-control"
+                     >
+                @if (registerForm.get('comunidad')?.invalid && (registerForm.get('comunidad')?.dirty ||
+                registerForm.get('comunidad')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('comunidad')?.errors?.['required']) {
+                    <div>Comunidad es obligatoria.</div>
+                    }
+                </div>
+                }
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="codigoPostal" style="display: block; font-weight: bold;">Código Postal</label>
+                <input id="codigoPostal" formControlName="codigoPostal" type="text" class="form-control"
+                     >
+                @if (registerForm.get('codigoPostal')?.invalid && (registerForm.get('codigoPostal')?.dirty ||
+                registerForm.get('codigoPostal')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('codigoPostal')?.errors?.['required']) {
+                    <div>Comunidad es obligatoria.</div>
+                    }
+                    @if (registerForm.get('codigoPostal')?.errors?.['pattern']) {
+                    <div>Código Postal debe ser de 5 dígitos.</div>
+                    }
+                </div>
+                }
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="fechaNacimiento" style="display: block; font-weight: bold;">Fecha de Nacimiento</label>
+                <input id="fechaNacimiento" formControlName="fechaNacimiento" type="date" class="form-control"
+                     >
+                @if (registerForm.get('fechaNacimiento')?.invalid && (registerForm.get('fechaNacimiento')?.dirty ||
+                registerForm.get('fechaNacimiento')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('fechaNacimiento')?.errors?.['required']) {
+                    <div>Fecha de Nacimiento es obligatoria.</div>
+                    }
+                </div>
+                }
+                @if (registerForm.errors?.['menorDe18']) {
+                <div style="color: red; font-size: 0.9em;">
+                    <div>Debes ser mayor de edad</div>
+                </div>
+                }
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="email" style="display: block; font-weight: bold;">Email</label>
+                <input id="email" formControlName="email" type="email" class="form-control"
+                     >
+                @if (registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty ||
+                registerForm.get('email')?.touched)) {
+                <div style="color: red; font-size: 0.9em;">
+                    @if (registerForm.get('email')?.errors?.['required']) {
+                    <div>Email es obligatorio.</div>
+                    }
+                </div>
+                }
+                @if(registerForm.get('email')?.errors?.['emailExists']){
+                <div style="color: red; font-size: 0.9em;">El usuario ya está registrado</div>
+                }
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="urlImagen" style="display: block; font-weight: bold;">Imagen de perfil (Link <span
+                        (click)="redirectcion()" class="link">pixabay.com</span>)</label>
+                <input id="urlImagen" formControlName="urlImagen" class="form-control"
+                     >
+                @if(registerForm.get('urlImagen')?.errors?.['invalidUrl']){
+                <div style="color: red; font-size: 0.9em;">Asegúrate de que sea de pixibay</div>
+                }
+            </div>
+
+
+
+            <button (click)="redirect(); onSubmit()" class="m-2 btn btn-primary" [disabled]="registerForm.invalid">Realizar
+                Cambios</button>
+                
+            <button type="button" class="btn btn-danger" (click)="cerrarsesion()">Cerrar
+                sesión</button>
+
+
+
         </form>
 
+
     </div>
+
 </div>
+<app-mostrar-viajes [correoDesEnc]="emaildesc"></app-mostrar-viajes>
 <app-footer></app-footer>

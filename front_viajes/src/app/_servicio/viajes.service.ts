@@ -8,7 +8,7 @@ import { Viajes } from '../_modelo/Viajes';
 })
 export class ViajesService {
 
-  private url:string =`http://localhost:8080/cliente`;
+  private url:string =`http://localhost:8080/viajes`;
   viajesCambio = new Subject<Viajes[]>();
 
   constructor(private http:HttpClient) { }
@@ -18,6 +18,18 @@ export class ViajesService {
     .pipe(map(data => {return data.sort((a,b) => a.id-b.id)}));
   }
 
+  
+ 
+  listarViajesConCorreo(email:string):Observable<Viajes[]> {
+    return this.http.get<Viajes[]>(`${this.url}/viajeCorreoCliente?email=${email}`);   
+  }
+
+
+  listarporIdCliente(id:number):Observable<Viajes[]> {
+    return this.http.get<Viajes[]>(this.url);
+  }
+
+  
   listarPorId(id:number) {
     return this.http.get<Viajes>(`${this.url}/${id}`);
   }

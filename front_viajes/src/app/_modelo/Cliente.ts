@@ -9,4 +9,5 @@ export interface Cliente {
   codigoPostal: string;
   password: string;
   urlImagen:string;
+  role:number;
 }

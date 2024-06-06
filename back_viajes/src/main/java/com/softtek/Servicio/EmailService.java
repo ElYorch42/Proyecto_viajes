@@ -51,6 +51,23 @@ public class EmailService {
         javaMailSender.send(message);
     }
 
+    public void enviarCorreoReset(String to, String subject, String text,String nombre) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setCc("viajesalodesconocido@gmail.com");
+
+        Context context = new Context();
+        context.setVariable("nombre", nombre);
+        context.setVariable("email", to);
+        String content = templateEngine.process("RecuperacionContrasena.html", context);
+        helper.setText(content, true);
+
+        javaMailSender.send(message);
+    }
+
     @Autowired
     private JavaMailSender mailSender;
 

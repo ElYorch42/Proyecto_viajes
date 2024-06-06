@@ -30,4 +30,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.updatePassword(request, newPassword));
     }
 
+    @PostMapping("/update1")
+    public ResponseEntity<JwtAuthenticationResponse> update1(@RequestParam(name = "email") String email, @RequestParam(name = "newPassword") String newPassword) {
+        return ResponseEntity.ok(authenticationService.updatePassword1(email, newPassword));
+    }
+
 }

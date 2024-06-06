@@ -8,7 +8,9 @@ import { PerfilusuarioComponent } from './perfilusuario/perfilusuario.component'
 
 import { RegistroComponent } from './registro/registro.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { RecuperarContraComponent } from './iniciar-sesion/recuperar-contra/recuperar-contra.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FormularioDatosComponent } from './formulario-datos/formulario-datos.component';
 
 export const routes: Routes = [
     {path:'inicio' , component:InicioComponent},
@@ -17,9 +19,13 @@ export const routes: Routes = [
     canActivate:[guardSesionGuard] 
     },
     {path:'sobre_nosotros' , component:SobreNostrosComponent},
+    {path:'reset_password' , component:RecuperarContraComponent},
     {path:'perfil_usuario' , component:PerfilusuarioComponent,
          canActivate:[guardSesionGuard]  
     },
+    {path:'datos', component:FormularioDatosComponent,
+    canActivate:[guardSesionGuard]  
+},
     {path:'registro', component:RegistroComponent},
     {path:'pago',component:PaymentComponent},
     {path:'contactanos',component:ContactoComponent},

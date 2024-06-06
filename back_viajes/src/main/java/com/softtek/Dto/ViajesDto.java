@@ -17,6 +17,7 @@ public class ViajesDto {
     private String tipocalidad;
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
+    private int destinoViaje;
     private String actividad1;
     private String actividad2;
     private String actividad3;
@@ -42,6 +43,7 @@ public class ViajesDto {
         tipocalidad = v.getTipocalidad();
         fecha_inicio = v.getFecha_inicio();
         fecha_fin = v.getFecha_fin();
+        destinoViaje = v.getDestinoViaje().getId();
         actividad1 = v.getActividad1();
         actividad2 = v.getActividad2();
         actividad3 = v.getActividad3();

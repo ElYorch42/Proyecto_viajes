@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="form-container border p-4 rounded shadow">
+        <form [formGroup]="registerForm">
+            <div class="form-group">
+                <label for="email" class="form-title">Introduce tu correo - si está en la base de datos le enviaremos un correo</label>
+                <input type="email" id="email" class="form-control" formControlName="email">
+            </div>
+            <button type="button" class="btn btn-warning" (click)="comprobarCorreo()">Enviar código</button>
+            <p id="noexiste"></p>
+
+            @if (booleanoExisteCorreo) {
+            <div class="form-group mt-3">
+                <label for="codigo">Introduce el Código</label>
+                <input type="text" id="codigo" class="form-control" formControlName="codigo">
+            </div>
+            @if(comprobarCodigo()){
+            <div class="form-group">
+                <label for="password">Introduce la nueva contraseña, al menos 8 caracteres</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+            </div>
+            <button type="button" (click)="onSubmit()" [disabled]="registerForm.invalid" class="btn btn-warning">Enviar nueva contraseña</button>
+            }
+            }
+        </form>
+    </div>
+</div>
