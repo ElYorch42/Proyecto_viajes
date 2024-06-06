@@ -12,6 +12,5 @@ public interface AuthenticationService {
 
     JwtAuthenticationResponse updatePassword1(String email, String newPassword);
     JwtAuthenticationResponse updatePassword(SignInRequest request, String newPassword);
-    JwtAuthenticationResponse updatePassword1(String email, String newPassword);
 }
 
