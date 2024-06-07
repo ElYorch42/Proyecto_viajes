@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { ClienteService } from '../../_servicio/cliente.service';
 import { entorno } from '../../_environment/entorno';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { dniNieValidator } from '../../_environment/validators';
 
 @Component({
   selector: 'app-formulario-invitados',
@@ -86,13 +87,13 @@ export class FormularioInvitadosComponent {
 
   addDatos() {
     const datos = this.fb.group({
-      nombre: new FormControl(''),
-      dni: new FormControl(''),
-      direccion: new FormControl(''),
-      comunidad: new FormControl(''),
-      codigo_postal: new FormControl(''),
-      ciudad: new FormControl(''),
-      maletas: new FormControl(0)
+      nombre: ['', [Validators.required]],
+      dni: ['', [Validators.required, dniNieValidator()]],
+      direccion: ['', [Validators.required]],
+      comunidad: ['', [Validators.required]],
+      codigo_postal: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
+      ciudad: ['', [Validators.required]],
+      maletas: [0, [Validators.required]]
 
     })
     this.datos().push(datos)

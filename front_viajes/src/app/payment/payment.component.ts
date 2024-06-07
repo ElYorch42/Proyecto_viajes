@@ -134,6 +134,8 @@ export class PaymentComponent implements OnInit{
                   console.error('Error al enviar el correo', error);
                 }
               );
+              //Meter metodo insercion datos
+              
             }
           }
         } else {
