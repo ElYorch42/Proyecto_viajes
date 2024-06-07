@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="body">
+    <div class="row row-centered">
+        <div class="divListar col-12 col-xl-8">
+            <div class="texto">
+                <div class="cliente-container">
+                    <input type="number" placeholder="{{clienteMostrar.id}}" readonly>
+                    <input type="text" placeholder="{{clienteMostrar.nombre}}" >
+                    <input type="text" placeholder="{{clienteMostrar.dni}}" >
+                    <input type="text" placeholder="{{clienteMostrar.email}}" >
+                    <input type="text" placeholder="{{clienteMostrar.direccion}}" >
+                    <input type="text" placeholder="{{clienteMostrar.ciudad}}" >
+                    <input type="text" placeholder="{{clienteMostrar.comunidad}}" >
+                    <input type="number" placeholder="{{clienteMostrar.codigoPostal}}" >
+                    <input type="text" placeholder="{{clienteMostrar.role}}" >
+                 
+                    <input type="text" placeholder="{{clienteMostrar.password}}">
+                    <input type="text" placeholder="{{clienteMostrar.urlImagen}}" >
+                </div>
+            </div>
+        </div>
+        <div class="divInformacion col-12 col-xl-4">
+
+            <div class="texto2">
+                <form [formGroup]="buscar">
+                    <div class="form-group">
+                        <input id="search" formControlName="search" class="form-control" placeholder="Introduce el DNI">
+                    </div>
+                </form>
+            </div>
+            @for (item of clientes; track $index) {
+            <div class="divDentro">
+                <p>{{item.nombre}} - DNI: {{item.dni}} - EMAIL: {{item.email}}</p>
+                <button (click)="correoMostrar = item.email;mostrarPerfil()" class="btn btn-light">Mostrar Viajes e Informacion</button>
+            </div>
+
+            }
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

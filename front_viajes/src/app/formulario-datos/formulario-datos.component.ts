@@ -78,7 +78,7 @@ export class FormularioDatosComponent {
     });
     
 
-    document.addEventListener('DOMContentLoaded', function() {
+    
       const today = new Date().toISOString().split('T')[0];
       
       var tomorrow = new Date();
@@ -87,7 +87,7 @@ export class FormularioDatosComponent {
       const manana = tomorrow.toISOString().split('T')[0];
       document.getElementById('fechaSalida')?.setAttribute('min', today);
       document.getElementById('fechaLlegada')?.setAttribute('min', manana);
-  });
+ 
    
   }
 
