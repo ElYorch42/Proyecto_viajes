@@ -60,9 +60,9 @@ export class FormularioInvitadosComponent {
         'nombre': new FormControl(data.nombre),
         'dni': new FormControl(data.dni),
         'direccion': new FormControl(data.direccion),
-        'comunidad': new FormControl(data.ciudad),
-        'codigo_postal': new FormControl(data.comunidad),
-        'ciudad': new FormControl(data.codigoPostal),
+        'comunidad': new FormControl(data.comunidad),
+        'codigo_postal': new FormControl(data.codigoPostal),
+        'ciudad': new FormControl(data.ciudad),
         'maletas': new FormControl(0)
 
       });

@@ -35,4 +35,8 @@ export class DestinosService {
   eliminar(id:number) {
     return this.http.delete(`${this.url}/${id}`);
   }
+
+  consultaPorContinenteAleatoria(continente:string):Observable<Destinos> {
+    return this.http.get<Destinos>(`${this.url}/consulta1?continente=${continente}`);
+  }
 }

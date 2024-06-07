@@ -13,7 +13,7 @@ export class AmadeusService {
   constructor(private http:HttpClient) { }
 
   obtenerviajes(a:AmadeusViaje) {
-    return this.http.post<AmadeusViaje>(`${this.url}/viajes`,a);
+    return this.http.post<string>(`${this.url}/viajes`,a);
   }
 
   obtenerHoteles(a:AmadeusHoteles) {
