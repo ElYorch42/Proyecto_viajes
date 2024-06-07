@@ -105,19 +105,11 @@ export class PerfilusuarioComponent {
 
   redirectcion() {
 
-    window.open("https://pixabay.com/es/photos", "_blank")
+    window.open("https://pixabay.com/es", "_blank")
 
   }
 
 
-  redirect() {
-
-
-    this.redirigir = true;
-    setTimeout(() => {
-      this.route.navigate(['/inicio_sesion'])
-    }, 100000000000000000);
-  }
 
 
 
@@ -163,13 +155,15 @@ export class PerfilusuarioComponent {
         this.service.actualizar(clientes).subscribe();
     
     })
-
-
-
-
-    
    
 
+  
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+  
+  
+ 
   }
 
   cerrarsesion() {

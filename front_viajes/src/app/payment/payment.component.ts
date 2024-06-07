@@ -31,7 +31,7 @@ export class PaymentComponent implements OnInit{
   //Constructor
   constructor(private paymentService: PaymentService, private fb: FormBuilder,private emailService: EmailService,private service:ClienteService,public jwtHelper: JwtHelperService,private router:Router) {
     this.paymentForm = this.fb.group({
-      amount: ['']
+      amount: [500]
     });
   }
 

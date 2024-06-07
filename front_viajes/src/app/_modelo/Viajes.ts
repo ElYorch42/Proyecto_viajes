@@ -6,7 +6,7 @@ export interface Viajes {
   precio: number;
   tipocalidad: string;
   fecha_inicio: string;
-  fecha_fin: Date;
+  fecha_fin: string;
   destinoViaje:number;
   actividad1: string;
   actividad2: string;

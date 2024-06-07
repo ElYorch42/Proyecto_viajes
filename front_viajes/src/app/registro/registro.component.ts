@@ -39,7 +39,7 @@ export class RegistroComponent {
       codigoPostal: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
       fechaNacimiento: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email], [this.emailExistsValidator()]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
       urlImagen: ['https://cdn.pixabay.com/photo/2016/10/22/10/52/eiffel-tower-1760354_1280.jpg', [this.urlValidator()]]
     }, {

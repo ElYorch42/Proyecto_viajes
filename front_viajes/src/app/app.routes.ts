@@ -11,6 +11,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { RecuperarContraComponent } from './iniciar-sesion/recuperar-contra/recuperar-contra.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FormularioDatosComponent } from './formulario-datos/formulario-datos.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 export const routes: Routes = [
     {path:'inicio' , component:InicioComponent},
@@ -18,6 +19,7 @@ export const routes: Routes = [
     {path:'comienzo_viajes' , component:ComienzoViajeComponent,
     canActivate:[guardSesionGuard] 
     },
+    {path:'admin' , component:AdminPanelComponent},
     {path:'sobre_nosotros' , component:SobreNostrosComponent},
     {path:'reset_password' , component:RecuperarContraComponent},
     {path:'perfil_usuario' , component:PerfilusuarioComponent,
