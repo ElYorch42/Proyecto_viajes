@@ -19,10 +19,10 @@ public class Destinos {
     private int id;
 
     @Column(name = "codigo_ciudad", length = 3)
-    private String Codigo_Ciudad;
+    private String codigo_Ciudad;
 
     @Column(name = "aeropuerto", length = 100)
-    private String Aeropuerto;
+    private String aeropuerto;
 
     @Column(name = "nombre", length = 50)
     private String nombre;

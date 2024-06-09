@@ -9,6 +9,7 @@ import { SignUpRequest } from '../_modelo/signupRequest';
 import { debounceTime, first, map, switchMap } from 'rxjs';
 import { email } from '../_modelo/email';
 import { EmailService } from '../_servicio/email.service';
+import { dniNieValidator } from '../_environment/validators';
 
 @Component({
     selector: 'app-registro',
@@ -30,7 +31,7 @@ export class RegistroComponent {
   
   constructor(private fb: FormBuilder, private service: ClienteService, private route: Router,private emailService: EmailService) {
     this.registerForm = this.fb.group({
-      dni: ['', [Validators.required]],
+      dni: ['', [Validators.required, dniNieValidator()]],
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
@@ -39,7 +40,7 @@ export class RegistroComponent {
       codigoPostal: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
       fechaNacimiento: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email], [this.emailExistsValidator()]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
       urlImagen: ['https://cdn.pixabay.com/photo/2016/10/22/10/52/eiffel-tower-1760354_1280.jpg', [this.urlValidator()]]
     }, {

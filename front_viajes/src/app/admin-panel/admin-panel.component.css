@@ -1,0 +1,112 @@
+.body {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin-top: 2%; /* Establece la altura del cuerpo al 100% de la altura de la ventana */
+    margin-bottom: 2%;
+}
+
+.divDentro {
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fbc3b0;
+}
+
+.divDentro button {
+    justify-content: end;
+    align-items: end;
+}
+
+.row {
+    width: 95%;
+}
+
+.divListar, .divInformacion {
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #f9f9f9;
+    max-height: 85vh; /* Altura del contenido */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+}
+
+.divListar {
+    
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+   
+}
+
+.divInformacion {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.divListar::-webkit-scrollbar,
+.divInformacion::-webkit-scrollbar {
+    width: 5px; /* Ancho de la barra de desplazamiento */
+   
+}
+
+.divListar::-webkit-scrollbar-thumb,
+.divInformacion::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color de la barra de desplazamiento */
+    border-radius: 10px; /* Borde redondeado de la barra de desplazamiento */
+    
+}
+
+.divListar::-webkit-scrollbar-track,
+.divInformacion::-webkit-scrollbar-track {
+    background: transparent; /* Color de fondo del track de la barra de desplazamiento */
+    
+}
+
+@media(max-width:1250px) {
+    .divListar,.divInformacion {
+        border-radius: 30px;
+      
+    }
+
+
+    .row {
+    width: 65%;
+}
+
+}
+
+.cliente-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacio entre cada input */
+    max-width: 100%; /* Para evitar que se desborde */
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #f2f2f2; /* Fondo del contenedor */
+    border-radius: 10px; /* Bordes redondeados del contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+.cliente-container > input {
+    flex: 1 1 auto; /* Permite que los elementos se ajusten dentro del contenedor */
+    min-width: 120px; /* Ancho mínimo para cada input */
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #fff; /* Fondo de cada input */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    font-size: 14px; /* Tamaño de fuente para los inputs */
+}
+
+.cliente-container > input[readonly] {
+    background-color: #e9ecef; /* Fondo diferente para inputs deshabilitados */
+    cursor: not-allowed;
+}
+
+.cliente-container > input:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el mouse */
+}

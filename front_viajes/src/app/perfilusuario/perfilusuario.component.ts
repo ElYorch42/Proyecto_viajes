@@ -10,6 +10,7 @@ import { SignUpRequest } from '../_modelo/signupRequest';
 import { Router } from '@angular/router';
 import { Cliente } from '../_modelo/Cliente';
 import { MostrarViajesComponent } from './mostrar-viajes/mostrar-viajes.component';
+import { dniNieValidator } from '../_environment/validators';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class PerfilusuarioComponent {
 
   constructor(private fb: FormBuilder, private service: ClienteService, private route: Router,private jwtHelper:JwtHelperService) {
     this.registerForm = this.fb.group({
-      dni: ['', [Validators.required]],
+      dni: ['', [Validators.required,dniNieValidator()]],
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
@@ -105,19 +106,11 @@ export class PerfilusuarioComponent {
 
   redirectcion() {
 
-    window.open("https://pixabay.com/es/photos", "_blank")
+    window.open("https://pixabay.com/es", "_blank")
 
   }
 
 
-  redirect() {
-
-
-    this.redirigir = true;
-    setTimeout(() => {
-      this.route.navigate(['/inicio_sesion'])
-    }, 100000000000000000);
-  }
 
 
 
@@ -163,13 +156,15 @@ export class PerfilusuarioComponent {
         this.service.actualizar(clientes).subscribe();
     
     })
-
-
-
-
-    
    
 
+  
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+  
+  
+ 
   }
 
   cerrarsesion() {

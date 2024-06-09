@@ -56,7 +56,7 @@ export class RecuperarContraComponent {
           name:this.codigo.toString()
         }
         console.log(email)
-        this.emailService.sendRecuperarContra(email).subscribe();
+        this.emailService.sendEmailRecuperacion(email).subscribe();
 
         
       }

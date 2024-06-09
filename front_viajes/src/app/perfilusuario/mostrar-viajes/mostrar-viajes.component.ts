@@ -16,6 +16,7 @@ export class MostrarViajesComponent {
 
   nombreCiudad: string[] = [];
   arrayViajes: Viajes[] = [];
+  imagen:string = "";
   @Input() correoDesEnc: string = "";
 
   constructor(private servicio: ViajesService, private servicioCiudad: DestinosService) {
@@ -24,29 +25,29 @@ export class MostrarViajesComponent {
 
   ngOnInit(): void {
 
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
     this.servicio.listarViajesConCorreo(this.correoDesEnc).subscribe((data) => {
-
       for (let i = 0; i < data.length; i++) {
         this.servicioCiudad.listarPorId(data[i].destinoViaje).subscribe((data2) => {
           let res = new Date(data[i].fecha_fin).getTime() < new Date(Date.now()).getTime();
          
-
+          
           if (res) {
             this.arrayViajes.push(data[i]);
+
+            
+              this.nombreCiudad.push(data2.nombre)
+           
           }
 
-          this.nombreCiudad[i] = data2.nombre;
+      
 
+        })
 
-
-
-
-        });
+        console.log(this.arrayViajes)
+        console.log(this.nombreCiudad);
       }
 
+     
 
     });
 

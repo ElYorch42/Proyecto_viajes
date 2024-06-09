@@ -7,6 +7,7 @@ import com.amadeus.resources.Activity;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.Hotel;
 import com.amadeus.resources.HotelOfferSearch;
+import com.softtek.Modelo.AmadeusDatos;
 import com.softtek.Modelo.AmadeusHotel;
 import com.softtek.Modelo.AmadeusViaje;
 import com.softtek.Servicio.servicioCliente.IClienteServicio;
@@ -45,6 +46,7 @@ public class AmadeusController {
             } else {
                 double precio = Double.parseDouble(flightOffersSearches[0].getPrice().getTotal());
                 int n=0;
+
                 for (int i = 0; i < flightOffersSearches.length; i++) {
                     if (precio>Double.parseDouble(flightOffersSearches[i].getPrice().getTotal())){
                         precio = Double.parseDouble(flightOffersSearches[i].getPrice().getTotal());
@@ -52,7 +54,7 @@ public class AmadeusController {
                     }
                 }
 
-                return new ResponseEntity<>(flightOffersSearches[n].toString(),HttpStatus.OK);
+                return new ResponseEntity<>(flightOffersSearches[n].getPrice().getTotal(),HttpStatus.OK);
             }
 
         } catch (ResponseException e) {
@@ -115,19 +117,19 @@ public class AmadeusController {
                 amadeusHotel.setLatitud(offers[n].getHotel().getLongitude());
                 amadeusHotel.setPrecio(Double.parseDouble(offers[n].getOffers()[m].getPrice().getTotal()));
                  */
-                amadeusHotel.setNombre_hotel(hotels[0].getName().toString());
+                amadeusHotel.setNombre_hotel(hotels[0].getName());
                 amadeusHotel.setId_hotel(hotels[0].getHotelId());
                 amadeusHotel.setLatitud(hotels[0].getGeoCode().getLatitude());
-                amadeusHotel.setLatitud(hotels[0].getGeoCode().getLongitude());
+                amadeusHotel.setLengitud(hotels[0].getGeoCode().getLongitude());
                 switch (amadeusHotel.getRatings()){
                     case 1:
-                        amadeusHotel.setPrecio(Math.random()*(50-100)+50);
+                        amadeusHotel.setPrecio(Math.random()*(40-20)+20);
                         break;
                     case 3:
-                        amadeusHotel.setPrecio(Math.random()*(120-200)+120);
+                        amadeusHotel.setPrecio(Math.random()*(80-50)+50);
                         break;
                     case 5:
-                        amadeusHotel.setPrecio(Math.random()*(400-800)+400);
+                        amadeusHotel.setPrecio(Math.random()*(150-100)+100);
                         break;
                     default:
                         amadeusHotel.setPrecio(100);
@@ -137,7 +139,7 @@ public class AmadeusController {
                 Activity[] activities = amadeus.shopping.activities.get(Params
                         .with("latitude", hotels[0].getGeoCode().getLatitude())
                         .and("longitude", hotels[0].getGeoCode().getLongitude())
-                        .and("max","3")
+                        //.and("max",3)
                 );
 
                 if (activities[0].getResponse().getStatusCode() !=200) {
@@ -147,16 +149,94 @@ public class AmadeusController {
                     amadeusHotel.setActividad1(activities[0].getName());
                     amadeusHotel.setActividad2(activities[1].getName());
                     amadeusHotel.setActividad3(activities[2].getName());
-                    amadeusHotel.setPrecio_actividades(Double.parseDouble(activities[0].getPrice().getAmount())+
-                            Double.parseDouble(activities[1].getPrice().getAmount())+
-                            Double.parseDouble(activities[2].getPrice().getAmount()));
+                    //amadeusHotel.setPrecio_actividades(Double.parseDouble(activities[0].getPrice().getAmount())+
+                    //        Double.parseDouble(activities[1].getPrice().getAmount())+
+                    //        Double.parseDouble(activities[2].getPrice().getAmount()));
+                    amadeusHotel.setPrecio_actividades((Math.random()*(40-20)+20)*3);
                     return new ResponseEntity<>(amadeusHotel,HttpStatus.OK);
                 }
+
+                //return new ResponseEntity<>(amadeusHotel,HttpStatus.OK);
             }
         } catch (ResponseException e) {
             throw new RuntimeException(e);
         }
     }
 
+    @PostMapping
+    public ResponseEntity<AmadeusDatos> obtenerTodo(@RequestBody AmadeusDatos amadeusDatos) {
+        try {
+            FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
+                    Params.with("originLocationCode", amadeusDatos.getOriginLocationCode())
+                            .and("destinationLocationCode", amadeusDatos.getDestinationLocationCode())
+                            .and("departureDate", amadeusDatos.getDepartureDate())
+                            .and("returnDate", amadeusDatos.getReturnDate())
+                            .and("adults", amadeusDatos.getAdults())
+                            .and("travelClass", "ECONOMY")
+                            .and("nonStop", amadeusDatos.isNonStop())
+                            .and("max", 20));
+            if (flightOffersSearches[0].getResponse().getStatusCode() != 200) {
+                System.out.println();
+                amadeusDatos.setNombre_hotel("ERROR:"+flightOffersSearches[0].getResponse().getStatusCode());
+                return new ResponseEntity<>(amadeusDatos,HttpStatus.BAD_REQUEST);
+            } else {
+                double precio = Double.parseDouble(flightOffersSearches[0].getPrice().getTotal());
+                int n=0;
+                for (int i = 0; i < flightOffersSearches.length; i++) {
+                    if (precio>Double.parseDouble(flightOffersSearches[i].getPrice().getTotal())){
+                        precio = Double.parseDouble(flightOffersSearches[i].getPrice().getTotal());
+                        n=i;
+                    }
+                }
+                amadeusDatos.setPrecioViaje(Double.parseDouble(flightOffersSearches[n].getPrice().getTotal()));
+
+                Hotel[] hotels = amadeus.referenceData.locations.hotels.byCity.get(Params
+                        .with("cityCode", amadeusDatos.getOriginLocationCode())
+                        .and("ratings", amadeusDatos.getRatings()));
+                if (hotels[0].getResponse().getStatusCode() !=200) {
+                    amadeusDatos.setNombre_hotel("ERROR:"+hotels[0].getResponse().getStatusCode());
+                    return new ResponseEntity<>(amadeusDatos,HttpStatus.BAD_REQUEST);
+                } else{
+                    amadeusDatos.setNombre_hotel(hotels[0].getName());
+                    amadeusDatos.setId_hotel(hotels[0].getHotelId());
+                    amadeusDatos.setLatitud(hotels[0].getGeoCode().getLatitude());
+                    amadeusDatos.setLatitud(hotels[0].getGeoCode().getLongitude());
+                    switch (amadeusDatos.getRatings()){
+                        case 1:
+                            amadeusDatos.setPrecioHotel(Math.random()*(50-100)+50);
+                            break;
+                        case 3:
+                            amadeusDatos.setPrecioHotel(Math.random()*(120-200)+120);
+                            break;
+                        case 5:
+                            amadeusDatos.setPrecioHotel(Math.random()*(400-800)+400);
+                            break;
+                        default:
+                            amadeusDatos.setPrecioHotel(100);
+                            break;
+                    }
+
+                    Activity[] activities = amadeus.shopping.activities.get(Params
+                            .with("latitude", hotels[0].getGeoCode().getLatitude())
+                            .and("longitude", hotels[0].getGeoCode().getLongitude())
+                            .and("max",3)
+                    );
+
+                    if (activities[0].getResponse().getStatusCode() !=200) {
+                        amadeusDatos.setActividad1("ERROR:"+activities[0].getResponse().getStatusCode());
+                        return new ResponseEntity<>(amadeusDatos,HttpStatus.BAD_REQUEST);
+                    } else {
+                        amadeusDatos.setActividad1(activities[0].getName());
+                        amadeusDatos.setActividad2(activities[1].getName());
+                        amadeusDatos.setActividad3(activities[2].getName());
+                        amadeusDatos.setPrecio_actividades((Math.random()*(40-20)+20)*3);
+                        return new ResponseEntity<>(amadeusDatos,HttpStatus.OK);
+                    }
+                }
+            }
+        } catch (ResponseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

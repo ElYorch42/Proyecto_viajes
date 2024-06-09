@@ -36,7 +36,7 @@ export class IniciarSesionComponent {
   constructor( private renderer: Renderer2,private http:HttpClient,private fb: FormBuilder , private router:Router,private servicio:ClienteService) { 
     this.formulario = this.fb.group({
       email: ['',[Validators.email,Validators.required]],
-      password: ['',[Validators.required,Validators.minLength(8)]],
+      password: ['',[Validators.required,Validators.minLength(6)]],
       
       
 
