@@ -55,7 +55,7 @@ export class PerfilusuarioComponent {
 
     
     let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
-    console.log("token2-> " + token)
+  
     let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
 
     if (token != null) {
@@ -68,7 +68,7 @@ export class PerfilusuarioComponent {
     if (tokenDecodificado != null) {
       this.emaildesc = tokenDecodificado.sub;
     }
-    console.log("email: " + this.emaildesc)
+
 
 
     this.service.listarPorEmail(this.emaildesc).subscribe((data) => {

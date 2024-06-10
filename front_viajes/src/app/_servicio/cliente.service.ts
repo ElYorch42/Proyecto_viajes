@@ -41,7 +41,7 @@ export class ClienteService {
   }
 
   actualizar(p:Cliente) {
-    console.log(p);
+  
     return this.http.put<Cliente>(`${this.url}`,p);
   }
 

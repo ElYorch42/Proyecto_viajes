@@ -39,7 +39,7 @@ export class NavbarComponent {
 
 
     this.token = sessionStorage.getItem(entorno.TOKEN_SESSION);
-    console.log("token-> " + this.token)
+    
     let emaildesc;
     let tokenDecodificado = this.token !== null ? this.jwtHelper.decodeToken(this.token) : null;
 

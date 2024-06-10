@@ -56,8 +56,8 @@ public class Cliente implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "clienteViaje",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "clienteViaje",cascade = CascadeType.ALL)
     List<Viajes> viajes;
 
     @JsonIgnore

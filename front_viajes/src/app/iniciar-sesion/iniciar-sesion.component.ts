@@ -55,7 +55,7 @@ export class IniciarSesionComponent {
     this.servicio.autenticar(datos)
       .subscribe(
         (data) => {
-          console.log("tokenInic-> " + data.token);
+
           sessionStorage.setItem(entorno.TOKEN_SESSION, data.token)
           this.iniciodiv = true;
           setTimeout(() => {

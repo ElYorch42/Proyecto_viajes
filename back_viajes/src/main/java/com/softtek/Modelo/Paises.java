@@ -25,6 +25,6 @@ public class Paises {
     private String continente;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "paisDestino",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "paisDestino",cascade = CascadeType.ALL)
     List<Destinos> destinos;
 }

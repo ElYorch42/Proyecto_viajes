@@ -55,7 +55,6 @@ export class RecuperarContraComponent {
           text:"",
           name:this.codigo.toString()
         }
-        console.log(email)
         this.emailService.sendEmailRecuperacion(email).subscribe();
 
         

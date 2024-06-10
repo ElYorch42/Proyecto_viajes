@@ -38,10 +38,7 @@ export class AdminPanelComponent {
   buscar: FormGroup;
 
   formulario:FormGroup;
-   update:Update = {
-    email:"",
-    password:""
-   }
+ 
 
   constructor(public jwtHelper: JwtHelperService,private fb2:FormBuilder,private servicioDestinos: DestinosService, private servicioViajes: ViajesService, private fb: FormBuilder, private router: Router, private servicioCliente: ClienteService) {
 
@@ -81,9 +78,6 @@ export class AdminPanelComponent {
 
   filterClientes(value: string): void {
 
-    console.log(value.trim());
-    console.log(this.clientes);
-    console.log(this.clientes2);
     if (value == "") {
       this.clientes = this.clientes2;
     } else {
@@ -160,7 +154,23 @@ export class AdminPanelComponent {
   }
 
 
+
+  actualizarContra(){
+    let update = {
+      email:this.formulario.controls["email"].value,
+      password:this.formulario.controls["password"].value
+    }
+  
+    this.servicioCliente.updateReset(update).subscribe();
+
+    window.location.reload();
+  }
+
+
   actualizar(){
+
+    
+
 
     this.servicioCliente.listarPorEmail(this.formulario.controls["email"].value).subscribe((data) => {
   
@@ -179,22 +189,8 @@ export class AdminPanelComponent {
       };
        
       this.servicioCliente.actualizar(clientes).subscribe();
-  
+      window.location.reload();
   })
-
-  this.update = {
-    email:this.formulario.controls["email"].value,
-    password:this.formulario.controls["password"].value
-  }
-
-  this.servicioCliente.updateReset(this.update).subscribe();
-
-
-
-  
-
-
-  
 
 
 

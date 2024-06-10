@@ -18,7 +18,8 @@
                     <input type="text" placeholder="password" formControlName = "password">
             
                     <input type="text" id="imagenUrl" placeholder="urlImagen" formControlName = "urlImagen">
-                    <button class="btn btn-dark" (click)="actualizar()">Actualizar</button>
+                    <button class="btn btn-dark" [disabled]="formulario.invalid" (click)="actualizar()">Actualizar</button>
+                    <button class="btn btn-dark" [disabled]="formulario.invalid" (click)="actualizarContra()">actualizar Contraseña</button>
                     
                 </div>
                 <button (click)="mostrarViajes()" class="btn btn-dark">Mostrar Viajes</button>

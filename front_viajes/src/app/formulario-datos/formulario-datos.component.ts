@@ -70,9 +70,9 @@ export class FormularioDatosComponent {
 
 
     this.hermano.currentData.subscribe(data => this.continenteAleatorio = data);
-    console.log(this.continenteAleatorio);
+   
     this.hermano.currentData2.subscribe(data => this.aeSalida = data);
-    console.log(this.aeSalida);
+    
 
 
     this.hermano.currentData.subscribe()
@@ -82,7 +82,7 @@ export class FormularioDatosComponent {
     }
 
     this.destinoServicio.consultaPorContinenteAleatoria(this.continenteAleatorio).subscribe(datos => {
-      console.log(datos);
+      
       this.destino = {
         id: datos.id,
         codigo_ciudad: datos.codigo_ciudad,
@@ -92,7 +92,7 @@ export class FormularioDatosComponent {
         id_pais: datos.id_pais
       };
       //this.destino = datos;
-      console.log(this.destino);
+     
 
 
 
@@ -122,11 +122,7 @@ export class FormularioDatosComponent {
   }
 
   mirar() {
-    console.log(this.formulario.controls["ratings"].value);
-    console.log(this.formulario.controls["fechaSalida"].value);
-    console.log(this.formulario.controls["fechaLlegada"].value);
-    console.log(this.formArrayData.length);
-    console.log(this.formArrayData.value);
+
     let amadeusViaje: AmadeusViaje = {
       originLocationCode: 'MAD',
       destinationLocationCode: this.destino.codigo_ciudad,
@@ -183,7 +179,7 @@ export class FormularioDatosComponent {
         precio_actividades: amadeusHoteles.precio_actividades
       };
 
-      console.log(amadeusDatos);
+  
       this.hermanos.changeDataAmadeus(amadeusDatos);
       this.router.navigate(['/pago'])
     }, (error) => {
