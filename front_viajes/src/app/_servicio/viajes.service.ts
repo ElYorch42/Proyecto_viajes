@@ -18,8 +18,6 @@ export class ViajesService {
     .pipe(map(data => {return data.sort((a,b) => a.id-b.id)}));
   }
 
-  
- 
   listarViajesConCorreo(email:string):Observable<Viajes[]> {
     return this.http.get<Viajes[]>(`${this.url}/viajeCorreoCliente?email=${email}`);   
   }
@@ -50,5 +48,4 @@ export class ViajesService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  
 }

@@ -20,9 +20,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 })
 export class IniciarSesionComponent {
 
-
   formulario:FormGroup;
-
 
   iniciodiv:boolean = false;
 
@@ -30,19 +28,14 @@ export class IniciarSesionComponent {
     token:""
   };
 
-  
   loginUrl = "http://localhost:8080/api/v1/signin";
 
   constructor( private renderer: Renderer2,private http:HttpClient,private fb: FormBuilder , private router:Router,private servicio:ClienteService) { 
     this.formulario = this.fb.group({
       email: ['',[Validators.email,Validators.required]],
       password: ['',[Validators.required,Validators.minLength(6)]],
-      
-      
-
     })  
   }
-
 
   buscarInicio() {
     this.respuesta.token = "";
@@ -55,7 +48,6 @@ export class IniciarSesionComponent {
     this.servicio.autenticar(datos)
       .subscribe(
         (data) => {
-
           sessionStorage.setItem(entorno.TOKEN_SESSION, data.token)
           this.iniciodiv = true;
           setTimeout(() => {
@@ -67,19 +59,14 @@ export class IniciarSesionComponent {
         
            let mensaje: string = "Error en el correo o la contraseña, por favor revisa tus credenciales";
 
-         
            const mensajeDiv = document.getElementById('mensajeDiv');
            if (mensajeDiv) {
              mensajeDiv.innerText = mensaje;
            }
-          } else {
-            
+          } else { 
             alert('Ha ocurrido un error. Por favor, inténtalo más tarde.');
           }
         }
       );
   }
-  
-  
-
 }

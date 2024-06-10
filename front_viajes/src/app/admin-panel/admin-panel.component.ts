@@ -22,11 +22,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AdminPanelComponent {
 
-
-  
   clientes: Cliente[] = [];
   clientes2: Cliente[] = [];
-
 
   viajeMostrar: Viajes[] = [];
   arrayCiudades: string[] = [];
@@ -39,17 +36,12 @@ export class AdminPanelComponent {
 
   formulario:FormGroup;
  
-
   constructor(public jwtHelper: JwtHelperService,private fb2:FormBuilder,private servicioDestinos: DestinosService, private servicioViajes: ViajesService, private fb: FormBuilder, private router: Router, private servicioCliente: ClienteService) {
-
     this.buscar = this.fb.group({
-   
-
       search: ['']
     })
 
     this.formulario = this.fb2.group({
-
       dni: ['', [Validators.required]],
       role:[''],
       password:[''],  
@@ -62,22 +54,10 @@ export class AdminPanelComponent {
       fechaNacimiento: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       urlImagen: ['']
-
-
-
     })
-
-
-
-
   }
 
-
-
-
-
   filterClientes(value: string): void {
-
     if (value == "") {
       this.clientes = this.clientes2;
     } else {
@@ -88,39 +68,22 @@ export class AdminPanelComponent {
   }
 
   
-
-  
-
   ngOnInit(): void {
-  
-
-
-    
-
     this.buscar.get('search')?.valueChanges.subscribe(value => {
       this.filterClientes(value);
     });
 
-
     if (sessionStorage.getItem(entorno.TOKEN_SESSION) === "") {
       this.servicioCliente.cerrarSesion();
-
     }
 
     this.servicioCliente.listar().subscribe((data) => {
-
       this.clientes = data;
       this.clientes2 = data;
     })
   }
 
-
-
-
-
   mostrarPerfil() {
-
-
     this.viajeoperfil = false;
 
     this.servicioCliente.listarPorEmail(this.correoMostrar).subscribe(data => {
@@ -141,19 +104,12 @@ export class AdminPanelComponent {
 
       });
 
-      
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-
-
     })
-
-
   }
-
-
 
   actualizarContra(){
     let update = {
@@ -168,10 +124,6 @@ export class AdminPanelComponent {
 
 
   actualizar(){
-
-    
-
-
     this.servicioCliente.listarPorEmail(this.formulario.controls["email"].value).subscribe((data) => {
   
       let clientes: Cliente = {
@@ -191,11 +143,7 @@ export class AdminPanelComponent {
       this.servicioCliente.actualizar(clientes).subscribe();
       window.location.reload();
   })
-
-
-
   }
-
 
   eliminarViajes(id: number) {
     this.servicioViajes.eliminar(id).subscribe();
@@ -203,34 +151,19 @@ export class AdminPanelComponent {
   }
 
   mostrarViajes() {
-
     this.servicioViajes.listarViajesConCorreo(this.formulario.controls["email"].value).subscribe(data => {
       this.viajeMostrar = data;
       this.viajeoperfil = true;
-  
       this.sacarCiudad();
-
     })
   }
 
 
   sacarCiudad() {
-
-
-    for(let i = 0;i < this.viajeMostrar.length ; i++){
-        
+    for(let i = 0;i < this.viajeMostrar.length ; i++){        
       this.servicioDestinos.listarPorId(this.viajeMostrar[i].id_destino.id).subscribe(data =>{
-
         this.arrayCiudades.push(data.nombre);
-      
       })
-
-      
     }    
-    
-  
-
   }
-  
-
 }

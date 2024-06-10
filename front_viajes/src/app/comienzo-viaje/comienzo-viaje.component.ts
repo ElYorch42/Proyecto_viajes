@@ -19,13 +19,9 @@ export class ComienzoViajeComponent implements OnInit {
    destinoAleatorios:string = "";
    constructor(private route:Router,private hermanos:HermanosCVFDService,private fb: FormBuilder) {
     this.formulario = this.fb.group({
-      aeSalida:['',Validators.required]
-      
+      aeSalida:['',Validators.required]      
     })
-
-
     }
-  
     continents = [
       {
         colorear:false,
@@ -66,7 +62,6 @@ export class ComienzoViajeComponent implements OnInit {
     ];
 
   seleccionAleatior(){
-
     let arrayDestinos:string[] = [];
     for(let i  = 0; i<this.continents.length;i++){
       if(this.continents[i].colorear == true){
@@ -77,33 +72,23 @@ export class ComienzoViajeComponent implements OnInit {
 
     if(arrayDestinos.length == 0){
         alert("tienes que seleccionar al menos un contintente")
-      
     }else{
-      
         this.destinoAleatorios = arrayDestinos[Math.floor(Math.random() * arrayDestinos.length)];
         this.hermanos.changeData(this.destinoAleatorios);
         this.hermanos.changeDataAe(this.formulario.controls["aeSalida"].value)
         this.route.navigate(['/datos']);
-
 
     }
 
   }
 
 
-
   cartaseleccionada(id:number){
-   
-   
        this.continents[id].colorear = true;
-    
   }
 
   cartaseleccionadat(id:number){
-
-   
        this.continents[id].colorear = false;
-    
   }
 
 

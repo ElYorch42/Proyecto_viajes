@@ -30,13 +30,8 @@ export class NavbarComponent {
 
   }
 
-
-
-
   ngOnInit(): void {
     this.checkScreenWidth();
-
-
 
     this.token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     
@@ -54,7 +49,6 @@ export class NavbarComponent {
       emaildesc = tokenDecodificado.sub;
     }
 
-
     if (tokenDecodificado) {
       this.service.listarPorEmail(emaildesc).subscribe(
         data => {
@@ -62,20 +56,13 @@ export class NavbarComponent {
 
           if(data.role == "ADMIN"){
             this.esAdmin = true;
-
           }
-
-
-
         },
         error => {
           console.error('Error al obtener el contenido', error);
         }
       );
     }
-
-
-
   }
 
   @HostListener('window:resize', ['$event'])
@@ -86,9 +73,7 @@ export class NavbarComponent {
   private checkScreenWidth(): void {
     if (window.innerWidth > 768) {
       this.isCollapsed1 = true;
-
     }
-
   }
 
   toggleCollapse1(): void {
@@ -101,8 +86,5 @@ export class NavbarComponent {
   cambiarlogot() {
     return this.cambiarLogoBool = true;
   }
-
-
-
 
 }

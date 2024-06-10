@@ -69,8 +69,6 @@ export class PaymentComponent implements OnInit {
     role: '',
   }
 
-
-
   paymentForm: FormGroup;
   elements: StripeElements | null = null;
   card: StripeCardElement | null = null;
@@ -94,40 +92,24 @@ export class PaymentComponent implements OnInit {
   };
   //Constructor
 
-
-
-
-
-
   constructor(private destinoS: DestinosService, private hermano: HermanosCVFDService, private invitadoS: InvitadosService, private viajesS: ViajesService, private paymentService: PaymentService, private fb: FormBuilder, private emailService: EmailService, private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
     this.paymentForm = this.fb.group({
       amount: [500]
     });
   }
 
-
-
-
   async ngOnInit() {
     this.hermano.currentDataInvitados.subscribe((data) => {
       this.formArrayData = data
     });
     this.hermano.currentDataAmadeus.subscribe((data) => {
-
       this.datosViaje = data;
-
-
     })
     this.destinoS.listarPorId(this.datosViaje.destino).subscribe((data) => {
       this.destino = data;
     })
 
-
     console.log(this.datosViaje);
-
-
-
-
 
     //Implementacion de la api 
     this.stripe = await loadStripe('pk_test_51PM5FeRvfQwpBftnSmANSdvNfNEq73nbidnLsSadel1mtZVeIG4lDldegGPWBT4k2tf4CwEc2S3YecCVwBCiCdzs00GXjBBqbO');
@@ -295,11 +277,7 @@ export class PaymentComponent implements OnInit {
                 setTimeout(() => {
                   this.router.navigate(["inicio"]);
                 }, 3000);
-
-
               })
-
-
             }
           }
         } else {
@@ -315,22 +293,11 @@ export class PaymentComponent implements OnInit {
   }
 
   calcularPrecio() {
-
     let inicio: Date = new Date(this.datosViaje.departureDate);
-
     let vuelta: Date = new Date(this.datosViaje.returnDate);
-
 
     let dias = (((vuelta.getTime() - inicio.getTime()) / 86400000) - 1) * this.datosViaje.adults;
 
-
     return this.datosViaje.precioHotel * dias;
   }
-
 }
-
-
-
-
-
-

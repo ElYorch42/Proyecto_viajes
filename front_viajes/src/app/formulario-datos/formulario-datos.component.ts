@@ -29,7 +29,6 @@ export class FormularioDatosComponent {
   continenteAleatorio: string = "";
   aeSalida: string = "";
   
-
   destino: Destinos = {
     id: 0,
     codigo_ciudad: '',
@@ -53,31 +52,16 @@ export class FormularioDatosComponent {
     })
   }
 
-
   childreciever(form: FormArray): void {
     this.formArrayData = form;
     console.log('FormArray recibido del hijo:', this.formArrayData.value);
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
-   
-
-
-
-
-
     this.hermano.currentData.subscribe(data => this.continenteAleatorio = data);
-   
     this.hermano.currentData2.subscribe(data => this.aeSalida = data);
-    
-
-
     this.hermano.currentData.subscribe()
     if (this.continenteAleatorio == "default data") {
-
       this.router.navigate(["inicio"])
     }
 
@@ -92,33 +76,17 @@ export class FormularioDatosComponent {
         id_pais: datos.id_pais
       };
       //this.destino = datos;
-     
-
-
-
     });
-
-
 
     const today = new Date().toISOString().split('T')[0];
 
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-
-
     const manana = tomorrow.toISOString().split('T')[0];
-
-
 
     document.getElementById('fechaSalida')?.setAttribute('min', today);
     document.getElementById('fechaLlegada')?.setAttribute('min', manana);
-
-  
-
-
-
-
   }
 
   mirar() {
@@ -185,7 +153,6 @@ export class FormularioDatosComponent {
         maletas: numMaletas
       };
 
-  
       this.hermanos.changeDataAmadeus(amadeusDatos);
       this.hermanos.changeDataInvitados(this.formArrayData);
       this.router.navigate(['/pago'])
@@ -201,5 +168,4 @@ export class FormularioDatosComponent {
       }
     });
   }
-
 }

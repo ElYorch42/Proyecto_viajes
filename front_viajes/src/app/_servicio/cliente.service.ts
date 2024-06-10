@@ -41,7 +41,6 @@ export class ClienteService {
   }
 
   actualizar(p:Cliente) {
-  
     return this.http.put<Cliente>(`${this.url}`,p);
   }
 
@@ -64,10 +63,7 @@ export class ClienteService {
   }
 
   updateReset(datos:Update){
-
-
     return this.http.put<JwtAuthenticationResponse>(`${entorno.HOSTNAME}/auth/update1`,datos);
-
   }
   
 }

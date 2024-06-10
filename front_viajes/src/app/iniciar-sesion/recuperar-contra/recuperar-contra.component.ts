@@ -30,7 +30,6 @@ export class RecuperarContraComponent {
   }
 
  
-
   ngOnInit(): void {
     sessionStorage.clear();
   }
@@ -56,14 +55,11 @@ export class RecuperarContraComponent {
           name:this.codigo.toString()
         }
         this.emailService.sendEmailRecuperacion(email).subscribe();
-
-        
       }
     });
   }
 
   comprobarCodigo(){
-    
     if(this.codigo == parseInt(this.registerForm.controls['codigo'].value)){
       return true
     }else{}
@@ -71,19 +67,14 @@ export class RecuperarContraComponent {
 
   }
 
-
   onSubmit(){
-
     const datos:Update = {
       email:this.registerForm.controls['email'].value,
       password:this.registerForm.controls['password'].value
-
     }
 
     this.serviceCliente.updateReset(datos).subscribe();
     alert("contraseña actualizada");
     this.route.navigate(['inicio_sesion']);
-  
   }
-
 }

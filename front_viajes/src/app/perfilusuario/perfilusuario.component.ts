@@ -46,14 +46,7 @@ export class PerfilusuarioComponent {
   }
 
 
-
-
-
-
-
   ngOnInit(): void {
-
-    
     let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
   
     let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
@@ -89,11 +82,7 @@ export class PerfilusuarioComponent {
       });
       this.imagen = this.registerForm.controls["urlImagen"].value;
     })
-
-
   }
-
-
 
   urlValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -104,15 +93,8 @@ export class PerfilusuarioComponent {
 
 
   redirectcion() {
-
     window.open("https://pixabay.com/es", "_blank")
-
   }
-
-
-
-
-
 
   mayorDe18Anios(form: FormGroup) {
     let fechaNacimientoControl = form.controls['fechaNacimiento'];
@@ -132,10 +114,7 @@ export class PerfilusuarioComponent {
     return edad >= 18 ? null : { menorDe18: true };
   }
 
-
   onSubmit() {
-
-    
     this.service.listarPorEmail(this.emaildesc).subscribe((data) => {
         let clientes: Cliente = {
           id: data.id,
@@ -151,26 +130,15 @@ export class PerfilusuarioComponent {
           role:data.role
         };
         this.service.actualizar(clientes).subscribe();
-         
-        
-    
     })
-   
-
-  
       setTimeout(() => {
         window.location.reload();
       }, 100);
-  
-  
- 
   }
 
   cerrarsesion() {
-
     this.service.cerrarSesion();
   }
-
 
   emailExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl) => {
