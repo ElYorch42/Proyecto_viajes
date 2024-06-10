@@ -15,6 +15,7 @@ import { Viajes } from '../_modelo/Viajes';
 import { ViajesService } from '../_servicio/viajes.service';
 import { Invitado } from '../_modelo/Invitado';
 import { InvitadosService } from '../_servicio/invitados.service';
+import { Cliente } from '../_modelo/Cliente';
 
 @Component({
   selector: 'app-payment',
@@ -51,6 +52,20 @@ export class PaymentComponent implements OnInit {
     maletas:0,
     destino: 0,
   }
+  cliente:Cliente={
+    id: 0,
+    nombre: '',
+    dni: '',
+    email: '',
+    direccion: '',
+    ciudad: '',
+    comunidad: '',
+    codigoPostal: '',
+    password: '',
+    urlImagen:'',
+    role:'',
+  }
+  
 
 
   paymentForm: FormGroup;
@@ -156,6 +171,17 @@ export class PaymentComponent implements OnInit {
             this.email = data.email;
             this.id_cliente=data.id;
             console.log(this.id_cliente);
+            let cliente={
+              id: data.id,
+              nombre: data.nombre,
+              dni: data.dni,
+              email: data.email,
+              direccion: data.direccion,
+              ciudad: data.ciudad,
+              comunidad: data.comunidad,
+              codigoPostal: data.codigoPostal,
+              role:data.role
+            }
           },
           error => {
             console.error('Error al obtener el contenido', error);
@@ -207,7 +233,7 @@ export class PaymentComponent implements OnInit {
               //Meter metodo insercion datos
               let viaje={
                 id:0,
-                id_cliente:this.id_cliente,
+                id_cliente:this.cliente,
                 precio: Number(this.calcularTotal()),
                 tipocalidad:'Ciudad',
                 fecha_inicio: this.datosViaje.departureDate,
@@ -222,7 +248,7 @@ export class PaymentComponent implements OnInit {
                 lengitud:Number(this.datosViaje.lengitud)
               }
               this.viajesS.insertar(viaje).subscribe(() =>{})
-              this.viajesS.listarViajesInsercion(this.email).subscribe((data)=>{
+              /*this.viajesS.listarViajesInsercion(this.email).subscribe((data)=>{
                 this.id_viaje=data.id;
               })
               if(this.formArrayData,length>0){
@@ -239,7 +265,7 @@ export class PaymentComponent implements OnInit {
                 }
                 this.invitadoS.insertar(invitado).subscribe(()=>{})
               }
-            }
+            }*/
 
             }
           }

@@ -1,8 +1,9 @@
+import { Cliente } from "./Cliente";
 import { Destinos } from "./Destinos";
 
 export interface Viajes {
   id: number;
-  id_cliente: number;
+  id_cliente: Cliente;
   precio: number;
   tipocalidad: string;
   fecha_inicio: string;

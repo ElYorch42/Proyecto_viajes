@@ -3,6 +3,7 @@ package com.softtek.Controlador;
 import com.softtek.Dto.ViajesDto;
 import com.softtek.Modelo.Viajes;
 import com.softtek.Servicio.IViajesServicio;
+import com.softtek.Servicio.servicioCliente.IClienteServicio;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,9 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ControladorViajes {
 
-@Autowired
+    @Autowired
     private IViajesServicio servicio;
+    private IClienteServicio servicioC;
 
     @GetMapping
     public ResponseEntity<List<ViajesDto>> obtenerTodos() {

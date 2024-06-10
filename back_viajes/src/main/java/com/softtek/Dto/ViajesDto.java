@@ -2,9 +2,11 @@ package com.softtek.Dto;
 
 import com.softtek.Modelo.Cliente;
 import com.softtek.Modelo.Viajes;
+import com.softtek.Servicio.servicioCliente.impl.ClientesServicio;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 
@@ -12,9 +14,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class ViajesDto {
+    @Autowired
+            private ClientesServicio clienteS;
     int id;
 //    private boolean actual;
-    private int precio;
+    private double precio;
     private String tipocalidad;
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
@@ -62,7 +66,7 @@ public class ViajesDto {
         id_hotel=v.getId_hotel();
         latitud=v.getLatitud();
         lengitud=v.getLengitud();
-        id_cliente=v.getId_cliente();
+        id_cliente= v.getId_cliente();
         return this;
     }
 }

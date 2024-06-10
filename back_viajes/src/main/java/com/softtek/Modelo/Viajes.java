@@ -37,7 +37,7 @@ public class Viajes {
 //    private boolean actual;
 
     @Column(name = "precio")
-    private int precio;
+    private double precio;
 
     @Column(name = "tipocalidad", length = 20)
     private String tipocalidad;
