@@ -25,8 +25,8 @@ public class Viajes {
     @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_cliente_viaje"))
     private Cliente id_cliente;
 
-
-    @OneToMany(mappedBy = "viajeInvitado", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "id_viaje", cascade = CascadeType.ALL)
     List<Invitado> invitados;
 
     @ManyToOne

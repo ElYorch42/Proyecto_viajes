@@ -2,6 +2,7 @@ package com.softtek.Dto;
 
 import com.softtek.Modelo.Cliente;
 import com.softtek.Modelo.Invitado;
+import com.softtek.Modelo.Viajes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,8 @@ public class InvitadoDto {
 
     private String codigoPostal;
 
+    private Viajes id_viaje;
+
     public Invitado castInvitado() {
         Invitado i = new Invitado();
         i.setId(id);
@@ -34,6 +37,7 @@ public class InvitadoDto {
         i.setCiudad(ciudad);
         i.setComunidad(comunidad);
         i.setCodigoPostal(codigoPostal);
+        i.setId_viaje(id_viaje);
         return i;
     }
 
@@ -45,6 +49,7 @@ public class InvitadoDto {
         ciudad=i.getCiudad();
         comunidad=i.getComunidad();
         codigoPostal=i.getCodigoPostal();
+        id_viaje = i.getId_viaje();
         return this;
     }
 }

@@ -29,6 +29,7 @@ import { Destinos } from '../_modelo/Destinos';
 export class PaymentComponent implements OnInit {
   //Variables de la api
 
+  pagadoSucces: boolean = false;
 
   datosViaje: AmadeusDatos = {
     originLocationCode: '',
@@ -51,10 +52,10 @@ export class PaymentComponent implements OnInit {
     actividad2: '',
     actividad3: '',
     precio_actividades: 0,
-    maletas:0,
+    maletas: 0,
     destino: 0,
   }
-  cliente:Cliente={
+  cliente: Cliente = {
     id: 0,
     nombre: '',
     dni: '',
@@ -64,10 +65,10 @@ export class PaymentComponent implements OnInit {
     comunidad: '',
     codigoPostal: '',
     password: '',
-    urlImagen:'',
-    role:'',
+    urlImagen: '',
+    role: '',
   }
-  
+
 
 
   paymentForm: FormGroup;
@@ -75,21 +76,21 @@ export class PaymentComponent implements OnInit {
   card: StripeCardElement | null = null;
   stripe: Stripe | null = null;
   clientSecret: string = '';
-  viaje:Viajes | null = null;
-  id_viaje:number=0;
+  viaje: Viajes | null = null;
+  id_viaje: number = 0;
   formArrayData: FormArray = new FormArray([] as FormControl[]);
   //Variables de la informacion del usuario
   nombre: string = "";
   token: any = "";
   email: string = "";
-  id_cliente:number = 0;
-  destino:Destinos ={
+  id_cliente: number = 0;
+  destino: Destinos = {
     id: 0,
-  codigo_ciudad:'',
-  aeropuerto:'',
-  nombre: '',
-  tipoLocalidad: '',
-  id_pais: 0
+    codigo_ciudad: '',
+    aeropuerto: '',
+    nombre: '',
+    tipoLocalidad: '',
+    id_pais: 0
   };
   //Constructor
 
@@ -98,7 +99,7 @@ export class PaymentComponent implements OnInit {
 
 
 
-  constructor(private destinoS:DestinosService,private hermano: HermanosCVFDService,private invitadoS:InvitadosService,private viajesS: ViajesService, private paymentService: PaymentService, private fb: FormBuilder, private emailService: EmailService, private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
+  constructor(private destinoS: DestinosService, private hermano: HermanosCVFDService, private invitadoS: InvitadosService, private viajesS: ViajesService, private paymentService: PaymentService, private fb: FormBuilder, private emailService: EmailService, private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
     this.paymentForm = this.fb.group({
       amount: [500]
     });
@@ -108,7 +109,7 @@ export class PaymentComponent implements OnInit {
 
 
   async ngOnInit() {
-    this.hermano.currentDataInvitados.subscribe((data) => { 
+    this.hermano.currentDataInvitados.subscribe((data) => {
       this.formArrayData = data
     });
     this.hermano.currentDataAmadeus.subscribe((data) => {
@@ -117,14 +118,14 @@ export class PaymentComponent implements OnInit {
 
 
     })
-    this.destinoS.listarPorId(this.datosViaje.destino).subscribe((data)=>{
-      this.destino=data;
+    this.destinoS.listarPorId(this.datosViaje.destino).subscribe((data) => {
+      this.destino = data;
     })
 
-    
+
     console.log(this.datosViaje);
 
-   
+
 
 
 
@@ -156,7 +157,7 @@ export class PaymentComponent implements OnInit {
           }
         }
       };
-      
+
       this.card = this.elements.create('card', cardStyle);
       this.card.mount('#card-element');
     } else {
@@ -183,9 +184,9 @@ export class PaymentComponent implements OnInit {
           data => {
             this.nombre = data.nombre;
             this.email = data.email;
-            this.id_cliente=data.id;
+            this.id_cliente = data.id;
             console.log(this.id_cliente);
-              this.cliente={
+            this.cliente = {
               id: data.id,
               nombre: data.nombre,
               dni: data.dni,
@@ -194,9 +195,9 @@ export class PaymentComponent implements OnInit {
               ciudad: data.ciudad,
               comunidad: data.comunidad,
               codigoPostal: data.codigoPostal,
-              role:data.role,
-              password:'data.password',
-              urlImagen:data.urlImagen
+              role: data.role,
+              password: 'data.password',
+              urlImagen: data.urlImagen
             }
           },
           error => {
@@ -208,8 +209,15 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  calcularTotal(){
-    return (this.calcularPrecio() + this.datosViaje.precioViaje + (this.datosViaje.precio_actividades*this.datosViaje.adults)+(this.datosViaje.maletas*30)).toFixed(2);
+  sacarSonido() {
+
+    const audio = new Audio();
+    audio.src = "../../assets/sonidopagar.mp3";
+    audio.play();
+  }
+
+  calcularTotal() {
+    return (this.calcularPrecio() + this.datosViaje.precioViaje + (this.datosViaje.precio_actividades * this.datosViaje.adults) + (this.datosViaje.maletas * 30)).toFixed(2);
   }
   async submitPayment() {
     //Metodo que realiza el pago
@@ -247,41 +255,50 @@ export class PaymentComponent implements OnInit {
                 }
               );
               //Meter metodo insercion datos
-              let viaje={
-                id:0,
-                id_cliente:this.cliente,
+              let viaje = {
+                id: 0,
+                id_cliente: this.cliente,
                 precio: Number(this.calcularTotal()),
-                tipocalidad:'Ciudad',
+                tipocalidad: 'Ciudad',
                 fecha_inicio: this.datosViaje.departureDate,
                 fecha_fin: this.datosViaje.returnDate,
-                id_destino:this.destino,
+                id_destino: this.destino,
                 actividad1: this.datosViaje.actividad1,
                 actividad2: this.datosViaje.actividad2,
                 actividad3: this.datosViaje.actividad3,
-                nombre_hotel:this.datosViaje.nombre_hotel,
-                id_hotel:this.datosViaje.id_hotel,
-                latitud:Number(this.datosViaje.latitud),
-                lengitud:Number(this.datosViaje.lengitud)
+                nombre_hotel: this.datosViaje.nombre_hotel,
+                id_hotel: this.datosViaje.id_hotel,
+                latitud: Number(this.datosViaje.latitud),
+                lengitud: Number(this.datosViaje.lengitud)
               }
-              this.viajesS.insertar(viaje).subscribe(() =>{})
-              this.viajesS.listarViajesInsercion(this.email).subscribe((data)=>{
-                this.id_viaje=data.id;
-              })
-              if(this.formArrayData,length>0){
-              for(let i= 1;this.formArrayData.length>i;i++){
-                let invitado:Invitado ={
-                  id: 0,
-                  nombre: this.formArrayData.at(i).get('nombre')?.value,
-                  dni: this.formArrayData.at(i).get('dni')?.value,
-                  direccion: this.formArrayData.at(i).get('direccion')?.value,
-                  ciudad: this.formArrayData.at(i).get('ciudad')?.value,
-                  comunidad: this.formArrayData.at(i).get('comunidad')?.value,
-                  codigoPostal: this.formArrayData.at(i).get('codigoPostal')?.value,
-                  id_viaje: this.id_viaje
+              this.viajesS.insertar(viaje).subscribe(() => { })
+              this.viajesS.listarViajesInsercion(this.email).subscribe((data) => {
+
+                if (this.formArrayData, length > 0) {
+                  for (let i = 1; this.formArrayData.length > i; i++) {
+                    let invitado: Invitado = {
+                      id: 0,
+                      nombre: this.formArrayData.at(i).get('nombre')?.value,
+                      dni: this.formArrayData.at(i).get('dni')?.value,
+                      direccion: this.formArrayData.at(i).get('direccion')?.value,
+                      ciudad: this.formArrayData.at(i).get('ciudad')?.value,
+                      comunidad: this.formArrayData.at(i).get('comunidad')?.value,
+                      codigoPostal: this.formArrayData.at(i).get('codigoPostal')?.value,
+                      id_viaje: data
+                    }
+                    this.invitadoS.insertar(invitado).subscribe(() => { })
+                  }
                 }
-                this.invitadoS.insertar(invitado).subscribe(()=>{})
-              }
-            }
+                this.pagadoSucces = true;
+                this.sacarSonido();
+
+                setTimeout(() => {
+                  this.router.navigate(["inicio"]);
+                }, 3000);
+
+
+              })
+
 
             }
           }
@@ -299,14 +316,14 @@ export class PaymentComponent implements OnInit {
 
   calcularPrecio() {
 
-      let inicio:Date = new Date(this.datosViaje.departureDate);
+    let inicio: Date = new Date(this.datosViaje.departureDate);
 
-      let vuelta:Date = new Date(this.datosViaje.returnDate);
+    let vuelta: Date = new Date(this.datosViaje.returnDate);
 
 
-      let dias =  (((vuelta.getTime() - inicio.getTime())/86400000)-1)*this.datosViaje.adults;
+    let dias = (((vuelta.getTime() - inicio.getTime()) / 86400000) - 1) * this.datosViaje.adults;
 
-     
+
     return this.datosViaje.precioHotel * dias;
   }
 

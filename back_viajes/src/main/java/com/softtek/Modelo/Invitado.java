@@ -37,6 +37,6 @@ public class Invitado {
 
     @ManyToOne
     @JoinColumn(name = "id_viaje",nullable = false, foreignKey = @ForeignKey(name = "FK__invitado_viaje"))
-    private Viajes viajeInvitado;
+    private Viajes id_viaje;
 
 }

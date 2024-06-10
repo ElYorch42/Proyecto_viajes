@@ -11,7 +11,7 @@ public interface IViajesRepo extends IGenericoRepositorio<Viajes,Integer>{
     @Query(value = "select * from Viajes where id_cliente in (select id from Cliente where email= :correo);", nativeQuery = true)
     List<Viajes> consultaPorCliente(@Param("correo") String correo);
 
-    @Query(value = "select * from Viajes where id_cliente in (select id from Cliente where email= :correo ORDER BY id DESC LIMIT 1);",nativeQuery = true)
+    @Query(value = "select * from Viajes where id_cliente in (select id from Cliente where email= :correo )ORDER BY id DESC LIMIT 1;",nativeQuery = true)
     Viajes consultaInsercion(@Param("correo") String correo);
 
 }

@@ -26,6 +26,8 @@ export class MostrarViajesComponent {
   ngOnInit(): void {
 
     this.servicio.listarViajesConCorreo(this.correoDesEnc).subscribe((data) => {
+      console.log( "destinos")
+      console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.servicioCiudad.listarPorId(data[i].id_destino.id).subscribe((data2) => {
           let res = new Date(data[i].fecha_fin).getTime() < new Date(Date.now()).getTime();

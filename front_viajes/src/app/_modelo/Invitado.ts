@@ -1,3 +1,5 @@
+import { Viajes } from "./Viajes";
+
 export interface Invitado {
   id: number;
   nombre: string;
@@ -6,5 +8,5 @@ export interface Invitado {
   ciudad: string;
   comunidad: string;
   codigoPostal: string;
-  id_viaje: number;
+  id_viaje: Viajes;
 }
