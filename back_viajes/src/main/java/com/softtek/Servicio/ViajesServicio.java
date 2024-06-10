@@ -19,4 +19,9 @@ public class ViajesServicio extends CRUD<Viajes, Integer> implements IViajesServ
     public List<Viajes> consultaPorCliente(String correo) {
         return repo.consultaPorCliente(correo);
     }
+
+    @Override
+    public Viajes consultaInsercion(String correo){
+        return repo.consultaInsercion(correo);
+    }
 }

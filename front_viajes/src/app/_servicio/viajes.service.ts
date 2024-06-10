@@ -23,7 +23,9 @@ export class ViajesService {
   listarViajesConCorreo(email:string):Observable<Viajes[]> {
     return this.http.get<Viajes[]>(`${this.url}/viajeCorreoCliente?email=${email}`);   
   }
-
+  listarViajesInsercion(email:string):Observable<Viajes> {
+    return this.http.get<Viajes>(`${this.url}/viajeInsercion?email=${email}`);   
+  }
 
   listarporIdCliente(id:number):Observable<Viajes[]> {
     return this.http.get<Viajes[]>(this.url);

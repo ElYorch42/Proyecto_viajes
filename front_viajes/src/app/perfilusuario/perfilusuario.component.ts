@@ -138,7 +138,6 @@ export class PerfilusuarioComponent {
 
     
     this.service.listarPorEmail(this.emaildesc).subscribe((data) => {
-  
         let clientes: Cliente = {
           id: data.id,
           nombre: this.registerForm.controls["nombre"].value,
@@ -152,8 +151,9 @@ export class PerfilusuarioComponent {
           urlImagen: this.registerForm.controls["urlImagen"].value,
           role:data.role
         };
-         
         this.service.actualizar(clientes).subscribe();
+         
+        
     
     })
    

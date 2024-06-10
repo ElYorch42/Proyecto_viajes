@@ -36,7 +36,7 @@ public class Destinos {
     private Paises paisDestino;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "destinoViaje",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "id_destino",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     List<Viajes> viajes;
 
 }

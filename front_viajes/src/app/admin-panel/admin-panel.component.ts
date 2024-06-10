@@ -157,7 +157,7 @@ export class AdminPanelComponent {
 
     for(let i = 0;i < this.viajeMostrar.length ; i++){
         
-      this.servicioDestinos.listarPorId(this.viajeMostrar[i].destinoViaje).subscribe(data =>{
+      this.servicioDestinos.listarPorId(this.viajeMostrar[i].id_destino).subscribe(data =>{
 
         this.arrayCiudades.push(data.nombre);
       

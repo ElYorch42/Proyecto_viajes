@@ -163,6 +163,7 @@ export class FormularioDatosComponent {
       let amadeusHoteles = hoteles;
 
       let amadeusDatos: AmadeusDatos = {
+        destino:this.destino.id,
         originLocationCode: this.aeSalida,
         destinationLocationCode: this.destino.codigo_ciudad,
         departureDate: this.formulario.controls["fechaSalida"].value,
@@ -188,6 +189,7 @@ export class FormularioDatosComponent {
 
       console.log(amadeusDatos);
       this.hermanos.changeDataAmadeus(amadeusDatos);
+      this.hermanos.changeDataInvitados(this.formArrayData);
       this.router.navigate(['/pago'])
     }, (error) => {
       if (error.status === 500) {

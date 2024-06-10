@@ -49,6 +49,13 @@ public class ControladorViajes {
         }
         return new ResponseEntity<>(ListaViajesDto, HttpStatus.OK);
     }
+    @GetMapping("/viajeInsercion")
+    public ResponseEntity<ViajesDto> consultViajesInsercion(@RequestParam(name = "email") String email) {
+        Viajes viaje = servicio.consultaInsercion(email);
+        ViajesDto ViajesDto = new ViajesDto();
+        ViajesDto=ViajesDto.castViajesADto(viaje);
+        return new ResponseEntity<>(ViajesDto, HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<ViajesDto> insertar(@Valid @RequestBody ViajesDto viajesDto) {
