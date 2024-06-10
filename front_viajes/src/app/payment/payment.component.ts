@@ -43,7 +43,8 @@ export class PaymentComponent implements OnInit {
     actividad1: '',
     actividad2: '',
     actividad3: '',
-    precio_actividades: 0
+    precio_actividades: 0,
+    maletas:0
   }
 
 
@@ -153,14 +154,11 @@ export class PaymentComponent implements OnInit {
   }
 
   calcularTotal(){
-
-
-
-    return this.calcularPrecio() + this.datosViaje.precioViaje + (this.datosViaje.precio_actividades*this.datosViaje.adults);
+    return this.calcularPrecio() + this.datosViaje.precioViaje + (this.datosViaje.precio_actividades*this.datosViaje.adults)+(this.datosViaje.maletas*30).toFixed(2);
   }
   async submitPayment() {
     //Metodo que realiza el pago
-    const amount = this.calcularTotal();
+    const amount = Number(this.calcularTotal());
     if (amount) {
       this.paymentService.createPaymentIntent(amount).subscribe(async (data) => {
         this.clientSecret = data.clientSecret;
@@ -218,10 +216,6 @@ export class PaymentComponent implements OnInit {
       let dias =  (((vuelta.getTime() - inicio.getTime())/86400000)-1)*this.datosViaje.adults;
 
      
-
-      
-
-
     return this.datosViaje.precioHotel * dias;
   }
 

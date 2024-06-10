@@ -19,4 +19,5 @@ export interface AmadeusDatos {
   actividad2: string;
   actividad3: string;
   precio_actividades: number;
+  maletas: number;
 }

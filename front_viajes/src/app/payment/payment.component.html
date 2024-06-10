@@ -1,48 +1,69 @@
+<div
+  class="d-flex justify-content-center align-items-center vh-100"
+  style="background: linear-gradient(to right, #ff7e5f, #feb47b)"
+>
+  <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%">
+    <div class="mb-3 rounded p-3 payment-summary" id="additional-info">
+      <!-- Aquí puedes añadir información adicional -->
 
-<div class="d-flex justify-content-center align-items-center vh-100" style="background: linear-gradient(to right, #ff7e5f, #feb47b);">
-    <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
-      <div class="mb-3 rounded p-3 payment-summary" id="additional-info">
-        <!-- Aquí puedes añadir información adicional -->
-    
-        <div class="container">
-        
-                <div class="col">
-                    <p><i class="bi bi-cash-coin text-primary"></i> <span class="text-dark">Precio del Vuelo:</span> {{datosViaje.precioViaje}}</p>
-                </div>
-         
-          
-                <div class="col">
-                    <p><i class="bi bi-house text-danger"></i> <span class="text-dark">Precio del hotel:</span> {{calcularPrecio()}}</p>
-                </div>
-          
-
-                <div class="col">
-                    <p><i class="bi bi-emoji-smile text-success"></i> <span class="text-dark">Precio de las actividades:</span> {{datosViaje.precio_actividades*datosViaje.adults}}</p>
-                </div>
-         
-          
-                <div class="col bar">
-                    <p><i class="bi bi-currency-dollar text-warning"></i> <span class="text-dark">Total a pagar:</span> {{calcularTotal()}}</p>
-                </div>
-     
+      <div class="container">
+        <div class="col">
+          <p>
+            <i class="bi bi-cash-coin text-primary"></i>
+            <span class="text-dark">Precio del Vuelo:</span>
+            {{ (datosViaje.precioViaje + datosViaje.maletas * 30).toFixed(2) }}
+          </p>
         </div>
 
+        <div class="col">
+          <p>
+            <i class="bi bi-house text-danger"></i>
+            <span class="text-dark">Precio del hotel:</span>
+            {{ calcularPrecio().toFixed(2) }}
+          </p>
+        </div>
+
+        <div class="col">
+          <p>
+            <i class="bi bi-emoji-smile text-success"></i>
+            <span class="text-dark">Precio de las actividades:</span>
+            {{ (datosViaje.precio_actividades * datosViaje.adults).toFixed(2) }}
+          </p>
+        </div>
+
+        <div class="col bar">
+          <p>
+            <i class="bi bi-currency-dollar text-warning"></i>
+            <span class="text-dark">Total a pagar:</span> {{ calcularTotal() }}
+          </p>
+        </div>
+      </div>
     </div>
     <h6 class="text-center mt-3">Por favor, completa los detalles del pago</h6>
-    
-      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
-        <div class="mb-3">
-            <label for="cardholder-name" class="form-label">Nombre del propietario</label>
-            <input id="cardholder-name" formControlName="cardholderName" class="form-control" type="text" placeholder="Nombre del propietario">
-        </div>
-        <div class="mb-3">
-          <label for="card-element" class="form-label">Numero de la tarjeta</label>
-          <div id="card-element" class="form-control"></div>
-        </div>
-        <button type="submit" class="btn btn-primary w-100 mt-3">
-          <i class="bi bi-arrow-right">Pay</i>
-        </button>
-        <div id="card-errors" role="alert" class="text-danger mt-3"></div>
-      </form>
-    </div>
+
+    <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+      <div class="mb-3">
+        <label for="cardholder-name" class="form-label"
+          >Nombre del propietario</label
+        >
+        <input
+          id="cardholder-name"
+          formControlName="cardholderName"
+          class="form-control"
+          type="text"
+          placeholder="Nombre del propietario"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="card-element" class="form-label"
+          >Numero de la tarjeta</label
+        >
+        <div id="card-element" class="form-control"></div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 mt-3">
+        <i class="bi bi-arrow-right">Pay</i>
+      </button>
+      <div id="card-errors" role="alert" class="text-danger mt-3"></div>
+    </form>
   </div>
+</div>

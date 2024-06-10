@@ -44,7 +44,8 @@ export class HermanosCVFDService {
     actividad1: '',
     actividad2: '',
     actividad3: '',
-    precio_actividades: 0
+    precio_actividades: 0,
+    maletas: 0
   }
 
   private dataSourceAmadeus = new BehaviorSubject<AmadeusDatos>(this.defaultAmadeus);

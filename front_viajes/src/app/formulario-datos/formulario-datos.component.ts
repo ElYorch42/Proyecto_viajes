@@ -124,6 +124,12 @@ export class FormularioDatosComponent {
     console.log(this.formulario.controls["fechaLlegada"].value);
     console.log(this.formArrayData.length);
     console.log(this.formArrayData.value);
+    let numMaletas=0;
+    
+    for (let index = 0; index < this.formArrayData.length; index++) {
+      numMaletas += Number(this.formArrayData.at(index).get("maletas")?.value);
+    }
+
     let amadeusViaje: AmadeusViaje = {
       originLocationCode: 'MAD',
       destinationLocationCode: this.destino.codigo_ciudad,
@@ -132,7 +138,6 @@ export class FormularioDatosComponent {
       adults: this.formArrayData.length,
       nonStop: false
     };
-    let preciodelViaje: number = 0;
     let amadeusHoteles: AmadeusHoteles = {
       cityCode: this.destino.codigo_ciudad,
       ratings: parseInt(this.formulario.controls["ratings"].value),
@@ -177,7 +182,8 @@ export class FormularioDatosComponent {
         actividad1: amadeusHoteles.actividad1,
         actividad2: amadeusHoteles.actividad2,
         actividad3: amadeusHoteles.actividad3,
-        precio_actividades: amadeusHoteles.precio_actividades
+        precio_actividades: amadeusHoteles.precio_actividades,
+        maletas: numMaletas
       };
 
       console.log(amadeusDatos);
@@ -187,8 +193,6 @@ export class FormularioDatosComponent {
       if (error.status === 500) {
 
         let mensaje: string = "No hay hoteles de " + this.formulario.controls['ratings'].value + " estrellas en la fecha seleccionada";
-
-
 
         alert(mensaje);
       } else {
