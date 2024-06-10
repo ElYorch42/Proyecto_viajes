@@ -30,37 +30,37 @@ export class ComienzoViajeComponent implements OnInit {
     {
       colorear:false,
       name: 'Asia',
-      description: 'Description of your first project',
+      description: 'Se extiende sobre la mitad oriental del hemisferio norte, desde el océano Glacial Ártico, al norte, hasta el océano Índico, al sur.',
       imageUrl: '../../assets/asia.png'
     },
     {
       colorear:false,
       name: 'América del Norte',
-      description: 'Description of your fourth endeavor',
+      description: 'Se extiende en el Hemisferio Occidental desde el Océano Glacial Ártico por el norte, hasta la frontera con Centroamérica por el sur',
       imageUrl: '../../assets/americaN.png'
     },
     {
       colorear:false,
       name: 'América del Sur',
-      description: 'Description of your second work',
+      description: 'Se encuentra al sur de América Central, y está rodeada por el océano Pacífico en el oeste y el océano Atlántico en el este',
       imageUrl: '../../assets/americaS.png'
     },
     {
       colorear:false,
       name: 'África',
-      description: 'Description of your second work',
+      description: 'Se encuentra entre el mar Mediterráneo lo separa al norte y la Antártida al sur',
       imageUrl: '../../assets/africa.png'
     },
     {
       colorear:false,
       name: 'Europa',
-      description: 'Description of your third creation',
+      description: 'Se encuentra entre el mar Mediterráneo lo separa al sur y el océano Ártico al norte',
       imageUrl: '../../assets/europa.png'
     },
     {
       colorear:false,
       name: 'Oceanía',
-      description: 'Description of your third creation',
+      description: 'Cubre una región macro-geográfica situada entre Asia y América',
       imageUrl: '../../assets/australia.png'
     }
   ];
