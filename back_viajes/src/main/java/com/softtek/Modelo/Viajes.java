@@ -23,21 +23,21 @@ public class Viajes {
 
     @ManyToOne
     @JoinColumn(name = "id_cliente",nullable = false, foreignKey = @ForeignKey(name = "FK_cliente_viaje"))
-    private Cliente clienteViaje;
+    private Cliente id_cliente;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "viajeInvitado",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "viajeInvitado", cascade = CascadeType.ALL)
     List<Invitado> invitados;
 
     @ManyToOne
     @JoinColumn(name = "id_destino",nullable = false, foreignKey = @ForeignKey(name = "FK_destino_Actividad"))
-    private Destinos destinoViaje;
+    private Destinos id_destino;
 
 //    @Column(name = "actual")
 //    private boolean actual;
 
     @Column(name = "precio")
-    private int precio;
+    private double precio;
 
     @Column(name = "tipocalidad", length = 20)
     private String tipocalidad;

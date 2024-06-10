@@ -125,8 +125,14 @@ public class AmadeusController {
                     case 1:
                         amadeusHotel.setPrecio(Math.random()*(40-20)+20);
                         break;
+                    case 2:
+                        amadeusHotel.setPrecio(Math.random()*(50-35)+35);
+                        break;
                     case 3:
                         amadeusHotel.setPrecio(Math.random()*(80-50)+50);
+                        break;
+                    case 4:
+                        amadeusHotel.setPrecio(Math.random()*(100-70)+70);
                         break;
                     case 5:
                         amadeusHotel.setPrecio(Math.random()*(150-100)+100);
@@ -203,13 +209,19 @@ public class AmadeusController {
                     amadeusDatos.setLatitud(hotels[0].getGeoCode().getLongitude());
                     switch (amadeusDatos.getRatings()){
                         case 1:
-                            amadeusDatos.setPrecioHotel(Math.random()*(50-100)+50);
+                            amadeusDatos.setPrecioHotel(Math.random()*(40-20)+20);
+                            break;
+                        case 2:
+                            amadeusDatos.setPrecioHotel(Math.random()*(50-35)+35);
                             break;
                         case 3:
-                            amadeusDatos.setPrecioHotel(Math.random()*(120-200)+120);
+                            amadeusDatos.setPrecioHotel(Math.random()*(80-50)+50);
+                            break;
+                        case 4:
+                            amadeusDatos.setPrecioHotel(Math.random()*(100-70)+70);
                             break;
                         case 5:
-                            amadeusDatos.setPrecioHotel(Math.random()*(400-800)+400);
+                            amadeusDatos.setPrecioHotel(Math.random()*(150-100)+100);
                             break;
                         default:
                             amadeusDatos.setPrecioHotel(100);

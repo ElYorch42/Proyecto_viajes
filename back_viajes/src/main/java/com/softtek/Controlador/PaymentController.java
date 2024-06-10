@@ -26,7 +26,7 @@ public class PaymentController {
 
     @PostMapping("/create-payment-intent")
     public Map<String, String> createPaymentIntent(@RequestBody Map<String, Object> data) throws Exception {
-        int amount = (int) data.get("amount");
+        double amount = (double) data.get("amount");
 
         PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                 .setAmount((long) amount)

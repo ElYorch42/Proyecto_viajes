@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AmadeusDatos } from '../_modelo/AmadeusDatos';
+import { FormArray, FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,9 @@ export class HermanosCVFDService {
     actividad1: '',
     actividad2: '',
     actividad3: '',
-    precio_actividades: 0
+    precio_actividades: 0,
+    maletas: 0,
+    destino:0
   }
 
   private dataSourceAmadeus = new BehaviorSubject<AmadeusDatos>(this.defaultAmadeus);
@@ -52,5 +55,13 @@ export class HermanosCVFDService {
 
   changeDataAmadeus(data: AmadeusDatos) {
     this.dataSourceAmadeus.next(data);
+  }
+  formArrayData: FormArray = new FormArray([] as FormControl[]);
+ 
+  private dataSourceInvitados = new BehaviorSubject<FormArray>(this.formArrayData);
+  currentDataInvitados = this.dataSourceInvitados.asObservable();
+ 
+  changeDataInvitados(data: FormArray) {
+    this.dataSourceInvitados.next(data);
   }
 }

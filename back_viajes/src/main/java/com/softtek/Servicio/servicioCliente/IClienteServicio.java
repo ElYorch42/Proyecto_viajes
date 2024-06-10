@@ -11,4 +11,5 @@ public interface IClienteServicio extends ICRUD<Cliente,Integer> {
     Optional<Cliente> findByEmail(String string);
     Cliente consultaPorCorreo(String correo);
     Cliente update(Cliente cliente);
+    Optional<Cliente> findById(int id);
 }

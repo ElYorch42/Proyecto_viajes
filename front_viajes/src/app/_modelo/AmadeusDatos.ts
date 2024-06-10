@@ -1,4 +1,5 @@
 export interface AmadeusDatos {
+  destino: number;
   originLocationCode: string;
   destinationLocationCode: string;
   departureDate: string;
@@ -19,4 +20,5 @@ export interface AmadeusDatos {
   actividad2: string;
   actividad3: string;
   precio_actividades: number;
+  maletas: number;
 }

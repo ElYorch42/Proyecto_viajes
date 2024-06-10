@@ -63,13 +63,16 @@ export class FormularioDatosComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
+   
+
+
 
 
 
     this.hermano.currentData.subscribe(data => this.continenteAleatorio = data);
-    console.log(this.continenteAleatorio);
+   
     this.hermano.currentData2.subscribe(data => this.aeSalida = data);
-    console.log(this.aeSalida);
+    
 
 
     this.hermano.currentData.subscribe()
@@ -79,7 +82,7 @@ export class FormularioDatosComponent {
     }
 
     this.destinoServicio.consultaPorContinenteAleatoria(this.continenteAleatorio).subscribe(datos => {
-      console.log(datos);
+      
       this.destino = {
         id: datos.id,
         codigo_ciudad: datos.codigo_ciudad,
@@ -89,7 +92,7 @@ export class FormularioDatosComponent {
         id_pais: datos.id_pais
       };
       //this.destino = datos;
-      console.log(this.destino);
+     
 
 
 
@@ -119,11 +122,12 @@ export class FormularioDatosComponent {
   }
 
   mirar() {
-    console.log(this.formulario.controls["ratings"].value);
-    console.log(this.formulario.controls["fechaSalida"].value);
-    console.log(this.formulario.controls["fechaLlegada"].value);
-    console.log(this.formArrayData.length);
-    console.log(this.formArrayData.value);
+    let numMaletas=0;
+    
+    for (let index = 0; index < this.formArrayData.length; index++) {
+      numMaletas += Number(this.formArrayData.at(index).get("maletas")?.value);
+    }
+
     let amadeusViaje: AmadeusViaje = {
       originLocationCode: 'MAD',
       destinationLocationCode: this.destino.codigo_ciudad,
@@ -132,7 +136,6 @@ export class FormularioDatosComponent {
       adults: this.formArrayData.length,
       nonStop: false
     };
-    let preciodelViaje: number = 0;
     let amadeusHoteles: AmadeusHoteles = {
       cityCode: this.destino.codigo_ciudad,
       ratings: parseInt(this.formulario.controls["ratings"].value),
@@ -158,6 +161,7 @@ export class FormularioDatosComponent {
       let amadeusHoteles = hoteles;
 
       let amadeusDatos: AmadeusDatos = {
+        destino:this.destino.id,
         originLocationCode: this.aeSalida,
         destinationLocationCode: this.destino.codigo_ciudad,
         departureDate: this.formulario.controls["fechaSalida"].value,
@@ -177,18 +181,18 @@ export class FormularioDatosComponent {
         actividad1: amadeusHoteles.actividad1,
         actividad2: amadeusHoteles.actividad2,
         actividad3: amadeusHoteles.actividad3,
-        precio_actividades: amadeusHoteles.precio_actividades
+        precio_actividades: amadeusHoteles.precio_actividades,
+        maletas: numMaletas
       };
 
-      console.log(amadeusDatos);
+  
       this.hermanos.changeDataAmadeus(amadeusDatos);
+      this.hermanos.changeDataInvitados(this.formArrayData);
       this.router.navigate(['/pago'])
     }, (error) => {
       if (error.status === 500) {
 
         let mensaje: string = "No hay hoteles de " + this.formulario.controls['ratings'].value + " estrellas en la fecha seleccionada";
-
-
 
         alert(mensaje);
       } else {

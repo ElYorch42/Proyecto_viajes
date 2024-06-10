@@ -40,6 +40,9 @@ export class FormularioInvitadosComponent {
 
 
   ngOnInit(): void {
+
+   
+
     let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     console.log("token2-> " + token)
     let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
@@ -69,6 +72,7 @@ export class FormularioInvitadosComponent {
       });
 
       this.datos().push(anfritrion);
+      
     })
     this.formulario.valueChanges.subscribe(()=>{
       this.childemiter.emit(this.formArray);
@@ -77,15 +81,12 @@ export class FormularioInvitadosComponent {
 
   }
 
-
-
-
-
   datos(): FormArray {
     return this.formulario.get("arrayForm") as FormArray;
   }
 
   addDatos() {
+   
     const datos = this.fb.group({
       nombre: ['', [Validators.required]],
       dni: ['', [Validators.required, dniNieValidator()]],
