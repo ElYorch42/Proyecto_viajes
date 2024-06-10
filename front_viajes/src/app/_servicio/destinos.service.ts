@@ -23,12 +23,12 @@ export class DestinosService {
   }
 
   insertar(p:Destinos) {
-    console.log(p);
+ 
     return this.http.post(this.url,p);
   }
 
   actualizar(p:Destinos) {
-    console.log(p);
+  
     return this.http.put(this.url,p);
   }
 

@@ -6,55 +6,67 @@
       <p>Viajes a lo desconocido</p>
     </a>
   </div>
-  
-  
-     
-      <h5  class="d-md-none" style="cursor: pointer !important;padding-right: 40px;" (click)="toggleCollapse1()">
-    @if (cambiarLogoBool == false) {       
-        <i (click)="cambiarlogot()"  class="nav-item me-auto bi bi-list"></i>
+
+
+
+  <h5 class="d-md-none" style="cursor: pointer !important;padding-right: 40px;" (click)="toggleCollapse1()">
+    @if (cambiarLogoBool == false) {
+    <i (click)="cambiarlogot()" class="nav-item me-auto bi bi-list"></i>
     }@else{
-      <i (click)="cambiarlogo()" class="nav-item me-auto bi bi-x-lg"></i>
-      
+    <i (click)="cambiarlogo()" class="nav-item me-auto bi bi-x-lg"></i>
+
     }
-      </h5>
-
-     
-      @if (isCollapsed1) {
-      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item contenido me-auto">
+  </h5>
 
 
-        <button type="button" class="btn btncambiar" routerLink="#">Inicio</button>
-        <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
-      </div>
-      <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item  ">
-        @if (token == null) {
-          <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i class="bi bi-person"  ></i></button>
-        }@else {
-  
-          <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">{{nombre}}  <i class="bi bi-person"></i></button>
-      
-        } 
-      </div>
-      
-    }@else{
-      
-      <div  class="d-md-block nav-item contenido mx-auto row">
+  @if (isCollapsed1) {
+  <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item contenido me-auto">
 
-        
-        <button type="button" class="btn btncambiar" routerLink="#">Inicio</button>
-        
-        
-        <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
-        
-        @if (token == null) {
-        <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i class="bi bi-person"  ></i></button>
-      }@else {
 
-        <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">{{nombre}}<i class="bi bi-person"  ></i></button>
+    <button type="button" class="btn btncambiar" routerLink="#">Inicio</button>
+    <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
+  </div>
+  <div [ngClass]="{'collapse': isCollapsed1, 'show': !isCollapsed1}" class="d-md-block nav-item  ">
+    @if (token == null) {
+    <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i
+        class="bi bi-person"></i></button>
+    }@else {
 
-      } 
-      </div>
-      
+    @if(esAdmin){
+
+    <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/admin']">Admin panel</button>
     }
-     
-  </nav>
+
+    <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">{{nombre}} <i
+        class="bi bi-person"></i></button>
+
+    }
+
+
+
+  </div>
+
+  }@else{
+
+  <div class="d-md-block nav-item contenido mx-auto row">
+
+
+    <button type="button" class="btn btncambiar" routerLink="#">Inicio</button>
+
+
+    <button type="button" class="btn btncambiar" routerLink="#">Viajes</button>
+
+    @if (token == null) {
+    <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/inicio_sesion']">Iniciar Sesión<i
+        class="bi bi-person"></i></button>
+    }@else {
+
+    <button type="button" class="btn btncambiar btncambiar2" [routerLink]="[ '/perfil_usuario']">{{nombre}}<i
+        class="bi bi-person"></i></button>
+
+    }
+  </div>
+
+  }
+
+</nav>

@@ -126,7 +126,7 @@ export class PaymentComponent implements OnInit {
 
    
 
-    console.log( this.calcularPrecio());
+
 
     //Implementacion de la api 
     this.stripe = await loadStripe('pk_test_51PM5FeRvfQwpBftnSmANSdvNfNEq73nbidnLsSadel1mtZVeIG4lDldegGPWBT4k2tf4CwEc2S3YecCVwBCiCdzs00GXjBBqbO');
@@ -164,7 +164,7 @@ export class PaymentComponent implements OnInit {
     }
     //Desencripto el token
     this.token = sessionStorage.getItem(entorno.TOKEN_SESSION);
-    console.log("token-> " + this.token)
+
     let emaildesc;
     let tokenDecodificado = this.token !== null ? this.jwtHelper.decodeToken(this.token) : null;
 

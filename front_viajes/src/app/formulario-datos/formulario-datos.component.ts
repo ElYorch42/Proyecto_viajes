@@ -63,13 +63,16 @@ export class FormularioDatosComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
 
+   
+
+
 
 
 
     this.hermano.currentData.subscribe(data => this.continenteAleatorio = data);
-    console.log(this.continenteAleatorio);
+   
     this.hermano.currentData2.subscribe(data => this.aeSalida = data);
-    console.log(this.aeSalida);
+    
 
 
     this.hermano.currentData.subscribe()
@@ -79,7 +82,7 @@ export class FormularioDatosComponent {
     }
 
     this.destinoServicio.consultaPorContinenteAleatoria(this.continenteAleatorio).subscribe(datos => {
-      console.log(datos);
+      
       this.destino = {
         id: datos.id,
         codigo_ciudad: datos.codigo_ciudad,
@@ -89,7 +92,7 @@ export class FormularioDatosComponent {
         id_pais: datos.id_pais
       };
       //this.destino = datos;
-      console.log(this.destino);
+     
 
 
 
@@ -119,11 +122,6 @@ export class FormularioDatosComponent {
   }
 
   mirar() {
-    console.log(this.formulario.controls["ratings"].value);
-    console.log(this.formulario.controls["fechaSalida"].value);
-    console.log(this.formulario.controls["fechaLlegada"].value);
-    console.log(this.formArrayData.length);
-    console.log(this.formArrayData.value);
     let numMaletas=0;
     
     for (let index = 0; index < this.formArrayData.length; index++) {
@@ -187,7 +185,7 @@ export class FormularioDatosComponent {
         maletas: numMaletas
       };
 
-      console.log(amadeusDatos);
+  
       this.hermanos.changeDataAmadeus(amadeusDatos);
       this.hermanos.changeDataInvitados(this.formArrayData);
       this.router.navigate(['/pago'])

@@ -23,7 +23,7 @@ export class InvitadosService {
   }
 
   insertar(p:Invitado) {
-    console.log(p);
+   
     return this.http.post(this.url,p);
   }
 

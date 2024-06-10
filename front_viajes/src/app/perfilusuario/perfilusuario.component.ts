@@ -30,7 +30,7 @@ export class PerfilusuarioComponent {
 
   constructor(private fb: FormBuilder, private service: ClienteService, private route: Router,private jwtHelper:JwtHelperService) {
     this.registerForm = this.fb.group({
-      dni: ['', [Validators.required,dniNieValidator()]],
+      dni: ['', [Validators.required,dniNieValidator()]], 
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
@@ -55,7 +55,7 @@ export class PerfilusuarioComponent {
 
     
     let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
-    console.log("token2-> " + token)
+  
     let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
 
     if (token != null) {
@@ -68,14 +68,15 @@ export class PerfilusuarioComponent {
     if (tokenDecodificado != null) {
       this.emaildesc = tokenDecodificado.sub;
     }
-    console.log("email: " + this.emaildesc)
 
-    this.imagen = this.registerForm.controls['urlImagen'].value;
+
 
     this.service.listarPorEmail(this.emaildesc).subscribe((data) => {
       this.registerForm = new FormGroup({
         'dni': new FormControl(data.dni),
         'nombre': new FormControl(data.nombre),
+        'password':new FormControl(data.password),
+        'role':new FormControl(data.role),
         'apellidos': new FormControl(null),
         'direccion': new FormControl(data.direccion),
         'ciudad': new FormControl(data.ciudad),
@@ -87,8 +88,6 @@ export class PerfilusuarioComponent {
 
       });
       this.imagen = this.registerForm.controls["urlImagen"].value;
-
-    
     })
 
 

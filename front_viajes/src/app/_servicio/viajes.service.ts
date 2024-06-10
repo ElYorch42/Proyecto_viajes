@@ -37,12 +37,12 @@ export class ViajesService {
   }
 
   insertar(p:Viajes) {
-    console.log(p);
+   
     return this.http.post(this.url,p);
   }
 
   actualizar(p:Viajes) {
-    console.log(p);
+   
     return this.http.put(this.url,p);
   }
 

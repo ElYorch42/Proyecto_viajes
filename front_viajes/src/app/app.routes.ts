@@ -12,6 +12,7 @@ import { RecuperarContraComponent } from './iniciar-sesion/recuperar-contra/recu
 import { PaymentComponent } from './payment/payment.component';
 import { FormularioDatosComponent } from './formulario-datos/formulario-datos.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { guardAdminGuard } from './_servicio/guard-admin.guard';
 
 export const routes: Routes = [
     {path:'inicio' , component:InicioComponent},
@@ -19,7 +20,10 @@ export const routes: Routes = [
     {path:'comienzo_viajes' , component:ComienzoViajeComponent,
     canActivate:[guardSesionGuard] 
     },
-    {path:'admin' , component:AdminPanelComponent},
+    {path:'admin' , component:AdminPanelComponent,
+        
+        canActivate:[guardAdminGuard,guardSesionGuard]
+    },
     {path:'sobre_nosotros' , component:SobreNostrosComponent},
     {path:'reset_password' , component:RecuperarContraComponent},
     {path:'perfil_usuario' , component:PerfilusuarioComponent,
