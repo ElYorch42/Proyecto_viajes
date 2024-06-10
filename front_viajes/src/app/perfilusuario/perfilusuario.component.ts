@@ -30,7 +30,7 @@ export class PerfilusuarioComponent {
 
   constructor(private fb: FormBuilder, private service: ClienteService, private route: Router,private jwtHelper:JwtHelperService) {
     this.registerForm = this.fb.group({
-      dni: ['', [Validators.required,dniNieValidator()]],
+      dni: ['', [Validators.required,dniNieValidator()]], 
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
@@ -70,12 +70,13 @@ export class PerfilusuarioComponent {
     }
     console.log("email: " + this.emaildesc)
 
-    this.imagen = this.registerForm.controls['urlImagen'].value;
 
     this.service.listarPorEmail(this.emaildesc).subscribe((data) => {
       this.registerForm = new FormGroup({
         'dni': new FormControl(data.dni),
         'nombre': new FormControl(data.nombre),
+        'password':new FormControl(data.password),
+        'role':new FormControl(data.role),
         'apellidos': new FormControl(null),
         'direccion': new FormControl(data.direccion),
         'ciudad': new FormControl(data.ciudad),
@@ -87,8 +88,6 @@ export class PerfilusuarioComponent {
 
       });
       this.imagen = this.registerForm.controls["urlImagen"].value;
-
-    
     })
 
 

@@ -153,9 +153,6 @@ export class PaymentComponent implements OnInit {
   }
 
   calcularTotal(){
-
-
-
     return this.calcularPrecio() + this.datosViaje.precioViaje + (this.datosViaje.precio_actividades*this.datosViaje.adults);
   }
   async submitPayment() {

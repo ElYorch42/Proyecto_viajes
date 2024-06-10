@@ -40,6 +40,9 @@ export class FormularioInvitadosComponent {
 
 
   ngOnInit(): void {
+
+   
+
     let token = sessionStorage.getItem(entorno.TOKEN_SESSION);
     console.log("token2-> " + token)
     let tokenDecodificado = token !== null ? this.jwtHelper.decodeToken(token) : null;
@@ -86,6 +89,7 @@ export class FormularioInvitadosComponent {
   }
 
   addDatos() {
+   
     const datos = this.fb.group({
       nombre: ['', [Validators.required]],
       dni: ['', [Validators.required, dniNieValidator()]],

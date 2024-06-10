@@ -4,21 +4,25 @@
         <div class="divListar col-12 col-xl-8">
             <div class="texto">
                 @if (viajeoperfil == false) {
+                    <form [formGroup]="formulario">
                 <div class="cliente-container">
-                    <input type="number" placeholder="{{clienteMostrar.id}}" readonly>
-                    <input type="text" placeholder="{{clienteMostrar.nombre}}">
-                    <input type="text" placeholder="{{clienteMostrar.dni}}">
-                    <input type="text" placeholder="{{clienteMostrar.email}}">
-                    <input type="text" placeholder="{{clienteMostrar.direccion}}">
-                    <input type="text" placeholder="{{clienteMostrar.ciudad}}">
-                    <input type="text" placeholder="{{clienteMostrar.comunidad}}">
-                    <input type="number" placeholder="{{clienteMostrar.codigoPostal}}">
-                    <input type="text" placeholder="{{clienteMostrar.role}}">
-                    <input type="text" placeholder="{{clienteMostrar.password}}">
-                    <input type="text" placeholder="{{clienteMostrar.urlImagen}}">
-                    <button class="btn btn-dark">Actualizar</button>
+                    <input type="number" placeholder="id" readonly>
+                    <input type="text" placeholder="DNI" formControlName = "dni">
+                    <input type="text" placeholder="nombre" formControlName = "nombre">
+                    <input type="text" placeholder="email" formControlName = "email">
+                    <input type="text" placeholder="direccion" formControlName = "direccion">
+                    <input type="text" placeholder="ciudad" formControlName = "ciudad">
+                    <input type="text" placeholder="comunidad" formControlName = "comunidad">
+                    <input type="number" placeholder="codigoPostal" formControlName = "codigoPostal">
+                    <input type="text" placeholder="role" formControlName = "role">
+                    <input type="text" placeholder="password" formControlName = "password">
+            
+                    <input type="text" id="imagenUrl" placeholder="urlImagen" formControlName = "urlImagen">
+                    <button class="btn btn-dark" (click)="actualizar()">Actualizar</button>
+                    
                 </div>
                 <button (click)="mostrarViajes()" class="btn btn-dark">Mostrar Viajes</button>
+            </form>
                 }@else if(viajeoperfil == true){
 
 
@@ -40,18 +44,15 @@
                     <input type="text" placeholder="{{item.actividad3}}" readonly>
                     <input type="text" placeholder="{{arrayCiudades[$index]}}" readonly>
 
-                    <button class="btn btn-dark" (click)="eliminarViajes(item.id)">eliminiar</button>
+                    <button class="btn btn-dark" >Mostrar Invitados</button>
+                    <button class="btn btn-danger" (click)="eliminarViajes(item.id)">eliminiar</button>
+               
 
                 </div>
 
 
 
                 }
-
-
-
-
-
                 }
             </div>
         </div>

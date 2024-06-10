@@ -26,7 +26,7 @@ public class Viajes {
     private Cliente clienteViaje;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "viajeInvitado",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "viajeInvitado",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     List<Invitado> invitados;
 
     @ManyToOne

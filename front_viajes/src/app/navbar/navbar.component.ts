@@ -24,6 +24,7 @@ export class NavbarComponent {
 
   isCollapsed1: boolean = true;
   cambiarLogoBool: boolean = false;
+  esAdmin = false;
 
   constructor(private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
 
@@ -53,10 +54,16 @@ export class NavbarComponent {
       emaildesc = tokenDecodificado.sub;
     }
 
+
     if (tokenDecodificado) {
       this.service.listarPorEmail(emaildesc).subscribe(
         data => {
           this.nombre = data.nombre;
+
+          if(data.role == "ADMIN"){
+            this.esAdmin = true;
+
+          }
 
 
 

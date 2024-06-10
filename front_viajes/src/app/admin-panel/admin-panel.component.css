@@ -111,3 +111,7 @@
     transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el mouse */
 }
+
+#imagenUrl{
+    min-width: 30%;
+}
