@@ -1,6 +1,7 @@
 package com.softtek.Dto;
 
 import com.softtek.Modelo.Cliente;
+import com.softtek.Modelo.Destinos;
 import com.softtek.Modelo.Viajes;
 import com.softtek.Servicio.servicioCliente.impl.ClientesServicio;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class ViajesDto {
     private String tipocalidad;
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
-    private int id_destino;
+    private Destinos id_destino;
     private String actividad1;
     private String actividad2;
     private String actividad3;
@@ -48,6 +49,7 @@ public class ViajesDto {
         v.setLatitud(latitud);
         v.setLengitud(lengitud);
         v.setId_cliente(id_cliente);
+        v.setId_destino(id_destino);
         return v;
     }
 
@@ -58,7 +60,7 @@ public class ViajesDto {
         tipocalidad = v.getTipocalidad();
         fecha_inicio = v.getFecha_inicio();
         fecha_fin = v.getFecha_fin();
-        id_destino = v.getId_destino().getId();
+        id_destino = v.getId_destino();
         actividad1 = v.getActividad1();
         actividad2 = v.getActividad2();
         actividad3 = v.getActividad3();

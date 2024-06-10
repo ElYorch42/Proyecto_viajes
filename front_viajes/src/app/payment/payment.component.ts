@@ -16,6 +16,8 @@ import { ViajesService } from '../_servicio/viajes.service';
 import { Invitado } from '../_modelo/Invitado';
 import { InvitadosService } from '../_servicio/invitados.service';
 import { Cliente } from '../_modelo/Cliente';
+import { DestinosService } from '../_servicio/destinos.service';
+import { Destinos } from '../_modelo/Destinos';
 
 @Component({
   selector: 'app-payment',
@@ -81,6 +83,14 @@ export class PaymentComponent implements OnInit {
   token: any = "";
   email: string = "";
   id_cliente:number = 0;
+  destino:Destinos ={
+    id: 0,
+  codigo_ciudad:'',
+  aeropuerto:'',
+  nombre: '',
+  tipoLocalidad: '',
+  id_pais: 0
+  };
   //Constructor
 
 
@@ -88,7 +98,7 @@ export class PaymentComponent implements OnInit {
 
 
 
-  constructor(private hermano: HermanosCVFDService,private invitadoS:InvitadosService,private viajesS: ViajesService, private paymentService: PaymentService, private fb: FormBuilder, private emailService: EmailService, private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
+  constructor(private destinoS:DestinosService,private hermano: HermanosCVFDService,private invitadoS:InvitadosService,private viajesS: ViajesService, private paymentService: PaymentService, private fb: FormBuilder, private emailService: EmailService, private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
     this.paymentForm = this.fb.group({
       amount: [500]
     });
@@ -107,7 +117,11 @@ export class PaymentComponent implements OnInit {
 
 
     })
+    this.destinoS.listarPorId(this.datosViaje.destino).subscribe((data)=>{
+      this.destino=data;
+    })
 
+    
     console.log(this.datosViaje);
 
    
@@ -142,7 +156,7 @@ export class PaymentComponent implements OnInit {
           }
         }
       };
-
+      
       this.card = this.elements.create('card', cardStyle);
       this.card.mount('#card-element');
     } else {
@@ -171,7 +185,7 @@ export class PaymentComponent implements OnInit {
             this.email = data.email;
             this.id_cliente=data.id;
             console.log(this.id_cliente);
-            let cliente={
+              this.cliente={
               id: data.id,
               nombre: data.nombre,
               dni: data.dni,
@@ -180,7 +194,9 @@ export class PaymentComponent implements OnInit {
               ciudad: data.ciudad,
               comunidad: data.comunidad,
               codigoPostal: data.codigoPostal,
-              role:data.role
+              role:data.role,
+              password:'data.password',
+              urlImagen:data.urlImagen
             }
           },
           error => {
@@ -238,7 +254,7 @@ export class PaymentComponent implements OnInit {
                 tipocalidad:'Ciudad',
                 fecha_inicio: this.datosViaje.departureDate,
                 fecha_fin: this.datosViaje.returnDate,
-                id_destino:this.datosViaje.destino,
+                id_destino:this.destino,
                 actividad1: this.datosViaje.actividad1,
                 actividad2: this.datosViaje.actividad2,
                 actividad3: this.datosViaje.actividad3,
@@ -248,7 +264,7 @@ export class PaymentComponent implements OnInit {
                 lengitud:Number(this.datosViaje.lengitud)
               }
               this.viajesS.insertar(viaje).subscribe(() =>{})
-              /*this.viajesS.listarViajesInsercion(this.email).subscribe((data)=>{
+              this.viajesS.listarViajesInsercion(this.email).subscribe((data)=>{
                 this.id_viaje=data.id;
               })
               if(this.formArrayData,length>0){
@@ -265,7 +281,7 @@ export class PaymentComponent implements OnInit {
                 }
                 this.invitadoS.insertar(invitado).subscribe(()=>{})
               }
-            }*/
+            }
 
             }
           }

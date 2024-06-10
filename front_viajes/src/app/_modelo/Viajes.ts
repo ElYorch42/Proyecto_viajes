@@ -8,7 +8,7 @@ export interface Viajes {
   tipocalidad: string;
   fecha_inicio: string;
   fecha_fin: string;
-  id_destino:number;
+  id_destino:Destinos;
   actividad1: string;
   actividad2: string;
   actividad3: string;

@@ -8,7 +8,7 @@ import { Invitado } from '../_modelo/Invitado';
 })
 export class InvitadosService {
 
-  private url:string =`http://localhost:8080/cliente`;
+  private url:string =`http://localhost:8080/invitado`;
   invitadoCambio = new Subject<Invitado[]>();
 
   constructor(private http:HttpClient) { }
