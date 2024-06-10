@@ -9,7 +9,7 @@ public interface IDestinosRepo extends IGenericoRepositorio<Destinos,Integer>{
     @Query(value = "SELECT d.*, p.nombre AS pais\n" +
             "FROM destinos d\n" +
             "JOIN paises p ON d.id_pais = p.id\n" +
-            "WHERE p.continente = 'Oceania'\n" +
+            "WHERE p.continente = :continentes\n" +
             "ORDER BY RANDOM()\n" +
             "LIMIT 1;", nativeQuery = true)
     Destinos consultaPorContinenteAleatoria(@Param("continentes") String continente);

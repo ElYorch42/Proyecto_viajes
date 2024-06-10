@@ -87,6 +87,7 @@
     background-color: #f2f2f2; /* Fondo del contenedor */
     border-radius: 10px; /* Bordes redondeados del contenedor */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    margin-bottom: 5%;
 }
 
 .cliente-container > input {

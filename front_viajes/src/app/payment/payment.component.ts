@@ -9,6 +9,8 @@ import { ClienteService } from '../_servicio/cliente.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { entorno } from '../_environment/entorno';
+import { AmadeusDatos } from '../_modelo/AmadeusDatos';
+import { HermanosCVFDService } from '../_servicio/hermanos-cv-fd.service';
 
 @Component({
   selector: 'app-payment',
@@ -17,25 +19,74 @@ import { entorno } from '../_environment/entorno';
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
-export class PaymentComponent implements OnInit{
+export class PaymentComponent implements OnInit {
   //Variables de la api
-    paymentForm: FormGroup;
+
+
+  datosViaje: AmadeusDatos = {
+    originLocationCode: '',
+    destinationLocationCode: '',
+    departureDate: '',
+    returnDate: '',
+    adults: 0,
+    nonStop: true,
+    precioViaje: 0,
+
+    ratings: 0,
+
+    nombre_hotel: '',
+    id_hotel: '',
+    latitud: '',
+    lengitud: '',
+    precioHotel: 0,
+
+    actividad1: '',
+    actividad2: '',
+    actividad3: '',
+    precio_actividades: 0
+  }
+
+
+  paymentForm: FormGroup;
   elements: StripeElements | null = null;
   card: StripeCardElement | null = null;
   stripe: Stripe | null = null;
   clientSecret: string = '';
   //Variables de la informacion del usuario
   nombre: string = "";
-  token:any = "";
-  email:string="";
+  token: any = "";
+  email: string = "";
   //Constructor
-  constructor(private paymentService: PaymentService, private fb: FormBuilder,private emailService: EmailService,private service:ClienteService,public jwtHelper: JwtHelperService,private router:Router) {
+
+
+
+
+
+
+  constructor(private hermano: HermanosCVFDService, private paymentService: PaymentService, private fb: FormBuilder, private emailService: EmailService, private service: ClienteService, public jwtHelper: JwtHelperService, private router: Router) {
     this.paymentForm = this.fb.group({
       amount: [500]
     });
   }
 
+
+
+
   async ngOnInit() {
+
+    this.hermano.currentDataAmadeus.subscribe((data) => {
+
+      this.datosViaje = data;
+
+
+    })
+
+    console.log(this.datosViaje);
+
+   
+
+    console.log( this.calcularPrecio());
+
     //Implementacion de la api 
     this.stripe = await loadStripe('pk_test_51PM5FeRvfQwpBftnSmANSdvNfNEq73nbidnLsSadel1mtZVeIG4lDldegGPWBT4k2tf4CwEc2S3YecCVwBCiCdzs00GXjBBqbO');
     if (this.stripe) {
@@ -72,37 +123,44 @@ export class PaymentComponent implements OnInit{
     }
     //Desencripto el token
     this.token = sessionStorage.getItem(entorno.TOKEN_SESSION);
-    console.log("token-> " + this.token )
+    console.log("token-> " + this.token)
     let emaildesc;
     let tokenDecodificado = this.token !== null ? this.jwtHelper.decodeToken(this.token) : null;
 
-    if(this.token != null){
-      if(this.jwtHelper.isTokenExpired(this.token)){
-      this.service.cerrarSesion();
-      this.router.navigate(['/inicio_sesion']);
-    }
-    //Si el token esta desencriptado sacamos el correo y con el correo recojemos el resto de datos  
-    if(tokenDecodificado != null){
-      emaildesc = tokenDecodificado.sub;
+    if (this.token != null) {
+      if (this.jwtHelper.isTokenExpired(this.token)) {
+        this.service.cerrarSesion();
+        this.router.navigate(['/inicio_sesion']);
       }
-      
+      //Si el token esta desencriptado sacamos el correo y con el correo recojemos el resto de datos  
+      if (tokenDecodificado != null) {
+        emaildesc = tokenDecodificado.sub;
+      }
+
       if (tokenDecodificado) {
         this.service.listarPorEmail(emaildesc).subscribe(
           data => {
             this.nombre = data.nombre;
-            this.email=data.email;    
+            this.email = data.email;
           },
           error => {
             console.error('Error al obtener el contenido', error);
           }
         );
       }
-    
+
+    }
   }
+
+  calcularTotal(){
+
+
+
+    return this.calcularPrecio() + this.datosViaje.precioViaje + (this.datosViaje.precio_actividades*this.datosViaje.adults);
   }
   async submitPayment() {
     //Metodo que realiza el pago
-    const amount = this.paymentForm.get('amount')?.value;
+    const amount = this.calcularTotal();
     if (amount) {
       this.paymentService.createPaymentIntent(amount).subscribe(async (data) => {
         this.clientSecret = data.clientSecret;
@@ -120,8 +178,8 @@ export class PaymentComponent implements OnInit{
               //Si el pago es correcto te avisa por consola y te manda un correo de confirmacion
               console.log('Payment successful!');
               //Metodo para enviar correos
-              let e:email={
-                to : this.email,
+              let e: email = {
+                to: this.email,
                 subject: "Confirmacion de reserva",
                 text: "todo bien",
                 name: this.nombre
@@ -135,7 +193,7 @@ export class PaymentComponent implements OnInit{
                 }
               );
               //Meter metodo insercion datos
-              
+
             }
           }
         } else {
@@ -148,4 +206,29 @@ export class PaymentComponent implements OnInit{
       console.error('Amount is not defined.');
     }
 
-}}
+  }
+
+  calcularPrecio() {
+
+      let inicio:Date = new Date(this.datosViaje.departureDate);
+
+      let vuelta:Date = new Date(this.datosViaje.returnDate);
+
+
+      let dias =  (((vuelta.getTime() - inicio.getTime())/86400000)-1)*this.datosViaje.adults;
+
+     
+
+      
+
+
+    return this.datosViaje.precioHotel * dias;
+  }
+
+}
+
+
+
+
+
+
