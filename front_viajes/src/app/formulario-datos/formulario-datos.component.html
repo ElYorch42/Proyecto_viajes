@@ -7,7 +7,9 @@
                 <label for="ratings">Numero de estrellas</label>
                 <select class="form-control" formControlName="ratings" name="ratings" id="ratings">
                     <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
                     <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
                     <option value="5">⭐⭐⭐⭐⭐</option>
                 </select>
             </div>
@@ -20,7 +22,7 @@
                 <input class="form-control" type="date" id="fechaLlegada" formControlName="fechaLlegada">
             </div>
             <div class="col-md-3 d-flex flex-column align-items-center justify-content-end">
-                <button class="btn btn-dark mt-4" (click)="mirar()">Buscar</button>
+                <button [disabled]="formulario.invalid" d class="btn btn-dark mt-4" (click)="mirar()">Buscar</button>
             </div>
         </div>
     </form>

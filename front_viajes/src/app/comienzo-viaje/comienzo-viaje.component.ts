@@ -4,18 +4,27 @@ import { FooterComponent } from '../footer/footer.component';
 import { Router } from '@angular/router';
 import { FormularioDatosComponent } from '../formulario-datos/formulario-datos.component';
 import { HermanosCVFDService } from '../_servicio/hermanos-cv-fd.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-comienzo-viaje',
   standalone: true,
-  imports: [NavbarComponent,FooterComponent,FormularioDatosComponent],
+  imports: [NavbarComponent,FooterComponent,FormularioDatosComponent,ReactiveFormsModule],
   templateUrl: './comienzo-viaje.component.html',
   styleUrl: './comienzo-viaje.component.css'
 })
 export class ComienzoViajeComponent implements OnInit {
 
+  formulario: FormGroup;
    destinoAleatorios:string = "";
-   constructor(private route:Router,private hermanos:HermanosCVFDService) { }
+   constructor(private route:Router,private hermanos:HermanosCVFDService,private fb: FormBuilder) {
+    this.formulario = this.fb.group({
+      aeSalida:['',Validators.required]
+      
+    })
+
+
+    }
   
   continents = [
     {
@@ -74,6 +83,7 @@ export class ComienzoViajeComponent implements OnInit {
         this.destinoAleatorios = arrayDestinos[Math.floor(Math.random() * arrayDestinos.length)];
         console.log(this.destinoAleatorios);
         this.hermanos.changeData(this.destinoAleatorios);
+        this.hermanos.changeDataAe(this.formulario.controls["aeSalida"].value)
         this.route.navigate(['/datos']);
 
 

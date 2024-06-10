@@ -2,6 +2,14 @@
 <div class="container mt-1">
     <h1 class="text-center">Empezamos el viaje</h1>
     <p class="text-center">¿A qué continente te gustaría ir?</p>
+    <form [formGroup]="formulario">
+    <div class="d-flex flex-column align-items-center">
+        <label class="h4" for="ratings">Selecciona el aeropuerto de salida</label>
+        <select class="w-50 form-control" formControlName="aeSalida" name="ratings" id="ratings">
+            <option value="MAD">Madrid</option>
+            <option value="BCN">Barcelona</option>
+        </select>
+    </div>
     
     <div class="row">
     
@@ -32,9 +40,10 @@
             </div>
         
     }
-    <button  (click)="seleccionAleatior()" class=" btn btn-dark">Continuar</button>     
+    <button [disabled]="formulario.invalid" (click)="seleccionAleatior()" class=" btn btn-dark">Continuar</button> 
+       
     </div>
-   
+</form> 
   </div>
   
   <app-footer></app-footer>

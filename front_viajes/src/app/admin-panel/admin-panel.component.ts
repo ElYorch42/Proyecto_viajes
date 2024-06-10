@@ -8,6 +8,8 @@ import { empty } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { Viajes } from '../_modelo/Viajes';
+import { ViajesService } from '../_servicio/viajes.service';
+import { DestinosService } from '../_servicio/destinos.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -25,14 +27,16 @@ export class AdminPanelComponent {
 
   clienteMostrar: Cliente;
   viajeMostrar: Viajes[] = [];
-  arrayimagenes:string[] = [];
+  arrayCiudades: string[] = [];
 
-  correoMostrar:string = "";
+  correoMostrar: string = "";
+
+  viajeoperfil: boolean = false;
 
   buscar: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private router: Router, private servicioCliente: ClienteService) {
+  constructor(private servicioDestinos: DestinosService, private servicioViajes: ViajesService, private fb: FormBuilder, private router: Router, private servicioCliente: ClienteService) {
 
     this.buscar = this.fb.group({
       search: ['']
@@ -74,6 +78,7 @@ export class AdminPanelComponent {
       this.clientes = this.clientes.filter(cliente =>
         cliente.dni.toLowerCase().startsWith(value.toLowerCase()));
     }
+
   }
 
   ngOnInit(): void {
@@ -100,17 +105,70 @@ export class AdminPanelComponent {
 
 
 
-  mostrarPerfil():Cliente {
 
-    
-    this.servicioCliente.listarPorEmail(this.correoMostrar).subscribe(data =>{
 
-    this.clienteMostrar = data;
+  mostrarPerfil(): Cliente {
+
+
+    this.viajeoperfil = false;
+
+    this.servicioCliente.listarPorEmail(this.correoMostrar).subscribe(data => {
+
+      this.clienteMostrar = data;
 
 
     })
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+
     return this.clienteMostrar;
 
   }
+
+
+  eliminarViajes(id: number) {
+    this.servicioViajes.eliminar(1).subscribe();
+    //this.mostrarViajes();
+  }
+
+  mostrarViajes() {
+
+    this.servicioViajes.listarViajesConCorreo(this.mostrarPerfil().email).subscribe(data => {
+      this.viajeMostrar = data;
+      this.viajeoperfil = true;
+  
+      this.sacarCiudad();
+
+    })
+
+    
+    
+
+
+  }
+
+
+  sacarCiudad() {
+
+
+    for(let i = 0;i < this.viajeMostrar.length ; i++){
+        
+      this.servicioDestinos.listarPorId(this.viajeMostrar[i].destinoViaje).subscribe(data =>{
+
+        this.arrayCiudades.push(data.nombre);
+      
+      })
+
+      
+    }    
+    
+  
+
+  }
+  
 
 }

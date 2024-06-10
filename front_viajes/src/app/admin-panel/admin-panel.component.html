@@ -3,20 +3,56 @@
     <div class="row row-centered">
         <div class="divListar col-12 col-xl-8">
             <div class="texto">
+                @if (viajeoperfil == false) {
                 <div class="cliente-container">
                     <input type="number" placeholder="{{clienteMostrar.id}}" readonly>
-                    <input type="text" placeholder="{{clienteMostrar.nombre}}" >
-                    <input type="text" placeholder="{{clienteMostrar.dni}}" >
-                    <input type="text" placeholder="{{clienteMostrar.email}}" >
-                    <input type="text" placeholder="{{clienteMostrar.direccion}}" >
-                    <input type="text" placeholder="{{clienteMostrar.ciudad}}" >
-                    <input type="text" placeholder="{{clienteMostrar.comunidad}}" >
-                    <input type="number" placeholder="{{clienteMostrar.codigoPostal}}" >
-                    <input type="text" placeholder="{{clienteMostrar.role}}" >
-                 
+                    <input type="text" placeholder="{{clienteMostrar.nombre}}">
+                    <input type="text" placeholder="{{clienteMostrar.dni}}">
+                    <input type="text" placeholder="{{clienteMostrar.email}}">
+                    <input type="text" placeholder="{{clienteMostrar.direccion}}">
+                    <input type="text" placeholder="{{clienteMostrar.ciudad}}">
+                    <input type="text" placeholder="{{clienteMostrar.comunidad}}">
+                    <input type="number" placeholder="{{clienteMostrar.codigoPostal}}">
+                    <input type="text" placeholder="{{clienteMostrar.role}}">
                     <input type="text" placeholder="{{clienteMostrar.password}}">
-                    <input type="text" placeholder="{{clienteMostrar.urlImagen}}" >
+                    <input type="text" placeholder="{{clienteMostrar.urlImagen}}">
+                    <button class="btn btn-dark">Actualizar</button>
                 </div>
+                <button (click)="mostrarViajes()" class="btn btn-dark">Mostrar Viajes</button>
+                }@else if(viajeoperfil == true){
+
+
+                @if(viajeMostrar.length == 0){
+                <h1>No tiene viajes planeados</h1>
+                }
+                @for (item of viajeMostrar; track $index) {
+
+
+                <div class="cliente-container">
+                    <input type="number" placeholder="{{item.id}}" readonly>
+                    <input type="number" placeholder="{{item.precio}}" readonly>
+                    <input type="text" placeholder="{{item.tipocalidad}}" readonly>
+                    <input type="text" placeholder="{{item.fecha_inicio}}" readonly>
+                    <input type="text" placeholder="{{item.fecha_fin}}" readonly>
+                    <input type="text" placeholder="{{item.destinoViaje}}" readonly>
+                    <input type="text" placeholder="{{item.actividad1}}" readonly>
+                    <input type="text" placeholder="{{item.actividad2}}" readonly>
+                    <input type="text" placeholder="{{item.actividad3}}" readonly>
+                    <input type="text" placeholder="{{arrayCiudades[$index]}}" readonly>
+
+                    <button class="btn btn-dark" (click)="eliminarViajes(item.id)">eliminiar</button>
+
+                </div>
+
+
+
+                }
+
+
+
+
+
+                }
             </div>
         </div>
         <div class="divInformacion col-12 col-xl-4">
@@ -31,7 +67,9 @@
             @for (item of clientes; track $index) {
             <div class="divDentro">
                 <p>{{item.nombre}} - DNI: {{item.dni}} - EMAIL: {{item.email}}</p>
-                <button (click)="correoMostrar = item.email;mostrarPerfil()" class="btn btn-light">Mostrar Viajes e Informacion</button>
+                <button (click)="correoMostrar = item.email;mostrarPerfil()" class="btn btn-light">Mostrar Viajes e
+                    Informacion</button>
+
             </div>
 
             }

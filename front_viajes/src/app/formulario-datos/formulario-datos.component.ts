@@ -4,7 +4,7 @@ import { FormularioInvitadosComponent } from './formulario-invitados/formulario-
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { HttpClient } from '@angular/common/http';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClienteService } from '../_servicio/cliente.service';
 import { ComienzoViajeComponent } from '../comienzo-viaje/comienzo-viaje.component';
@@ -20,39 +20,41 @@ import { AmadeusDatos } from '../_modelo/AmadeusDatos';
 @Component({
   selector: 'app-formulario-datos',
   standalone: true,
-  imports: [ReactiveFormsModule,ComienzoViajeComponent,FormularioInvitadosComponent,NavbarComponent,FooterComponent,ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ComienzoViajeComponent, FormularioInvitadosComponent, NavbarComponent, FooterComponent, ReactiveFormsModule],
   templateUrl: './formulario-datos.component.html',
   styleUrl: './formulario-datos.component.css'
 })
 export class FormularioDatosComponent {
 
-   continenteAleatorio: string = "";
+  continenteAleatorio: string = "";
+  aeSalida: string = "";
+  
 
-   destino: Destinos = {
+  destino: Destinos = {
     id: 0,
-    codigo_ciudad:'',
-    aeropuerto:'',
+    codigo_ciudad: '',
+    aeropuerto: '',
     nombre: '',
     tipoLocalidad: '',
     id_pais: 0
-   }
+  }
 
   formulario: FormGroup;
 
   formArrayData: FormArray = new FormArray([] as FormControl[]);
 
-  constructor(private hermano:HermanosCVFDService,private http: HttpClient, private fb: FormBuilder, 
+  constructor(private hermano: HermanosCVFDService, private http: HttpClient, private fb: FormBuilder,
     private router: Router, private amadeusServicio: AmadeusService, private destinoServicio: DestinosService,
-    private hermanos:HermanosCVFDService) {
+    private hermanos: HermanosCVFDService) {
     this.formulario = this.fb.group({
-      ratings:new FormControl(''),
-      fechaSalida:new FormControl(''),
-      fechaLlegada:new FormControl('')
+      ratings: ['', Validators.required],
+      fechaSalida: ['', Validators.required],
+      fechaLlegada: ['', Validators.required]
     })
   }
 
 
-  childreciever(form:FormArray):void{
+  childreciever(form: FormArray): void {
     this.formArrayData = form;
     console.log('FormArray recibido del hijo:', this.formArrayData.value);
   }
@@ -60,53 +62,78 @@ export class FormularioDatosComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
+
+
+
     this.hermano.currentData.subscribe(data => this.continenteAleatorio = data);
     console.log(this.continenteAleatorio);
+    this.hermano.currentData2.subscribe(data => this.aeSalida = data);
+    console.log(this.aeSalida);
+
+
+    this.hermano.currentData.subscribe()
+    if (this.continenteAleatorio == "default data") {
+
+      this.router.navigate(["inicio"])
+    }
 
     this.destinoServicio.consultaPorContinenteAleatoria(this.continenteAleatorio).subscribe(datos => {
       console.log(datos);
       this.destino = {
         id: datos.id,
-        codigo_ciudad:datos.codigo_ciudad,
-        aeropuerto:datos.aeropuerto,
+        codigo_ciudad: datos.codigo_ciudad,
+        aeropuerto: datos.aeropuerto,
         nombre: datos.nombre,
         tipoLocalidad: datos.tipoLocalidad,
         id_pais: datos.id_pais
-       };
+      };
       //this.destino = datos;
       console.log(this.destino);
+
+
+
     });
-    
 
-    
-      const today = new Date().toISOString().split('T')[0];
-      
-      var tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
 
-      const manana = tomorrow.toISOString().split('T')[0];
-      document.getElementById('fechaSalida')?.setAttribute('min', today);
-      document.getElementById('fechaLlegada')?.setAttribute('min', manana);
- 
-   
+
+    const today = new Date().toISOString().split('T')[0];
+
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+
+
+    const manana = tomorrow.toISOString().split('T')[0];
+
+
+
+    document.getElementById('fechaSalida')?.setAttribute('min', today);
+    document.getElementById('fechaLlegada')?.setAttribute('min', manana);
+
+  
+
+
+
+
   }
 
-  mirar(){
-    console.log(  this.formulario.controls["ratings"].value);
-    console.log(  this.formulario.controls["fechaSalida"].value);
-    console.log(  this.formulario.controls["fechaLlegada"].value);
-    console.log( this.formArrayData.length);
-    console.log( this.formArrayData.value);
-    let amadeusViaje:AmadeusViaje = {
-      originLocationCode:'MAD',
-      destinationLocationCode:this.destino.codigo_ciudad,
-      departureDate:this.formulario.controls["fechaSalida"].value,
-      returnDate:this.formulario.controls["fechaLlegada"].value,
+  mirar() {
+    console.log(this.formulario.controls["ratings"].value);
+    console.log(this.formulario.controls["fechaSalida"].value);
+    console.log(this.formulario.controls["fechaLlegada"].value);
+    console.log(this.formArrayData.length);
+    console.log(this.formArrayData.value);
+    let amadeusViaje: AmadeusViaje = {
+      originLocationCode: 'MAD',
+      destinationLocationCode: this.destino.codigo_ciudad,
+      departureDate: this.formulario.controls["fechaSalida"].value,
+      returnDate: this.formulario.controls["fechaLlegada"].value,
       adults: this.formArrayData.length,
-      nonStop:false
+      nonStop: false
     };
-    let preciodelViaje:number =0;
-    let amadeusHoteles:AmadeusHoteles = {
+    let preciodelViaje: number = 0;
+    let amadeusHoteles: AmadeusHoteles = {
       cityCode: this.destino.codigo_ciudad,
       ratings: parseInt(this.formulario.controls["ratings"].value),
       adults: this.formArrayData.length,
@@ -129,32 +156,45 @@ export class FormularioDatosComponent {
     }).subscribe(({ viaje, hoteles }) => {
       let preciodelViaje = viaje;
       let amadeusHoteles = hoteles;
-    
+
       let amadeusDatos: AmadeusDatos = {
-        originLocationCode: 'MAD',
+        originLocationCode: this.aeSalida,
         destinationLocationCode: this.destino.codigo_ciudad,
         departureDate: this.formulario.controls["fechaSalida"].value,
         returnDate: this.formulario.controls["fechaLlegada"].value,
         adults: this.formArrayData.length,
         nonStop: false,
         precioViaje: preciodelViaje,
-    
+
         ratings: parseInt(this.formulario.controls["ratings"].value),
-    
+
         nombre_hotel: amadeusHoteles.nombre_hotel,
         id_hotel: amadeusHoteles.id_hotel,
         latitud: amadeusHoteles.latitud,
         lengitud: amadeusHoteles.lengitud,
         precioHotel: amadeusHoteles.precio,
-    
+
         actividad1: amadeusHoteles.actividad1,
         actividad2: amadeusHoteles.actividad2,
         actividad3: amadeusHoteles.actividad3,
         precio_actividades: amadeusHoteles.precio_actividades
       };
-    
+
       console.log(amadeusDatos);
       this.hermanos.changeDataAmadeus(amadeusDatos);
+      this.router.navigate(['/pago'])
+    }, (error) => {
+      if (error.status === 500) {
+
+        let mensaje: string = "No hay hoteles de " + this.formulario.controls['ratings'].value + " estrellas en la fecha seleccionada";
+
+
+
+        alert(mensaje);
+      } else {
+
+        alert('Ha ocurrido un error. Por favor, inténtalo más tarde.');
+      }
     });
   }
 

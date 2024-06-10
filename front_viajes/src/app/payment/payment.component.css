@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    
   }
   
   .StripeElement {
@@ -28,3 +29,36 @@ html, body {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+
+  .payment-summary {
+    background-color: #f8f9fa; /* Color de fondo */
+    border: 1px solid #dee2e6; /* Borde */
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.payment-summary:hover {
+    transform: scale(1.02); /* Escalado al pasar el cursor */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra al pasar el cursor */
+}
+
+.text-primary {
+    color: #007bff; /* Color del texto primario */
+}
+
+.text-danger {
+    color: #dc3545; /* Color del texto de peligro */
+}
+
+.text-success {
+    color: #28a745; /* Color del texto de éxito */
+}
+
+.text-warning {
+    color: #ffc107; /* Color del texto de advertencia */
+}
+
+.bar {
+  height: 1px; 
+  background-color: #383838; 
+  margin-bottom: 20px; 
+}

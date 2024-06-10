@@ -10,10 +10,18 @@ export class HermanosCVFDService {
   constructor() { }
 
   private dataSource = new BehaviorSubject<string>('default data');
+
+  private dataSource2 = new BehaviorSubject<string>('default data');
+
   currentData = this.dataSource.asObservable();
+  currentData2 = this.dataSource2.asObservable();
 
   changeData(data: string) {
     this.dataSource.next(data);
+  }
+
+  changeDataAe(data:string){
+    this.dataSource2.next(data);
   }
 
   defaultAmadeus:AmadeusDatos = {
