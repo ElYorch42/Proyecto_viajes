@@ -1,2 +1,2 @@
 # proyecto_viajes
-# Carlo Branch
+# Proyecto de busqueda de viajes aleatorios
