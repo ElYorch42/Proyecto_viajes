@@ -27,4 +27,8 @@ public class EmailController {
     public void sendEmailConfirmacion(@RequestBody EmailRequest emailRequest) throws MessagingException {
         emailService.enviarCorreoConfirmacion(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getName());
     }
+    @PostMapping("/recuperacion")
+    public void sendEmailRecuperacion(@RequestBody EmailRequest emailRequest) throws MessagingException {
+        emailService.enviarCorreoReset(emailRequest.getTo(),emailRequest.getSubject(),emailRequest.getText(),emailRequest.getName());
+    }
 }

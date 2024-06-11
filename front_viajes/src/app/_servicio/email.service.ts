@@ -20,7 +20,7 @@ export class EmailService {
   }
 
   sendEmailRecuperacion(e:email){
-    return this.http.post(this.apiUrl+'registrarse', e);
+    return this.http.post(this.apiUrl+'recuperacion', e);
   }
 
   sendEmailConfirmacion(e:email){
